@@ -4,8 +4,6 @@ import {
   Filter,
   Plus,
   HelpCircle,
-  Sun,
-  Moon,
   ArrowRight,
   Wallet,
 } from 'lucide-react'
@@ -20,6 +18,7 @@ import {
   NavSection,
 } from './components/EcosystemViews'
 import { PredictionMarketNodeGraph } from './components/PredictionMarketNodeGraph'
+import { HeroBackgroundVideo } from './components/HeroBackgroundVideo'
 import { INITIAL_MARKETS, MarketItem, MarketOutcome } from './data/markets'
 import { applyTheme } from './theme/applyTheme'
 import { getTheme } from './theme/themeRegistry'
@@ -144,10 +143,6 @@ export function App() {
     )
   }
 
-  const handleToggleTheme = () => {
-    setThemeId((prev) => (prev === 'seer-light' ? 'seer-osiris' : 'seer-light'))
-  }
-
   const isLight = themeId === 'seer-light'
 
   // ============================================================================
@@ -156,7 +151,7 @@ export function App() {
   if (section === 'home') {
     return (
       <div className="relative min-h-screen w-full bg-[var(--theme-app-bg)] text-[var(--theme-text-primary)] flex flex-col overflow-x-hidden seer-grid-backdrop select-none">
-        {/* Top Navbar: Left Logo in Backdrop + Center Links + Right Theme Switcher */}
+        {/* Top Navbar: Left Logo in Backdrop + Center Links */}
         <header
           style={{ background: 'var(--theme-header-bg)' }}
           className="sticky top-0 z-30 w-full backdrop-blur-md border-b border-[var(--theme-card-border)]"
@@ -206,24 +201,18 @@ export function App() {
               })}
             </nav>
 
-            {/* Right Theme Switcher */}
-            <div className="flex w-[88px] justify-end">
-              <button
-                type="button"
-                onClick={handleToggleTheme}
-                className="p-2.5 rounded-xl bg-[var(--theme-panel-bg)] border border-[var(--theme-card-border)] hover:border-[#7D33FF] text-[var(--theme-text-muted)] hover:text-[var(--theme-text-primary)] transition-colors"
-                title={isLight ? 'Switch to Seer Dark Mode' : 'Switch to Seer Light Mode'}
-              >
-                {isLight ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
-              </button>
-            </div>
+            {/* Right Spacer to keep Navbar Links centered */}
+            <div className="flex w-[88px] justify-end" />
           </div>
         </header>
 
         {/* First-Viewport Hero + Partner Logo Banner Container (Always Visible Together in Initial View) */}
         <div className="relative z-10 flex flex-col justify-between min-h-[calc(100vh-5rem)] w-full">
           {/* Hero Area with Left & Right Floating Node / Yes-No / Winner Cards */}
-          <main className="relative flex-1 flex flex-col items-center justify-center px-6 sm:px-10 py-8 w-full text-center">
+          <main className="relative flex-1 flex flex-col items-center justify-center px-6 sm:px-10 py-8 w-full text-center overflow-hidden">
+            {/* Light-Opacity Cycling Hero Background Video (Politics, Tennis, Space Rocket, Fortune Teller) */}
+            <HeroBackgroundVideo isLight={isLight} />
+
             {/* Floating Left & Right Market Node, Yes/No Outcome, and Winner Cards (No Outer Wrapper Card) */}
             <PredictionMarketNodeGraph onNavigate={handleNavigate} />
 
@@ -432,7 +421,7 @@ export function App() {
             })}
           </nav>
 
-          {/* Right: Connect Button + Help + Theme Switcher */}
+          {/* Right: Connect Button + Help */}
           <div className="flex items-center gap-2.5">
             <button
               type="button"
@@ -454,19 +443,6 @@ export function App() {
               title="Back to Seer Protocol Homepage"
             >
               <HelpCircle className="w-4 h-4" />
-            </button>
-
-            <button
-              type="button"
-              onClick={handleToggleTheme}
-              className="p-2 rounded-lg bg-[var(--theme-panel-bg)] border border-[var(--theme-card-border)] hover:border-[#7D33FF] text-[var(--theme-text-muted)] hover:text-[var(--theme-text-primary)] transition-colors"
-              title={isLight ? 'Switch to Seer Dark Mode' : 'Switch to Seer Light Mode'}
-            >
-              {isLight ? (
-                <Moon className="w-4 h-4" />
-              ) : (
-                <Sun className="w-4 h-4" />
-              )}
             </button>
           </div>
         </div>
