@@ -1,0 +1,335 @@
+export type MarketType = 'categorical' | 'binary' | 'scalar'
+
+export interface MarketOutcome {
+  id: string
+  label: string
+  probability: number // 0 - 100
+  color: string
+  price: number // 0.00 - 1.00
+}
+
+export interface MarketItem {
+  id: string
+  question: string
+  category: 'Politics' | 'Crypto' | 'Geopolitics' | 'Regulation' | 'Macro'
+  type: MarketType
+  avatarType: 'israel' | 'france-rn' | 'le-pen' | 'france-assembly' | 'polymarket' | 'geopolitics' | 'denmark' | 'nato' | 'court' | 'senate'
+  outcomes: MarketOutcome[]
+  scalarValue?: number
+  scalarUnit?: string
+  scalarMin?: number
+  scalarMax?: number
+  liquidityUSD: number
+  volumeUSD: number
+  hasIncentive?: boolean
+  hasParentLink?: boolean
+  verified: boolean
+  chain: 'Gnosis' | 'Ethereum' | 'Base'
+  collateral: 'sDAI' | 'USDC'
+  endDate: string
+  starred?: boolean
+  description: string
+}
+
+export const INITIAL_MARKETS: MarketItem[] = [
+  {
+    id: 'knesset-2026',
+    question: 'Which party or joint electoral list will win the most seats in Israeli Knesset election in 2026?',
+    category: 'Politics',
+    type: 'categorical',
+    avatarType: 'israel',
+    outcomes: [
+      { id: 'yashar', label: 'Yashar', probability: 60.9, color: '#7D33FF', price: 0.61 },
+      { id: 'likud', label: 'Likud', probability: 38.2, color: '#8F55F7', price: 0.38 },
+      { id: 'others', label: 'Others', probability: 0.9, color: '#9C6FF2', price: 0.01 },
+    ],
+    liquidityUSD: 27740,
+    volumeUSD: 142800,
+    hasIncentive: true,
+    verified: true,
+    chain: 'Gnosis',
+    collateral: 'sDAI',
+    endDate: '2026-11-03',
+    starred: true,
+    description: 'Resolves to the party or joint electoral list that wins the highest number of seats in the next Israeli Knesset general election scheduled in 2026, according to official Central Elections Committee results.',
+  },
+  {
+    id: 'french-pres-rn-1',
+    question: "Will the National Rally's candidate win the next French presidential election?",
+    category: 'Politics',
+    type: 'binary',
+    avatarType: 'france-rn',
+    outcomes: [
+      { id: 'no', label: 'No', probability: 67.9, color: '#9C6FF2', price: 0.68 },
+      { id: 'yes', label: 'Yes', probability: 32.1, color: '#7D33FF', price: 0.32 },
+    ],
+    liquidityUSD: 7540,
+    volumeUSD: 48200,
+    hasParentLink: true,
+    verified: true,
+    chain: 'Gnosis',
+    collateral: 'sDAI',
+    endDate: '2027-04-25',
+    description: 'Resolves to Yes if the official candidate endorsed by Rassemblement National (National Rally) wins the second round of the next French presidential election.',
+  },
+  {
+    id: 'marine-le-pen-candidate',
+    question: "Will Marine Le Pen be the National Rally's candidate in the next French presidential election?",
+    category: 'Politics',
+    type: 'binary',
+    avatarType: 'le-pen',
+    outcomes: [
+      { id: 'yes', label: 'Yes', probability: 85.1, color: '#7D33FF', price: 0.85 },
+      { id: 'no', label: 'No', probability: 14.9, color: '#9C6FF2', price: 0.15 },
+    ],
+    liquidityUSD: 7160,
+    volumeUSD: 39150,
+    verified: true,
+    chain: 'Gnosis',
+    collateral: 'sDAI',
+    endDate: '2027-03-15',
+    description: 'Resolves to Yes if Marine Le Pen appears on the official first-round ballot as the candidate representing the National Rally (RN).',
+  },
+  {
+    id: 'france-national-assembly-seats',
+    question: "How many seats in France's National Assembly will [party bloc] win in the next French legislative election?",
+    category: 'Politics',
+    type: 'categorical',
+    avatarType: 'france-assembly',
+    outcomes: [
+      { id: 'left', label: 'Left (UG, LFI, SOC, COM, VEC, R...', probability: 36.9, color: '#8F55F7', price: 0.37 },
+      { id: 'centre', label: 'Centre (ENS, REN, MDM, HOR, UD...', probability: 34.0, color: '#9C6FF2', price: 0.34 },
+      { id: 'far-right', label: 'Far Right (RN, UXD, REC, DSV, EX...', probability: 29.1, color: '#7D33FF', price: 0.29 },
+    ],
+    liquidityUSD: 5450,
+    volumeUSD: 28900,
+    verified: true,
+    chain: 'Gnosis',
+    collateral: 'sDAI',
+    endDate: '2026-12-31',
+    description: 'Conditional collection market tracking the seat share distribution across major French political blocs in the next National Assembly legislative election.',
+  },
+  {
+    id: 'french-pres-rn-conditional',
+    question: "Will the National Rally's candidate win the next French presidential election? [Conditional]",
+    category: 'Politics',
+    type: 'binary',
+    avatarType: 'france-rn',
+    outcomes: [
+      { id: 'no', label: 'No', probability: 74.0, color: '#9C6FF2', price: 0.74 },
+      { id: 'yes', label: 'Yes', probability: 26.0, color: '#7D33FF', price: 0.26 },
+    ],
+    liquidityUSD: 1240,
+    volumeUSD: 8420,
+    hasParentLink: true,
+    verified: true,
+    chain: 'Gnosis',
+    collateral: 'sDAI',
+    endDate: '2027-04-25',
+    description: 'Conditional market linked to parent candidate selection outcome for the French presidential election.',
+  },
+  {
+    id: 'polymarket-neg-risk-fix',
+    question: 'Will Polymarket publicly release a fix for the negative-risk mint/merge share cost basis accounting issue before January 1, 2027?',
+    category: 'Crypto',
+    type: 'binary',
+    avatarType: 'polymarket',
+    outcomes: [
+      { id: 'no', label: 'No', probability: 51.6, color: '#9C6FF2', price: 0.52 },
+      { id: 'yes', label: 'Yes', probability: 48.4, color: '#7D33FF', price: 0.48 },
+    ],
+    liquidityUSD: 1180,
+    volumeUSD: 6190,
+    verified: true,
+    chain: 'Gnosis',
+    collateral: 'sDAI',
+    endDate: '2026-12-31',
+    description: 'Resolves to Yes if Polymarket deploys and documents a fix addressing the PnL/cost-basis accounting discrepancy on negative-risk mint/merge positions prior to Jan 1, 2027 UTC.',
+  },
+  {
+    id: 'polymarket-api-fees-positions',
+    question: "Will Polymarket's API allow retrieval of fees paid data per individual positions by January 1st 2027?",
+    category: 'Crypto',
+    type: 'binary',
+    avatarType: 'polymarket',
+    outcomes: [
+      { id: 'yes', label: 'Yes', probability: 50.0, color: '#7D33FF', price: 0.50 },
+      { id: 'no', label: 'No', probability: 50.0, color: '#9C6FF2', price: 0.50 },
+    ],
+    liquidityUSD: 1170,
+    volumeUSD: 4930,
+    verified: true,
+    chain: 'Gnosis',
+    collateral: 'sDAI',
+    endDate: '2026-12-31',
+    description: 'Resolves to Yes if Polymarket exposes per-position fee metadata in its public REST or GraphQL API endpoints before January 1, 2027.',
+  },
+  {
+    id: 'polymarket-non-uma-oracle',
+    question: 'Will Polymarket use an oracle other than UMA to resolve at least one subjective market before January 1, 2027?',
+    category: 'Crypto',
+    type: 'binary',
+    avatarType: 'polymarket',
+    outcomes: [
+      { id: 'no', label: 'No', probability: 65.8, color: '#9C6FF2', price: 0.66 },
+      { id: 'yes', label: 'Yes', probability: 34.2, color: '#7D33FF', price: 0.34 },
+    ],
+    liquidityUSD: 1150,
+    volumeUSD: 5840,
+    verified: true,
+    chain: 'Gnosis',
+    collateral: 'sDAI',
+    endDate: '2026-12-31',
+    description: 'Resolves to Yes if at least one non-price-feed subjective market on Polymarket is settled on-chain using an oracle mechanism other than UMA Optimistic Oracle.',
+  },
+  {
+    id: 'polymarket-api-total-fees-user',
+    question: "Will Polymarket's public API provide a documented endpoint providing total fees paid by individual user by January 1, 2027?",
+    category: 'Crypto',
+    type: 'binary',
+    avatarType: 'polymarket',
+    outcomes: [
+      { id: 'no', label: 'No', probability: 69.7, color: '#9C6FF2', price: 0.70 },
+      { id: 'yes', label: 'Yes', probability: 30.3, color: '#7D33FF', price: 0.30 },
+    ],
+    liquidityUSD: 1120,
+    volumeUSD: 3890,
+    verified: true,
+    chain: 'Gnosis',
+    collateral: 'sDAI',
+    endDate: '2026-12-31',
+    description: 'Resolves to Yes if official Polymarket developer documentation includes a public endpoint returning cumulative trading fees paid by wallet address.',
+  },
+  {
+    id: 'kurdish-militant-iran-2026',
+    question: 'Will any Kurdish militant group launch a confirmed armed attack inside Iran in 2026?',
+    category: 'Geopolitics',
+    type: 'binary',
+    avatarType: 'geopolitics',
+    outcomes: [
+      { id: 'no', label: 'No', probability: 90.9, color: '#9C6FF2', price: 0.91 },
+      { id: 'yes', label: 'Yes', probability: 9.1, color: '#7D33FF', price: 0.09 },
+    ],
+    liquidityUSD: 1120,
+    volumeUSD: 4410,
+    verified: true,
+    chain: 'Gnosis',
+    collateral: 'sDAI',
+    endDate: '2026-12-31',
+    description: 'Resolves to Yes if a kinetic armed attack inside Iranian territory attributed to a Kurdish militant organization is confirmed by at least two major international wire agencies in 2026.',
+  },
+  {
+    id: 'polymarket-clarification-notes-scalar',
+    question: 'How many Polymarket clarification notes published before January 1, 2027 will cause a market price move of at least 25 percentage points within 24 hours? [Note]',
+    category: 'Crypto',
+    type: 'scalar',
+    avatarType: 'polymarket',
+    outcomes: [
+      { id: 'up', label: 'Long (Upper Bound 50)', probability: 28.1, color: '#8F55F7', price: 0.28 },
+      { id: 'down', label: 'Short (Lower Bound 10)', probability: 71.9, color: '#9C6FF2', price: 0.72 },
+    ],
+    scalarValue: 21.23,
+    scalarUnit: 'NOTE',
+    scalarMin: 10,
+    scalarMax: 50,
+    liquidityUSD: 1110,
+    volumeUSD: 5120,
+    verified: true,
+    chain: 'Gnosis',
+    collateral: 'sDAI',
+    endDate: '2026-12-31',
+    description: 'Scalar prediction market tracking the count of official Polymarket rules clarification notes that trigger >=25% implied probability swings within 24 hours of publication.',
+  },
+  {
+    id: 'greenland-sovereignty-treaty-2026',
+    question: 'Will a legally binding treaty or agreement transferring sovereignty over Greenland from Denmark to the United States enter into force in 2026?',
+    category: 'Geopolitics',
+    type: 'binary',
+    avatarType: 'denmark',
+    outcomes: [
+      { id: 'no', label: 'No', probability: 95.2, color: '#9C6FF2', price: 0.95 },
+      { id: 'yes', label: 'Yes', probability: 4.8, color: '#7D33FF', price: 0.05 },
+    ],
+    liquidityUSD: 1100,
+    volumeUSD: 7310,
+    verified: true,
+    chain: 'Gnosis',
+    collateral: 'sDAI',
+    endDate: '2026-12-31',
+    description: 'Resolves to Yes only if a ratified bilateral or multilateral treaty formally transferring sovereignty over Greenland to the United States enters into legal force before Jan 1, 2027.',
+  },
+  {
+    id: 'us-nato-greenland-hostilities',
+    question: 'Will the United States enter into armed hostilities with a NATO country over Greenland in 2026?',
+    category: 'Geopolitics',
+    type: 'binary',
+    avatarType: 'nato',
+    outcomes: [
+      { id: 'no', label: 'No', probability: 98.4, color: '#9C6FF2', price: 0.98 },
+      { id: 'yes', label: 'Yes', probability: 1.6, color: '#7D33FF', price: 0.02 },
+    ],
+    liquidityUSD: 1090,
+    volumeUSD: 3120,
+    verified: true,
+    chain: 'Gnosis',
+    collateral: 'sDAI',
+    endDate: '2026-12-31',
+    description: 'Resolves to Yes if direct military combat occurs between armed forces of the United States and any NATO member state concerning Greenland during 2026.',
+  },
+  {
+    id: 'court-rule-against-polymarket-2026',
+    question: 'Will a court rule against Polymarket in a lawsuit over an incorrect market resolution by the end of 2026?',
+    category: 'Regulation',
+    type: 'binary',
+    avatarType: 'court',
+    outcomes: [
+      { id: 'no', label: 'No', probability: 82.5, color: '#9C6FF2', price: 0.83 },
+      { id: 'yes', label: 'Yes', probability: 17.5, color: '#7D33FF', price: 0.18 },
+    ],
+    liquidityUSD: 1050,
+    volumeUSD: 2980,
+    verified: true,
+    chain: 'Gnosis',
+    collateral: 'sDAI',
+    endDate: '2026-12-31',
+    description: 'Resolves to Yes if any court of competent jurisdiction issues a judgment or ruling adverse to Polymarket regarding a disputed market resolution before Jan 1, 2027.',
+  },
+  {
+    id: 'polymarket-token-distribution-2027',
+    question: 'Will Polymarket distribute a transferable Polymarket cryptocurrency token to existing users before January 1st 2027?',
+    category: 'Crypto',
+    type: 'binary',
+    avatarType: 'polymarket',
+    outcomes: [
+      { id: 'yes', label: 'Yes', probability: 64.2, color: '#7D33FF', price: 0.64 },
+      { id: 'no', label: 'No', probability: 35.8, color: '#9C6FF2', price: 0.36 },
+    ],
+    liquidityUSD: 9420,
+    volumeUSD: 68400,
+    hasIncentive: true,
+    verified: true,
+    chain: 'Gnosis',
+    collateral: 'sDAI',
+    endDate: '2026-12-31',
+    starred: true,
+    description: 'Resolves to Yes if an official transferable token created by or affiliated with Polymarket is airdropped or distributed to historical platform users prior to Jan 1, 2027.',
+  },
+  {
+    id: 'digital-asset-market-clarity-act-2026',
+    question: 'Will the Digital Asset Market Clarity Act be approved by the U.S. Senate, excluding committee approval, in 2026?',
+    category: 'Regulation',
+    type: 'binary',
+    avatarType: 'senate',
+    outcomes: [
+      { id: 'no', label: 'No', probability: 61.5, color: '#9C6FF2', price: 0.62 },
+      { id: 'yes', label: 'Yes', probability: 38.5, color: '#7D33FF', price: 0.39 },
+    ],
+    liquidityUSD: 3840,
+    volumeUSD: 19200,
+    verified: true,
+    chain: 'Gnosis',
+    collateral: 'sDAI',
+    endDate: '2026-12-31',
+    description: 'Resolves to Yes if the full United States Senate passes the Digital Asset Market Clarity Act by roll-call or voice vote before January 1, 2027.',
+  },
+]

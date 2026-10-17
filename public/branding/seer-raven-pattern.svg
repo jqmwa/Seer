@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="50" viewBox="0 0 360 50" fill="none">
+  <defs>
+    <linearGradient id="seerGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#9C6FF2" />
+      <stop offset="50%" stop-color="#8F55F7" />
+      <stop offset="100%" stop-color="#7D33FF" />
+    </linearGradient>
+    <linearGradient id="wingGlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7D33FF" stop-opacity="0.2" />
+      <stop offset="50%" stop-color="#8F55F7" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#E9E9F5" stop-opacity="0.95" />
+    </linearGradient>
+  </defs>
+
+  <!-- Subtle Geometric Grid & Constellation Lines -->
+  <line x1="0" y1="25" x2="360" y2="25" stroke="#8F55F7" stroke-opacity="0.22" stroke-dasharray="3 5" />
+  <line x1="0" y1="8" x2="360" y2="8" stroke="#7D33FF" stroke-opacity="0.16" />
+  <line x1="0" y1="42" x2="360" y2="42" stroke="#7D33FF" stroke-opacity="0.16" />
+
+  <!-- Constellation Nodes -->
+  <circle cx="12" cy="25" r="1.5" fill="#9C6FF2" fill-opacity="0.7" />
+  <circle cx="92" cy="14" r="1.2" fill="#E9E9F5" fill-opacity="0.6" />
+  <circle cx="92" cy="36" r="1.2" fill="#8F55F7" fill-opacity="0.6" />
+  <circle cx="180" cy="25" r="2" fill="#7D33FF" />
+  <circle cx="268" cy="14" r="1.2" fill="#8F55F7" fill-opacity="0.6" />
+  <circle cx="268" cy="36" r="1.2" fill="#E9E9F5" fill-opacity="0.6" />
+  <circle cx="348" cy="25" r="1.5" fill="#9C6FF2" fill-opacity="0.7" />
+
+  <!-- 1. Left Soaring Seer Raven Silhouette (Geometric Oracle Style) -->
+  <g transform="translate(24, 7)">
+    <!-- Outer Wing Spread -->
+    <path
+      d="M2 18 L18 6 L26 11 L32 4 L37 7 L31 15 L48 3 L42 16 L54 12 L44 21 L52 26 L36 25 L29 33 L24 25 L11 29 L17 21 Z"
+      fill="url(#seerGrad)"
+      fill-opacity="0.9"
+    />
+    <!-- Raven Inner Feather & Eye Detail -->
+    <path
+      d="M18 14 L28 17 L38 11 L33 20 L24 21 Z"
+      fill="#E9E9F5"
+      fill-opacity="0.85"
+    />
+    <circle cx="34.5" cy="6.5" r="1.1" fill="#FFFFFF" />
+  </g>
+
+  <!-- 2. Seer Geometric S-Logo Emblem #1 -->
+  <g transform="translate(106, 10) scale(0.95)">
+    <!-- Outer Diamond / Hex Frame -->
+    <polygon points="16,0 32,16 16,32 0,16" stroke="#8F55F7" stroke-opacity="0.4" stroke-width="1" fill="#141223" fill-opacity="0.35" />
+    <!-- Iconic Seer S-Monogram Ribbon -->
+    <path
+      d="M15 3 H23 C24.5 3 25.5 4 25.5 5.5 V12.5 L15 23 H9.5 L17.5 15 H11.5 L19.5 7 H15 L5 17 V11.5 C5 10.5 5.5 9.5 6.5 8.5 L15 3 Z"
+      fill="#E9E9F5"
+    />
+    <path
+      d="M17 29 H9 C7.5 29 6.5 28 6.5 26.5 V19.5 L17 9 H22.5 L14.5 17 H20.5 L12.5 25 H17 L27 15 V20.5 C27 21.5 26.5 22.5 25.5 23.5 L17 29 Z"
+      fill="#9C6FF2"
+    />
+  </g>
+
+  <!-- 3. Center Twin Ravens Flanking Seer Core Sigil -->
+  <g transform="translate(152, 6)">
+    <!-- Left Gliding Raven -->
+    <path
+      d="M0 14 L12 6 L20 15 L27 12 L22 20 L26 26 L15 23 L7 30 L11 20 Z"
+      fill="#8F55F7"
+    />
+    <circle cx="24" cy="13.5" r="0.9" fill="#FFFFFF" />
+    <!-- Center Seer Core Diamond -->
+    <polygon points="28,11 36,19 28,27 20,19" fill="#7D33FF" stroke="#E9E9F5" stroke-width="1.2" />
+    <polygon points="28,15 32,19 28,23 24,19" fill="#FFFFFF" />
+    <!-- Right Gliding Raven (Mirrored) -->
+    <path
+      d="M56 14 L44 6 L36 15 L29 12 L34 20 L30 26 L41 23 L49 30 L45 20 Z"
+      fill="#8F55F7"
+    />
+    <circle cx="32" cy="13.5" r="0.9" fill="#FFFFFF" />
+  </g>
+
+  <!-- 4. Seer Geometric S-Logo Emblem #2 -->
+  <g transform="translate(224, 10) scale(0.95)">
+    <polygon points="16,0 32,16 16,32 0,16" stroke="#8F55F7" stroke-opacity="0.4" stroke-width="1" fill="#141223" fill-opacity="0.35" />
+    <path
+      d="M15 3 H23 C24.5 3 25.5 4 25.5 5.5 V12.5 L15 23 H9.5 L17.5 15 H11.5 L19.5 7 H15 L5 17 V11.5 C5 10.5 5.5 9.5 6.5 8.5 L15 3 Z"
+      fill="#9C6FF2"
+    />
+    <path
+      d="M17 29 H9 C7.5 29 6.5 28 6.5 26.5 V19.5 L17 9 H22.5 L14.5 17 H20.5 L12.5 25 H17 L27 15 V20.5 C27 21.5 26.5 22.5 25.5 23.5 L17 29 Z"
+      fill="#E9E9F5"
+    />
+  </g>
+
+  <!-- 5. Right Diving Oracle Raven Silhouette -->
+  <g transform="translate(278, 7)">
+    <path
+      d="M54 18 L38 6 L30 11 L24 4 L19 7 L25 15 L8 3 L14 16 L2 12 L12 21 L4 26 L20 25 L27 33 L32 25 L45 29 L39 21 Z"
+      fill="url(#seerGrad)"
+      fill-opacity="0.9"
+    />
+    <path
+      d="M38 14 L28 17 L18 11 L23 20 L32 21 Z"
+      fill="#BFBFE6"
+      fill-opacity="0.85"
+    />
+    <circle cx="21.5" cy="6.5" r="1.1" fill="#FFFFFF" />
+  </g>
+</svg>

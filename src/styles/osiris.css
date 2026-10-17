@@ -1,0 +1,344 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* ==========================================================================
+   * SEER OFFICIAL 9-COLOR BRAND KIT
+   * Purples: #7D33FF (Main), #8F55F7 (Mid), #9C6FF2 (Light)
+   * Whites:  #FFFFFF (Pure), #E9E9F5 (Soft), #BFBFE6 (Muted)
+   * Blacks:  #141223 (Deep), #242238 (Mid), #4A4660 (Muted)
+   * ========================================================================== */
+  --seer-purple-main: #7D33FF;
+  --seer-purple-mid: #8F55F7;
+  --seer-purple-light: #9C6FF2;
+  --seer-white-pure: #FFFFFF;
+  --seer-white-soft: #E9E9F5;
+  --seer-white-muted: #BFBFE6;
+  --seer-black-deep: #141223;
+  --seer-black-mid: #242238;
+  --seer-black-muted: #4A4660;
+
+  /* Typography */
+  --theme-font-display: 'PP Neue Montreal', 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --theme-font-body: 'PP Neue Montreal', 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --theme-font-mono: 'Suisse INTL Mono', 'Suise INTL Mono', 'JetBrains Mono', 'Commit Mono', ui-monospace, SFMono-Regular, monospace;
+
+  /* Default Dark Mode (seer-osiris) Tokens */
+  --theme-app-bg: #141223;
+  --theme-app-bg-rgb: 20 18 35;
+  --theme-app-text: #FFFFFF;
+  --theme-header-bg: linear-gradient(90deg, rgba(36, 34, 56, 0.94) 0%, rgba(20, 18, 35, 0.96) 50%, rgba(36, 34, 56, 0.94) 100%);
+  --theme-nav-pill-bg: rgba(20, 18, 35, 0.78);
+
+  --theme-panel-bg: #242238;
+  --theme-panel-border: rgba(143, 85, 247, 0.38);
+  --theme-panel-text: #E9E9F5;
+  --theme-panel-subtle-bg: rgba(233, 233, 245, 0.06);
+  --theme-panel-muted-bg: #141223;
+  --theme-panel-hover-bg: #4A4660;
+  --theme-panel-divider: rgba(191, 191, 230, 0.14);
+
+  --theme-card-bg: linear-gradient(165deg, #242238 0%, #141223 100%);
+  --theme-card-bg-scanline: repeating-linear-gradient(180deg, transparent 0px, transparent 2px, rgba(20, 18, 35, 0.14) 2px, rgba(20, 18, 35, 0.14) 4px), linear-gradient(165deg, #242238 0%, #141223 100%);
+  --theme-card-grad-start: #242238;
+  --theme-card-grad-mid: #1D1B30;
+  --theme-card-grad-end: #141223;
+  --theme-card-border: rgba(143, 85, 247, 0.42);
+  --theme-card-stroke: rgba(143, 85, 247, 0.42);
+  --theme-card-selected-bg: linear-gradient(165deg, rgba(125, 51, 255, 0.32) 0%, #242238 55%, #141223 100%);
+  --theme-card-selected-bg-scanline: repeating-linear-gradient(180deg, transparent 0px, transparent 2px, rgba(20, 18, 35, 0.14) 2px, rgba(20, 18, 35, 0.14) 4px), linear-gradient(165deg, rgba(125, 51, 255, 0.35) 0%, #242238 55%, #141223 100%);
+  --theme-card-selected-border: #9C6FF2;
+
+  --theme-well-bg: #141223;
+  --theme-subcard-bg: rgba(36, 34, 56, 0.82);
+  --theme-subcard-border: rgba(143, 85, 247, 0.28);
+  --theme-input-bg: #141223;
+  --theme-input-border: rgba(143, 85, 247, 0.40);
+
+  --theme-chat-tool-bg: rgba(20, 18, 35, 0.78);
+  --theme-chat-input-bg: #141223;
+
+  --theme-button-bg: linear-gradient(135deg, #7D33FF 0%, #8F55F7 100%);
+  --theme-button-bg-hover: linear-gradient(135deg, #8F55F7 0%, #9C6FF2 100%);
+  --theme-button-border: #9C6FF2;
+  --theme-button-text: #FFFFFF;
+
+  --theme-text-primary: #FFFFFF;
+  --theme-text-secondary: #E9E9F5;
+  --theme-text-muted: #BFBFE6;
+  --theme-text-faint: #4A4660;
+  --theme-text-accent: #9C6FF2;
+  --theme-text-inverse: #141223;
+
+  --theme-chart-grid: rgba(191, 191, 230, 0.16);
+  --theme-chart-axis: #BFBFE6;
+  --theme-donut-track: rgba(191, 191, 230, 0.18);
+  --theme-hero-vignette: linear-gradient(180deg, rgba(20, 18, 35, 0.32) 0%, rgba(20, 18, 35, 0.74) 48%, rgba(20, 18, 35, 0.96) 100%);
+
+  --theme-shadow-strong: 0 20px 60px rgba(20, 18, 35, 0.85);
+  --theme-shadow-panel: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 4px 20px rgba(20, 18, 35, 0.45);
+  --theme-shadow-card: 0 0 0 1px rgba(143, 85, 247, 0.25), 0 10px 30px -5px rgba(20, 18, 35, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --theme-card-drop-shadow: drop-shadow(0 10px 24px rgba(20, 18, 35, 0.65));
+
+  --theme-radius-panel: 10px;
+  --theme-radius-card: 14px;
+  --theme-radius-button: 8px;
+}
+
+/* Light Mode Explicit Overrides using the 9 Brand Kit Colors */
+:root[data-theme="seer-light"],
+body.theme-seer-light {
+  --theme-app-bg: #E9E9F5;
+  --theme-app-bg-rgb: 233 233 245;
+  --theme-app-text: #141223;
+  --theme-header-bg: linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(233, 233, 245, 0.96) 50%, rgba(255, 255, 255, 0.96) 100%);
+  --theme-nav-pill-bg: #E9E9F5;
+
+  --theme-panel-bg: #FFFFFF;
+  --theme-panel-border: #BFBFE6;
+  --theme-panel-text: #141223;
+  --theme-panel-subtle-bg: rgba(125, 51, 255, 0.08);
+  --theme-panel-muted-bg: #E9E9F5;
+  --theme-panel-hover-bg: #BFBFE6;
+  --theme-panel-divider: rgba(74, 70, 96, 0.18);
+
+  --theme-card-bg: linear-gradient(165deg, #FFFFFF 0%, #FFFFFF 62%, #E9E9F5 100%);
+  --theme-card-bg-scanline: linear-gradient(165deg, #FFFFFF 0%, #FFFFFF 62%, #E9E9F5 100%);
+  --theme-card-grad-start: #FFFFFF;
+  --theme-card-grad-mid: #FFFFFF;
+  --theme-card-grad-end: #E9E9F5;
+  --theme-card-border: #BFBFE6;
+  --theme-card-stroke: #BFBFE6;
+  --theme-card-selected-bg: linear-gradient(165deg, rgba(125, 51, 255, 0.14) 0%, #FFFFFF 55%, #E9E9F5 100%);
+  --theme-card-selected-bg-scanline: linear-gradient(165deg, rgba(125, 51, 255, 0.14) 0%, #FFFFFF 55%, #E9E9F5 100%);
+  --theme-card-selected-border: #7D33FF;
+
+  --theme-well-bg: #E9E9F5;
+  --theme-subcard-bg: #FFFFFF;
+  --theme-subcard-border: #BFBFE6;
+  --theme-input-bg: #FFFFFF;
+  --theme-input-border: #BFBFE6;
+
+  --theme-chat-tool-bg: #E9E9F5;
+  --theme-chat-input-bg: #FFFFFF;
+
+  --theme-text-primary: #141223;
+  --theme-text-secondary: #242238;
+  --theme-text-muted: #4A4660;
+  --theme-text-faint: #BFBFE6;
+  --theme-text-accent: #7D33FF;
+  --theme-text-inverse: #FFFFFF;
+
+  --theme-chart-grid: rgba(74, 70, 96, 0.2);
+  --theme-chart-axis: #4A4660;
+  --theme-donut-track: rgba(74, 70, 96, 0.18);
+  --theme-hero-vignette: linear-gradient(180deg, rgba(233, 233, 245, 0.45) 0%, rgba(233, 233, 245, 0.86) 46%, rgba(255, 255, 255, 0.98) 100%);
+
+  --theme-shadow-strong: 0 20px 50px rgba(20, 18, 35, 0.14);
+  --theme-shadow-panel: 0 4px 14px rgba(20, 18, 35, 0.06);
+  --theme-shadow-card: 0 8px 24px -4px rgba(20, 18, 35, 0.08), 0 0 0 1px rgba(191, 191, 230, 0.85);
+  --theme-card-drop-shadow: drop-shadow(0 8px 20px rgba(20, 18, 35, 0.09));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--theme-font-body);
+  background: var(--theme-app-bg);
+  color: var(--theme-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+/* Subtle architectural grid + ambient effect from Seer Brand Kit */
+.seer-grid-backdrop {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(156, 111, 242, 0.22) 1px, transparent 0),
+    linear-gradient(to right, rgba(125, 51, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(125, 51, 255, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px, 48px 48px, 48px 48px;
+}
+
+body.theme-seer-light .seer-grid-backdrop {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(125, 51, 255, 0.18) 1px, transparent 0),
+    linear-gradient(to right, rgba(74, 70, 96, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(74, 70, 96, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px, 48px 48px, 48px 48px;
+}
+
+/* Osiris Card Kit classes */
+.osiris-card {
+  background: var(--theme-card-bg-scanline);
+  border: 1.5px solid var(--theme-card-border);
+  border-radius: var(--theme-radius-card);
+  box-shadow: var(--theme-shadow-card);
+  color: var(--theme-text-primary);
+  transition: all 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.osiris-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(180deg, rgba(156, 111, 242, 0.35), transparent 60%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.osiris-card:hover {
+  border-color: var(--seer-purple-mid);
+  box-shadow:
+    0 0 0 1px rgba(143, 85, 247, 0.45),
+    0 16px 38px -8px rgba(125, 51, 255, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
+}
+
+.osiris-card-selected {
+  background: var(--theme-card-selected-bg-scanline);
+  border: 1.5px solid var(--theme-card-selected-border);
+  border-radius: var(--theme-radius-card);
+  box-shadow:
+    0 0 0 2px rgba(125, 51, 255, 0.35),
+    0 14px 36px rgba(125, 51, 255, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+/* Osiris recessed inner well */
+.osiris-well {
+  background: var(--theme-well-bg);
+  box-shadow: inset 0 1px 3px rgba(20, 18, 35, 0.35), 0 1px 0 rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--theme-panel-divider);
+  border-radius: 10px;
+}
+
+body.theme-seer-light .osiris-well {
+  box-shadow: inset 0 1px 2px rgba(20, 18, 35, 0.06), 0 1px 0 rgba(255, 255, 255, 0.8);
+  border-color: #BFBFE6;
+}
+
+/* Interactive sub-cards inside wells */
+.osiris-subcard {
+  background: var(--theme-subcard-bg);
+  border: 1px solid var(--theme-subcard-border);
+  border-radius: 8px;
+  transition: all 180ms ease;
+}
+
+.osiris-subcard:hover {
+  border-color: var(--seer-purple-main);
+}
+
+/* Osiris health / liquidity bar */
+.osiris-hp-bar {
+  background: var(--theme-well-bg);
+  border: 1px solid var(--theme-panel-divider);
+  border-radius: 9999px;
+  box-shadow: inset 0 1px 2px rgba(20, 18, 35, 0.3);
+}
+
+body.theme-seer-light .osiris-hp-bar {
+  background: #FFFFFF;
+  border-color: #BFBFE6;
+  box-shadow: inset 0 1px 2px rgba(20, 18, 35, 0.06);
+}
+
+/* Osiris Pill Badges */
+.osiris-pill {
+  font-family: var(--theme-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 5px;
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+.osiris-pill-brand {
+  background: rgba(125, 51, 255, 0.25);
+  border: 1px solid rgba(156, 111, 242, 0.65);
+  color: #FFFFFF;
+}
+
+body.theme-seer-light .osiris-pill-brand {
+  background: rgba(125, 51, 255, 0.12);
+  border: 1px solid #7D33FF;
+  color: #7D33FF;
+  font-weight: 600;
+}
+
+/* Osiris CTA Button */
+.osiris-btn-primary {
+  background: linear-gradient(135deg, #7D33FF 0%, #8F55F7 60%, #9C6FF2 100%);
+  border: 1px solid rgba(233, 233, 245, 0.32);
+  color: #FFFFFF;
+  box-shadow:
+    0 0 0 1px rgba(125, 51, 255, 0.5),
+    0 8px 24px rgba(125, 51, 255, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.osiris-btn-primary:hover {
+  background: linear-gradient(135deg, #8F55F7 0%, #9C6FF2 100%);
+  box-shadow:
+    0 0 0 2px rgba(156, 111, 242, 0.65),
+    0 12px 32px rgba(125, 51, 255, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  transform: translateY(-1px);
+}
+
+.osiris-btn-primary:active {
+  transform: translateY(0px);
+}
+
+/* Typography helpers */
+.theme-font-display { font-family: var(--theme-font-display); }
+.theme-font-body { font-family: var(--theme-font-body); }
+.theme-font-mono { font-family: var(--theme-font-mono); font-variant-numeric: tabular-nums; }
+
+.theme-text-primary { color: var(--theme-text-primary); }
+.theme-text-secondary { color: var(--theme-text-secondary); }
+.theme-text-muted { color: var(--theme-text-muted); }
+.theme-text-faint { color: var(--theme-text-faint); }
+.theme-text-accent { color: var(--theme-text-accent); }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--theme-well-bg); }
+::-webkit-scrollbar-thumb { background: rgba(143, 85, 247, 0.4); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #7D33FF; }
+
+/* Left-to-Right Bloomberg-style active market square cards marquee */
+@keyframes seer-marquee-ltr {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+.seer-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: seer-marquee-ltr 52s linear infinite;
+}
+
+.seer-marquee-track:hover {
+  animation-play-state: paused;
+}
