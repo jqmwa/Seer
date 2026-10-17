@@ -108,8 +108,8 @@ function buildContractRows(market: MarketItem): ContractRow[] {
         outcomeId: yesOutcome.id,
         label: 'Before Jul 1, 2026',
         probability: earlyProb1,
-        delta: 0,
-        color: '#9C6FF2', // Brand Light Purple
+        delta: 2,
+        color: '#60A5FA', // Prediction Mid Blue
         yesCents: Math.min(99, earlyProb1 + 2),
         noCents: Math.min(99, 100 - earlyProb1 + 1),
       },
@@ -119,7 +119,7 @@ function buildContractRows(market: MarketItem): ContractRow[] {
         label: 'Before Oct 1, 2026',
         probability: earlyProb2,
         delta: Math.max(1, Math.round(rand() * 6 + 1)),
-        color: '#8F55F7', // Brand Mid Purple
+        color: '#10B981', // Positive Emerald
         yesCents: Math.min(99, earlyProb2 + 2),
         noCents: Math.min(99, 100 - earlyProb2 + 1),
       },
@@ -129,15 +129,15 @@ function buildContractRows(market: MarketItem): ContractRow[] {
         label: `Before ${endFormatted}`,
         probability: mainProb,
         delta: -Math.max(1, Math.round(rand() * 4 + 1)),
-        color: '#7D33FF', // Brand Main Purple
+        color: '#38BDF8', // Primary Prediction Blue
         yesCents: Math.min(99, Math.max(1, mainProb + 1)),
         noCents: Math.min(99, Math.max(1, 100 - mainProb + 2)),
       },
     ]
   }
 
-  // Categorical or scalar market: map each outcome to a contract row using Brand Kit Purples
-  const palette = ['#7D33FF', '#8F55F7', '#9C6FF2', '#4A4660']
+  // Categorical or scalar market: map each outcome to a contract row using Prediction Blue, Emerald, Rose, and Purple
+  const palette = ['#38BDF8', '#10B981', '#60A5FA', '#F43F5E', '#9C6FF2']
   return market.outcomes.map((o, idx) => {
     const p = Math.round(o.probability)
     const rawDelta = Math.round((rand() - 0.45) * 9)
@@ -895,7 +895,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                     onClick={() => setSelectedRowId(row.id)}
                     className={`grid grid-cols-12 items-center py-4 px-2 -mx-2 rounded-xl gap-2 cursor-pointer transition-colors ${
                       isRowSelected
-                        ? 'bg-[#7D33FF]/10'
+                        ? 'bg-[#38BDF8]/10'
                         : 'hover:bg-[var(--theme-panel-bg)]/60'
                     }`}
                   >
@@ -906,25 +906,25 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                       </span>
                     </div>
 
-                    {/* Middle: Large Bold Chance % + Delta Badge */}
+                    {/* Middle: Large Bold Chance % (Prediction Blue) + Red/Green Delta Badge */}
                     <div className="col-span-2 sm:col-span-3 flex items-baseline gap-2">
-                      <span className="text-lg sm:text-xl font-bold text-[var(--theme-text-primary)] theme-font-mono">
+                      <span className="text-lg sm:text-xl font-bold text-[#38BDF8] theme-font-mono">
                         {row.probability}%
                       </span>
                       {row.delta !== 0 && (
                         <span
-                          className={`hidden sm:inline-flex items-center text-xs theme-font-mono font-semibold ${
+                          className={`hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-xs theme-font-mono font-semibold ${
                             row.delta > 0
-                              ? 'text-[var(--theme-text-accent)]'
-                              : 'text-[var(--theme-text-muted)]'
+                              ? 'bg-[#10B981]/15 text-[#34D399]'
+                              : 'bg-[#F43F5E]/15 text-[#FB7185]'
                           }`}
                         >
-                          {row.delta > 0 ? `▲ ${row.delta}` : `▼ ${Math.abs(row.delta)}`}
+                          {row.delta > 0 ? `▲ ${row.delta}%` : `▼ ${Math.abs(row.delta)}%`}
                         </span>
                       )}
                     </div>
 
-                    {/* Right: Yes XX¢ and No YY¢ Pill Buttons */}
+                    {/* Right: Green Yes XX¢ and Red No YY¢ Pill Buttons */}
                     <div className="col-span-5 sm:col-span-4 flex items-center justify-end gap-2 sm:gap-2.5">
                       <button
                         type="button"
@@ -935,8 +935,8 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                         }}
                         className={`px-3.5 sm:px-5 py-2 rounded-full text-xs sm:text-[13px] font-semibold border transition-all min-w-[82px] sm:min-w-[108px] text-center ${
                           isYesActive
-                            ? 'bg-[#7D33FF] border-[#7D33FF] text-[#FFFFFF] shadow-[0_0_16px_rgba(125,51,255,0.35)]'
-                            : 'bg-[var(--theme-panel-bg)] border-[var(--theme-card-border)] hover:border-[#7D33FF] text-[var(--theme-text-accent)] hover:bg-[#7D33FF]/10'
+                            ? 'bg-[#10B981] border-[#10B981] text-[#FFFFFF] shadow-[0_0_16px_rgba(16,185,129,0.35)]'
+                            : 'bg-[#10B981]/10 border-[#10B981]/30 hover:border-[#10B981]/60 text-[#34D399] hover:bg-[#10B981]/20'
                         }`}
                       >
                         Yes {row.yesCents}¢
@@ -951,8 +951,8 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                         }}
                         className={`px-3.5 sm:px-5 py-2 rounded-full text-xs sm:text-[13px] font-semibold border transition-all min-w-[82px] sm:min-w-[108px] text-center ${
                           isNoActive
-                            ? 'bg-[#242238] border-[#4A4660] text-[#FFFFFF] shadow-md'
-                            : 'bg-[var(--theme-panel-bg)] border-[var(--theme-card-border)] hover:border-[#4A4660] text-[var(--theme-text-secondary)] hover:bg-[#4A4660]/15'
+                            ? 'bg-[#F43F5E] border-[#F43F5E] text-[#FFFFFF] shadow-[0_0_16px_rgba(244,63,94,0.35)]'
+                            : 'bg-[#F43F5E]/10 border-[#F43F5E]/30 hover:border-[#F43F5E]/60 text-[#FB7185] hover:bg-[#F43F5E]/20'
                         }`}
                       >
                         No {row.noCents}¢
@@ -1277,11 +1277,11 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                       <div className="w-11 h-11 rounded-xl overflow-hidden shrink-0 border border-[var(--theme-card-border)] bg-[#141223]">
                         <MarketThumbnail type={rel.avatarType} />
                       </div>
-                      <span className="text-sm sm:text-[15px] font-medium text-[var(--theme-text-primary)] group-hover:text-[var(--theme-text-accent)] transition-colors line-clamp-1">
+                      <span className="text-sm sm:text-[15px] font-medium text-[var(--theme-text-primary)] group-hover:text-[#7DD3FC] transition-colors line-clamp-1">
                         {rel.question}
                       </span>
                     </div>
-                    <span className="text-xs sm:text-sm theme-font-mono font-bold text-[var(--theme-text-secondary)] group-hover:text-[var(--theme-text-accent)] shrink-0">
+                    <span className="text-xs sm:text-sm theme-font-mono font-bold text-[#38BDF8] shrink-0">
                       {topOut ? `${topOut.probability.toFixed(0)}%` : ''}
                     </span>
                   </button>
@@ -1307,7 +1307,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                   onClick={() => setTradeTab('buy')}
                   className={`transition-colors ${
                     tradeTab === 'buy'
-                      ? 'text-[var(--theme-text-accent)]'
+                      ? 'text-[#34D399]'
                       : 'text-[var(--theme-text-muted)] hover:text-[var(--theme-text-primary)]'
                   }`}
                 >
@@ -1318,7 +1318,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                   onClick={() => setTradeTab('sell')}
                   className={`transition-colors ${
                     tradeTab === 'sell'
-                      ? 'text-[var(--theme-text-accent)]'
+                      ? 'text-[#FB7185]'
                       : 'text-[var(--theme-text-muted)] hover:text-[var(--theme-text-primary)]'
                   }`}
                 >
@@ -1331,7 +1331,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                 onClick={() =>
                   setOrderUnit((u) => (u === 'DOLLARS' ? 'SHARES' : 'DOLLARS'))
                 }
-                className="inline-flex items-center gap-1 text-xs theme-font-mono font-bold tracking-wider uppercase text-[var(--theme-text-primary)] hover:text-[var(--theme-text-accent)] transition-colors"
+                className="inline-flex items-center gap-1 text-xs theme-font-mono font-bold tracking-wider uppercase text-[var(--theme-text-primary)] hover:text-[#38BDF8] transition-colors"
               >
                 <span>{orderUnit}</span>
                 <ChevronDown className="w-3.5 h-3.5" />
@@ -1355,7 +1355,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                 </div>
               </div>
 
-              {/* YES / NO Segmented Pill Toggle + Yield Callout */}
+              {/* YES (Green) / NO (Red) Segmented Pill Toggle + Yield Callout */}
               <div className="flex items-center justify-between gap-2">
                 <div className="inline-flex items-center p-1 rounded-full bg-[var(--theme-well-bg)] border border-[var(--theme-card-border)]">
                   <button
@@ -1363,8 +1363,8 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                     onClick={() => setSelectedSide('yes')}
                     className={`px-4 py-1.5 rounded-full text-xs theme-font-mono font-bold uppercase transition-all ${
                       selectedSide === 'yes'
-                        ? 'bg-[#7D33FF] text-[#FFFFFF] shadow-[0_0_14px_rgba(125,51,255,0.4)]'
-                        : 'text-[var(--theme-text-muted)] hover:text-[var(--theme-text-primary)]'
+                        ? 'bg-[#10B981] text-[#FFFFFF] shadow-[0_0_14px_rgba(16,185,129,0.4)]'
+                        : 'text-[#34D399]/80 hover:text-[#34D399]'
                     }`}
                   >
                     YES {activeRow?.yesCents}¢
@@ -1374,8 +1374,8 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                     onClick={() => setSelectedSide('no')}
                     className={`px-4 py-1.5 rounded-full text-xs theme-font-mono font-bold uppercase transition-all ${
                       selectedSide === 'no'
-                        ? 'bg-[#242238] text-[#FFFFFF] shadow-md'
-                        : 'text-[var(--theme-text-muted)] hover:text-[var(--theme-text-primary)]'
+                        ? 'bg-[#F43F5E] text-[#FFFFFF] shadow-[0_0_14px_rgba(244,63,94,0.4)]'
+                        : 'text-[#FB7185]/80 hover:text-[#FB7185]'
                     }`}
                   >
                     NO {activeRow?.noCents}¢
@@ -1383,7 +1383,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                 </div>
 
                 <span
-                  className="text-xs text-[var(--theme-text-accent)] font-medium underline decoration-[#8F55F7]/60 underline-offset-4 cursor-help"
+                  className="text-xs text-[#38BDF8] font-medium underline decoration-[#38BDF8]/50 underline-offset-4 cursor-help"
                   title="Positions collateralized in sDAI automatically accrue ~6.5% APY MakerDAO/Spark savings rate"
                 >
                   6.5% Interest
@@ -1392,7 +1392,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
 
               {/* Dollars Input Box */}
               <div className="space-y-2">
-                <div className="rounded-xl border border-[var(--theme-input-border)] focus-within:border-[#7D33FF] bg-[var(--theme-input-bg)] px-3.5 py-2.5 flex items-center justify-between transition-colors">
+                <div className="rounded-xl border border-[var(--theme-input-border)] focus-within:border-[#38BDF8] bg-[var(--theme-input-bg)] px-3.5 py-2.5 flex items-center justify-between transition-colors">
                   <span className="text-xs text-[var(--theme-text-muted)]">
                     {orderUnit === 'DOLLARS' ? `Dollars (${market.collateral})` : 'Contracts'}
                   </span>
@@ -1419,7 +1419,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                       key={preset}
                       type="button"
                       onClick={() => setAmountInput(String(preset))}
-                      className="flex-1 py-1 rounded-lg bg-[var(--theme-well-bg)] hover:bg-[#7D33FF]/15 border border-[var(--theme-card-border)] hover:border-[#7D33FF] text-[11px] theme-font-mono font-semibold text-[var(--theme-text-secondary)] transition-colors"
+                      className="flex-1 py-1 rounded-lg bg-[var(--theme-well-bg)] hover:bg-[#38BDF8]/15 border border-[var(--theme-card-border)] hover:border-[#38BDF8]/50 text-[11px] theme-font-mono font-semibold text-[var(--theme-text-secondary)] transition-colors"
                     >
                       +${preset}
                     </button>
@@ -1427,16 +1427,16 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                 </div>
               </div>
 
-              {/* Odds & Max Payout Summary */}
+              {/* Odds (Prediction Blue) & Max Payout Summary */}
               <div className="space-y-2.5 pt-1">
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-[var(--theme-text-muted)] flex items-center gap-1">
-                    <span>Odds</span>
-                    <span className="w-3.5 h-3.5 rounded-full bg-[var(--theme-well-bg)] border border-[var(--theme-card-border)] text-[9px] flex items-center justify-center text-[var(--theme-text-muted)]">
-                      $
+                    <span>Prediction Odds</span>
+                    <span className="w-3.5 h-3.5 rounded-full bg-[var(--theme-well-bg)] border border-[var(--theme-card-border)] text-[9px] flex items-center justify-center text-[#38BDF8]">
+                      %
                     </span>
                   </span>
-                  <span className="text-sm font-semibold text-[var(--theme-text-secondary)]">
+                  <span className="text-sm font-bold theme-font-mono text-[#38BDF8]">
                     {displayedOdds}% chance
                   </span>
                 </div>
@@ -1448,7 +1448,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                       {formatEndDateReadable(market.endDate)}
                     </div>
                   </div>
-                  <div className="text-2xl font-bold text-[var(--theme-text-primary)] theme-font-mono">
+                  <div className="text-2xl font-bold text-[#34D399] theme-font-mono">
                     ${maxPayout > 0 ? maxPayout.toFixed(0) : '0'}
                   </div>
                 </div>
@@ -1456,12 +1456,12 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
 
               {/* Feedback Toast if Traded */}
               {txNotice && (
-                <div className="p-2.5 rounded-xl bg-[#7D33FF]/15 border border-[#7D33FF] text-[var(--theme-text-primary)] text-xs theme-font-mono text-center">
+                <div className="p-2.5 rounded-xl bg-[#10B981]/15 border border-[#10B981]/40 text-[#34D399] text-xs theme-font-mono text-center">
                   ✓ {txNotice}
                 </div>
               )}
 
-              {/* Primary CTA Button (Seer Brand Kit Purple Gradient Pill) */}
+              {/* Primary CTA Button */}
               <button
                 type="submit"
                 className="w-full py-3.5 px-6 rounded-full osiris-btn-primary font-bold text-sm tracking-wide transition-all"
@@ -1483,7 +1483,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                 onClick={() => setRightSubTab('markets')}
                 className={`pb-2.5 text-sm font-medium border-b-2 -mb-px transition-colors ${
                   rightSubTab === 'markets'
-                    ? 'text-[var(--theme-text-primary)] border-[#7D33FF]'
+                    ? 'text-[var(--theme-text-primary)] border-[#38BDF8]'
                     : 'text-[var(--theme-text-muted)] border-transparent hover:text-[var(--theme-text-primary)]'
                 }`}
               >
@@ -1494,7 +1494,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                 onClick={() => setRightSubTab('activity')}
                 className={`pb-2.5 text-sm font-medium border-b-2 -mb-px transition-colors ${
                   rightSubTab === 'activity'
-                    ? 'text-[var(--theme-text-primary)] border-[#7D33FF]'
+                    ? 'text-[var(--theme-text-primary)] border-[#38BDF8]'
                     : 'text-[var(--theme-text-muted)] border-transparent hover:text-[var(--theme-text-primary)]'
                 }`}
               >
@@ -1522,11 +1522,11 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                           <div className="w-8 h-8 rounded-lg overflow-hidden shrink-0 border border-[var(--theme-card-border)] bg-[#141223]">
                             <MarketThumbnail type={rel.avatarType} />
                           </div>
-                          <span className="text-xs sm:text-[13px] text-[var(--theme-text-secondary)] group-hover:text-[var(--theme-text-accent)] transition-colors line-clamp-2 leading-snug">
+                          <span className="text-xs sm:text-[13px] text-[var(--theme-text-secondary)] group-hover:text-[#7DD3FC] transition-colors line-clamp-2 leading-snug">
                             {rel.question}
                           </span>
                         </div>
-                        <span className="text-xs theme-font-mono font-bold text-[var(--theme-text-primary)] shrink-0">
+                        <span className="text-xs theme-font-mono font-bold text-[#38BDF8] shrink-0">
                           {topOut ? `${topOut.probability.toFixed(0)}%` : ''}
                         </span>
                       </button>
@@ -1549,8 +1549,8 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                           <span
                             className={`theme-font-mono font-bold ${
                               item.side === 'YES'
-                                ? 'text-[var(--theme-text-accent)]'
-                                : 'text-[var(--theme-text-primary)]'
+                                ? 'text-[#34D399]'
+                                : 'text-[#FB7185]'
                             }`}
                           >
                             {item.side}

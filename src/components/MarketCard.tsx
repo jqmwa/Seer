@@ -242,8 +242,8 @@ export const BloombergMarketHero: React.FC<{
                     <span
                       className={`px-1.5 py-0.5 rounded text-[10px] theme-font-mono font-semibold border ${
                         deltaPositive
-                          ? 'bg-[#7D33FF]/15 text-[var(--theme-text-accent)] border-[#8F55F7]/40'
-                          : 'bg-[#4A4660]/20 text-[var(--theme-text-muted)] border-[#4A4660]/40'
+                          ? 'bg-[#10B981]/15 text-[#34D399] border-[#10B981]/35'
+                          : 'bg-[#F43F5E]/15 text-[#FB7185] border-[#F43F5E]/35'
                       }`}
                     >
                       {deltaPositive ? '▲' : '▼'} {deltaVal}
@@ -253,10 +253,18 @@ export const BloombergMarketHero: React.FC<{
                   {/* Bottom Content Inside Square Viewport */}
                   <div className="relative z-10 p-3 pt-0 space-y-2">
                     <div className="flex items-baseline justify-between gap-2">
-                      <span className="text-2xl font-bold theme-font-mono text-[var(--theme-text-primary)] tracking-tight">
+                      <span className="text-2xl font-bold theme-font-mono text-[#38BDF8] tracking-tight">
                         {probText}
                       </span>
-                      <span className="text-[11px] theme-font-mono font-semibold text-[var(--theme-text-accent)] truncate max-w-[110px]">
+                      <span
+                        className={`text-[11px] theme-font-mono font-semibold truncate max-w-[110px] ${
+                          topOutcome?.label.toLowerCase() === 'yes'
+                            ? 'text-[#34D399]'
+                            : topOutcome?.label.toLowerCase() === 'no'
+                            ? 'text-[#FB7185]'
+                            : 'text-[#7DD3FC]'
+                        }`}
+                      >
                         {market.type === 'scalar' ? market.scalarUnit : topOutcome?.label}
                       </span>
                     </div>
@@ -271,7 +279,12 @@ export const BloombergMarketHero: React.FC<{
                         className="h-full rounded-full transition-all"
                         style={{
                           width: `${Math.min(100, Math.max(8, topOutcome?.probability || 50))}%`,
-                          backgroundColor: '#7D33FF',
+                          background:
+                            topOutcome?.label.toLowerCase() === 'yes'
+                              ? 'linear-gradient(90deg, #059669, #34D399)'
+                              : topOutcome?.label.toLowerCase() === 'no'
+                              ? 'linear-gradient(90deg, #E11D48, #FB7185)'
+                              : 'linear-gradient(90deg, #0284C7, #38BDF8)',
                         }}
                       />
                     </div>
@@ -286,6 +299,14 @@ export const BloombergMarketHero: React.FC<{
   )
 }
 
+function getOutcomeAccentColor(label: string, idx: number): string {
+  const lower = label.trim().toLowerCase()
+  if (lower === 'yes' || lower.startsWith('yes ')) return '#10B981'
+  if (lower === 'no' || lower.startsWith('no ')) return '#F43F5E'
+  const predictionPalette = ['#38BDF8', '#60A5FA', '#34D399', '#A78BFA']
+  return predictionPalette[idx % predictionPalette.length]
+}
+
 function MiniDonut({ outcomes }: { outcomes: MarketOutcome[] }) {
   const size = 32
   const strokeWidth = 5.5
@@ -293,8 +314,6 @@ function MiniDonut({ outcomes }: { outcomes: MarketOutcome[] }) {
   const radius = center - strokeWidth / 2
   const circumference = 2 * Math.PI * radius
   let accumulatedPercent = 0
-
-  const brandColors = ['#7D33FF', '#9C6FF2', '#8F55F7']
 
   return (
     <div className="relative w-[32px] h-[32px] shrink-0 flex items-center justify-center">
@@ -311,6 +330,7 @@ function MiniDonut({ outcomes }: { outcomes: MarketOutcome[] }) {
           const strokeDasharray = `${(outcome.probability / 100) * circumference} ${circumference}`
           const strokeDashoffset = -((accumulatedPercent / 100) * circumference)
           accumulatedPercent += outcome.probability
+          const strokeColor = getOutcomeAccentColor(outcome.label, idx)
           return (
             <circle
               key={outcome.id}
@@ -318,7 +338,7 @@ function MiniDonut({ outcomes }: { outcomes: MarketOutcome[] }) {
               cy={center}
               r={radius}
               fill="transparent"
-              stroke={brandColors[idx % brandColors.length]}
+              stroke={strokeColor}
               strokeWidth={strokeWidth}
               strokeDasharray={strokeDasharray}
               strokeDashoffset={strokeDashoffset}
@@ -371,6 +391,7 @@ function buildFluidCardPath(
 
 export const MarketCard: React.FC<MarketCardProps> = ({
   market,
+  index = 0,
   onSelectMarket,
   onToggleStar,
 }) => {
@@ -401,7 +422,10 @@ export const MarketCard: React.FC<MarketCardProps> = ({
   const svgPath = buildFluidCardPath(dims.w, dims.h, POCKET_W, POCKET_H)
   const gradId = `fluid-grad-${market.id}`
 
-  const brandDotColors = ['#7D33FF', '#8F55F7', '#9C6FF2']
+  const isUpMove = index % 3 !== 1
+  const moveDelta = isUpMove
+    ? `+${((index % 4) + 1.4).toFixed(1)}%`
+    : `-${((index % 3) + 0.9).toFixed(1)}%`
 
   return (
     <div
@@ -438,16 +462,16 @@ export const MarketCard: React.FC<MarketCardProps> = ({
           d={svgPath}
           fill="none"
           stroke="var(--theme-card-stroke)"
-          strokeWidth="1.5"
-          className="transition-colors duration-300 group-hover:stroke-[#7D33FF]"
+          strokeWidth="1"
+          className="transition-colors duration-300 group-hover:stroke-[#38BDF8]/45"
         />
       </svg>
 
-      {/* Top-Right Lip — 3 Brand Kit Purple Shades (#9C6FF2, #8F55F7, #7D33FF) */}
+      {/* Top-Right Lip — Signal Palette Dots (Green Yes, Blue Prediction, Red No) */}
       <div className="absolute top-3 right-3.5 z-20 flex items-center gap-1.5">
-        <span className="w-2 h-2 rounded-full bg-[#9C6FF2]" />
-        <span className="w-2 h-2 rounded-full bg-[#8F55F7]" />
-        <span className="w-2 h-2 rounded-full bg-[#7D33FF]" />
+        <span className="w-2 h-2 rounded-full bg-[#10B981]" />
+        <span className="w-2 h-2 rounded-full bg-[#38BDF8]" />
+        <span className="w-2 h-2 rounded-full bg-[#F43F5E]" />
       </div>
 
       {/* Main Card Content Area — items-start keeps left thumbnail anchored top-left */}
@@ -466,49 +490,58 @@ export const MarketCard: React.FC<MarketCardProps> = ({
         {/* Center Text, Date/Liquidity Meta, and Outcomes */}
         <div className="min-w-0 flex-1 flex flex-col justify-between gap-1.5">
           {/* Title — Flips between #FFFFFF in Dark Mode and #141223 in Light Mode */}
-          <h3 className="text-[14.5px] font-medium leading-[1.3] text-[var(--theme-text-primary)] group-hover:text-[var(--theme-text-accent)] line-clamp-2 tracking-[-0.01em] transition-colors">
+          <h3 className="text-[14.5px] font-medium leading-[1.3] text-[var(--theme-text-primary)] group-hover:text-[#7DD3FC] line-clamp-2 tracking-[-0.01em] transition-colors">
             {market.question}
           </h3>
 
-          {/* Date + Liquidity + Protocol Meta Row */}
+          {/* Date + Liquidity + Red/Green Movement Indicator + Protocol Meta Row */}
           <div className="flex items-center flex-wrap gap-2 text-[11.5px] theme-font-mono text-[var(--theme-text-muted)]">
             <span>{formatDateSlash(market.endDate)}</span>
             <span>·</span>
             <span className="text-[var(--theme-text-secondary)] font-semibold">
               {formatLiquidity(market.liquidityUSD)}
             </span>
+            <span
+              className={`px-1.5 py-0.2 rounded text-[10px] font-semibold ${
+                isUpMove
+                  ? 'bg-[#10B981]/15 text-[#34D399]'
+                  : 'bg-[#F43F5E]/15 text-[#FB7185]'
+              }`}
+            >
+              {isUpMove ? '▲' : '▼'} {moveDelta}
+            </span>
             {market.hasIncentive && (
-              <span className="inline-flex items-center text-[var(--theme-text-accent)]" title="Farming Rewards">
+              <span className="inline-flex items-center text-[#38BDF8]" title="Farming Rewards">
                 <Gift className="w-3 h-3" />
               </span>
             )}
             {market.hasParentLink && (
-              <span className="inline-flex items-center text-[var(--theme-text-accent)]" title="Conditional Market">
+              <span className="inline-flex items-center text-[#60A5FA]" title="Conditional Market">
                 <Link2 className="w-3 h-3" />
               </span>
             )}
             {market.verified && (
-              <span className="inline-flex items-center text-[#7D33FF]" title="Verified">
+              <span className="inline-flex items-center text-[#34D399]" title="Verified">
                 <CheckCircle2 className="w-3 h-3" />
               </span>
             )}
             <button
               type="button"
               onClick={(e) => onToggleStar(market.id, e)}
-              className="inline-flex items-center text-[var(--theme-text-muted)] hover:text-[#7D33FF] transition-colors focus:outline-none"
+              className="inline-flex items-center text-[var(--theme-text-muted)] hover:text-[#38BDF8] transition-colors focus:outline-none"
               title={market.starred ? 'Remove from watchlist' : 'Add to watchlist'}
             >
               <Star
-                className={`w-3 h-3 ${market.starred ? 'text-[#7D33FF]' : ''}`}
-                fill={market.starred ? '#7D33FF' : 'none'}
+                className={`w-3 h-3 ${market.starred ? 'text-[#38BDF8]' : ''}`}
+                fill={market.starred ? '#38BDF8' : 'none'}
               />
             </button>
           </div>
 
-          {/* Interactive Outcome Pills Row */}
+          {/* Interactive Outcome Pills Row: Green/Red for Yes/No, Blue for Predictions */}
           {market.type === 'scalar' ? (
             <div className="flex items-center gap-2 pt-0.5">
-              <span className="px-2 py-0.5 rounded-md bg-[var(--theme-well-bg)] border border-[var(--theme-card-border)] text-[11px] theme-font-mono text-[var(--theme-text-primary)] font-semibold">
+              <span className="px-2 py-0.5 rounded-md bg-[#38BDF8]/12 border border-[#38BDF8]/30 text-[11px] theme-font-mono text-[#7DD3FC] font-semibold">
                 {market.scalarValue?.toFixed(2)} {market.scalarUnit}
               </span>
               <span className="text-[10.5px] theme-font-mono text-[var(--theme-text-muted)]">
@@ -517,30 +550,48 @@ export const MarketCard: React.FC<MarketCardProps> = ({
             </div>
           ) : (
             <div className="flex items-center flex-wrap gap-1.5 pt-0.5">
-              {market.outcomes.slice(0, 3).map((outcome, idx) => (
-                <button
-                  key={outcome.id}
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    onSelectMarket(market, outcome)
-                  }}
-                  className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-[var(--theme-well-bg)] hover:bg-[#7D33FF]/15 border border-[var(--theme-card-border)] hover:border-[#7D33FF] text-[11px] transition-colors max-w-[165px]"
-                >
-                  <span
-                    className="w-1.5 h-1.5 rounded-full shrink-0"
-                    style={{ backgroundColor: brandDotColors[idx % brandDotColors.length] }}
-                  />
-                  <span className="text-[var(--theme-text-secondary)] truncate">
-                    {outcome.label}
-                  </span>
-                  <span className="theme-font-mono font-semibold text-[var(--theme-text-primary)] shrink-0">
-                    {outcome.probability % 1 === 0
-                      ? `${outcome.probability.toFixed(0)}%`
-                      : `${outcome.probability.toFixed(1)}%`}
-                  </span>
-                </button>
-              ))}
+              {market.outcomes.slice(0, 3).map((outcome, idx) => {
+                const lower = outcome.label.trim().toLowerCase()
+                const isYes = lower === 'yes' || lower.startsWith('yes ')
+                const isNo = lower === 'no' || lower.startsWith('no ')
+
+                const pillStyle = isYes
+                  ? 'bg-[#10B981]/10 hover:bg-[#10B981]/20 border-[#10B981]/30 hover:border-[#10B981]/60'
+                  : isNo
+                  ? 'bg-[#F43F5E]/10 hover:bg-[#F43F5E]/20 border-[#F43F5E]/30 hover:border-[#F43F5E]/60'
+                  : 'bg-[#38BDF8]/10 hover:bg-[#38BDF8]/20 border-[#38BDF8]/25 hover:border-[#38BDF8]/55'
+
+                const dotColor = isYes ? '#10B981' : isNo ? '#F43F5E' : getOutcomeAccentColor(outcome.label, idx)
+                const probColor = isYes ? '#34D399' : isNo ? '#FB7185' : '#38BDF8'
+
+                return (
+                  <button
+                    key={outcome.id}
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      onSelectMarket(market, outcome)
+                    }}
+                    className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md border text-[11px] transition-colors max-w-[165px] ${pillStyle}`}
+                  >
+                    <span
+                      className="w-1.5 h-1.5 rounded-full shrink-0"
+                      style={{ backgroundColor: dotColor }}
+                    />
+                    <span className="text-[var(--theme-text-secondary)] truncate">
+                      {outcome.label}
+                    </span>
+                    <span
+                      className="theme-font-mono font-semibold shrink-0"
+                      style={{ color: probColor }}
+                    >
+                      {outcome.probability % 1 === 0
+                        ? `${outcome.probability.toFixed(0)}%`
+                        : `${outcome.probability.toFixed(1)}%`}
+                    </span>
+                  </button>
+                )
+              })}
             </div>
           )}
         </div>
@@ -560,7 +611,7 @@ export const MarketCard: React.FC<MarketCardProps> = ({
           right: 0,
           boxShadow: 'var(--theme-shadow-panel)',
         }}
-        className="absolute z-10 rounded-[16px] bg-[var(--theme-panel-bg)] border border-[var(--theme-card-border)] group-hover:border-[#7D33FF] group-hover:bg-[#7D33FF] flex items-center justify-center text-[var(--theme-text-primary)] group-hover:text-[#FFFFFF] transition-all duration-300"
+        className="absolute z-10 rounded-[16px] bg-[var(--theme-panel-bg)] border border-[var(--theme-card-border)] group-hover:border-[#38BDF8]/50 group-hover:bg-[#0284C7] flex items-center justify-center text-[#38BDF8] group-hover:text-[#FFFFFF] transition-all duration-300"
         title="Open Market & Trade"
       >
         <ArrowUpRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
