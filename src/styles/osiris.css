@@ -56,15 +56,15 @@
   --theme-card-grad-start: #242238;
   --theme-card-grad-mid: #1D1B30;
   --theme-card-grad-end: #141223;
-  --theme-card-border: rgba(143, 85, 247, 0.42);
-  --theme-card-stroke: rgba(143, 85, 247, 0.42);
+  --theme-card-border: rgba(191, 191, 230, 0.10);
+  --theme-card-stroke: rgba(191, 191, 230, 0.10);
   --theme-card-selected-bg: linear-gradient(165deg, rgba(125, 51, 255, 0.32) 0%, #242238 55%, #141223 100%);
   --theme-card-selected-bg-scanline: repeating-linear-gradient(180deg, transparent 0px, transparent 2px, rgba(20, 18, 35, 0.14) 2px, rgba(20, 18, 35, 0.14) 4px), linear-gradient(165deg, rgba(125, 51, 255, 0.35) 0%, #242238 55%, #141223 100%);
-  --theme-card-selected-border: #9C6FF2;
+  --theme-card-selected-border: rgba(156, 111, 242, 0.45);
 
   --theme-well-bg: #141223;
   --theme-subcard-bg: rgba(36, 34, 56, 0.82);
-  --theme-subcard-border: rgba(143, 85, 247, 0.28);
+  --theme-subcard-border: rgba(191, 191, 230, 0.10);
   --theme-input-bg: #141223;
   --theme-input-border: rgba(143, 85, 247, 0.40);
 
@@ -89,9 +89,9 @@
   --theme-hero-vignette: linear-gradient(180deg, rgba(20, 18, 35, 0.32) 0%, rgba(20, 18, 35, 0.74) 48%, rgba(20, 18, 35, 0.96) 100%);
 
   --theme-shadow-strong: 0 20px 60px rgba(20, 18, 35, 0.85);
-  --theme-shadow-panel: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 4px 20px rgba(20, 18, 35, 0.45);
-  --theme-shadow-card: 0 0 0 1px rgba(143, 85, 247, 0.25), 0 10px 30px -5px rgba(20, 18, 35, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  --theme-card-drop-shadow: drop-shadow(0 10px 24px rgba(20, 18, 35, 0.65));
+  --theme-shadow-panel: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 4px 20px rgba(10, 9, 18, 0.55);
+  --theme-shadow-card: inset 0 1px 0 0 rgba(233, 233, 245, 0.11), inset 0 0 0 1px rgba(143, 85, 247, 0.07), inset 0 -1px 0 0 rgba(8, 7, 16, 0.75), 0 22px 48px -12px rgba(8, 7, 16, 0.88), 0 4px 14px -2px rgba(8, 7, 16, 0.65);
+  --theme-card-drop-shadow: drop-shadow(0 12px 28px rgba(10, 9, 18, 0.72));
 
   --theme-radius-panel: 10px;
   --theme-radius-card: 14px;
@@ -185,14 +185,14 @@ body.theme-seer-light .seer-grid-backdrop {
   background-size: 48px 48px, 48px 48px, 48px 48px;
 }
 
-/* Osiris Card Kit classes */
+/* Osiris Card Kit classes — refined 1px bevel edge with layered ambient depth */
 .osiris-card {
   background: var(--theme-card-bg-scanline);
-  border: 1.5px solid var(--theme-card-border);
+  border: 1px solid var(--theme-card-border);
   border-radius: var(--theme-radius-card);
   box-shadow: var(--theme-shadow-card);
   color: var(--theme-text-primary);
-  transition: all 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 240ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 240ms cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
 }
@@ -203,7 +203,13 @@ body.theme-seer-light .seer-grid-backdrop {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(180deg, rgba(156, 111, 242, 0.35), transparent 60%);
+  background: linear-gradient(
+    145deg,
+    rgba(233, 233, 245, 0.15) 0%,
+    rgba(143, 85, 247, 0.10) 28%,
+    rgba(74, 70, 96, 0.04) 62%,
+    transparent 100%
+  );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -211,28 +217,33 @@ body.theme-seer-light .seer-grid-backdrop {
 }
 
 .osiris-card:hover {
-  border-color: var(--seer-purple-mid);
+  border-color: rgba(156, 111, 242, 0.22);
   box-shadow:
-    0 0 0 1px rgba(143, 85, 247, 0.45),
-    0 16px 38px -8px rgba(125, 51, 255, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    inset 0 1px 0 0 rgba(233, 233, 245, 0.15),
+    inset 0 0 0 1px rgba(143, 85, 247, 0.12),
+    inset 0 -1px 0 0 rgba(8, 7, 16, 0.8),
+    0 26px 54px -12px rgba(8, 7, 16, 0.92),
+    0 0 32px -10px rgba(125, 51, 255, 0.22);
 }
 
 .osiris-card-selected {
   background: var(--theme-card-selected-bg-scanline);
-  border: 1.5px solid var(--theme-card-selected-border);
+  border: 1px solid var(--theme-card-selected-border);
   border-radius: var(--theme-radius-card);
   box-shadow:
-    0 0 0 2px rgba(125, 51, 255, 0.35),
-    0 14px 36px rgba(125, 51, 255, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.16),
+    inset 0 0 0 1px rgba(125, 51, 255, 0.24),
+    0 18px 40px -8px rgba(10, 9, 18, 0.85);
 }
 
 /* Osiris recessed inner well */
 .osiris-well {
   background: var(--theme-well-bg);
-  box-shadow: inset 0 1px 3px rgba(20, 18, 35, 0.35), 0 1px 0 rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--theme-panel-divider);
+  box-shadow:
+    inset 0 2px 6px rgba(6, 5, 14, 0.72),
+    inset 0 0 0 1px rgba(191, 191, 230, 0.05),
+    0 1px 0 rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(191, 191, 230, 0.08);
   border-radius: 10px;
 }
 
@@ -245,12 +256,13 @@ body.theme-seer-light .osiris-well {
 .osiris-subcard {
   background: var(--theme-subcard-bg);
   border: 1px solid var(--theme-subcard-border);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 10px rgba(8, 7, 16, 0.35);
   border-radius: 8px;
   transition: all 180ms ease;
 }
 
 .osiris-subcard:hover {
-  border-color: var(--seer-purple-main);
+  border-color: rgba(156, 111, 242, 0.36);
 }
 
 /* Osiris health / liquidity bar */
@@ -280,36 +292,38 @@ body.theme-seer-light .osiris-hp-bar {
 }
 
 .osiris-pill-brand {
-  background: rgba(125, 51, 255, 0.25);
-  border: 1px solid rgba(156, 111, 242, 0.65);
+  background: rgba(125, 51, 255, 0.20);
+  border: 1px solid rgba(156, 111, 242, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
   color: #FFFFFF;
 }
 
 body.theme-seer-light .osiris-pill-brand {
   background: rgba(125, 51, 255, 0.12);
-  border: 1px solid #7D33FF;
+  border: 1px solid rgba(125, 51, 255, 0.35);
   color: #7D33FF;
   font-weight: 600;
 }
 
 /* Osiris CTA Button */
 .osiris-btn-primary {
-  background: linear-gradient(135deg, #7D33FF 0%, #8F55F7 60%, #9C6FF2 100%);
-  border: 1px solid rgba(233, 233, 245, 0.32);
+  background: linear-gradient(135deg, #7D33FF 0%, #8F55F7 65%, #9C6FF2 100%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   color: #FFFFFF;
   box-shadow:
-    0 0 0 1px rgba(125, 51, 255, 0.5),
-    0 8px 24px rgba(125, 51, 255, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    inset 0 -1px 0 rgba(20, 18, 35, 0.35),
+    0 8px 22px -4px rgba(125, 51, 255, 0.38);
   transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .osiris-btn-primary:hover {
-  background: linear-gradient(135deg, #8F55F7 0%, #9C6FF2 100%);
+  background: linear-gradient(135deg, #8B47FF 0%, #9C6FF2 100%);
+  border-color: rgba(255, 255, 255, 0.24);
   box-shadow:
-    0 0 0 2px rgba(156, 111, 242, 0.65),
-    0 12px 32px rgba(125, 51, 255, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    inset 0 -1px 0 rgba(20, 18, 35, 0.35),
+    0 12px 28px -4px rgba(125, 51, 255, 0.48);
   transform: translateY(-1px);
 }
 

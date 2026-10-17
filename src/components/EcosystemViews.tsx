@@ -595,7 +595,7 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
               {/* Green Color-Coded Pass Condition Card */}
               <div
                 style={{ animationDelay: '0ms' }}
-                className="seer-stagger-item p-3.5 rounded-xl bg-[#10B981]/12 border border-[#10B981]/45"
+                className="seer-stagger-item p-3.5 rounded-xl bg-[#10B981]/10 border border-[#10B981]/22 shadow-[inset_0_1px_0_rgba(52,211,153,0.12)]"
               >
                 <div className="text-[10px] theme-font-mono text-[#34D399] font-semibold uppercase">
                   IF PROPOSAL PASSES
@@ -614,7 +614,7 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
               {/* Red Color-Coded Fail Condition Card */}
               <div
                 style={{ animationDelay: '220ms' }}
-                className="seer-stagger-item p-3.5 rounded-xl bg-[#F43F5E]/12 border border-[#F43F5E]/45"
+                className="seer-stagger-item p-3.5 rounded-xl bg-[#F43F5E]/10 border border-[#F43F5E]/22 shadow-[inset_0_1px_0_rgba(251,113,133,0.12)]"
               >
                 <div className="text-[10px] theme-font-mono text-[#FB7185] font-semibold uppercase">
                   IF PROPOSAL FAILS
@@ -667,7 +667,7 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
                 key={i}
                 onClick={() => onNavigate('markets')}
                 style={{ animationDelay: `${i * 220}ms` }}
-                className="osiris-subcard seer-stagger-item p-3 cursor-pointer space-y-1.5 border-[#38BDF8]/25 hover:border-[#38BDF8]"
+                className="osiris-subcard seer-stagger-item p-3 cursor-pointer space-y-1.5 border-[#38BDF8]/16 hover:border-[#38BDF8]/35"
               >
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-[var(--theme-text-primary)] font-medium truncate">
@@ -695,7 +695,7 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
               <span className="text-xs theme-font-mono text-[#7DD3FC] order-2 lg:order-1">
                 SELECTION &amp; CURATION FORECASTING
               </span>
-              <span className="osiris-pill bg-[#38BDF8]/20 border border-[#38BDF8]/60 text-[#BAE6FD] order-1 lg:order-2">
+              <span className="osiris-pill bg-[#38BDF8]/15 border border-[#38BDF8]/30 text-[#BAE6FD] order-1 lg:order-2">
                 04 · OPPORTUNITY MARKETS
               </span>
             </div>
