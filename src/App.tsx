@@ -15,6 +15,7 @@ import { CreateMarketModal } from './components/MarketModal'
 import { MarketDetailPage } from './components/MarketDetailPage'
 import {
   HomepageEcosystemSections,
+  SeerFooter,
   SpecializedSurfaceView,
   NavSection,
 } from './components/EcosystemViews'
@@ -366,6 +367,9 @@ export function App() {
 
         {/* Ecosystem Sections Under the Hero */}
         <HomepageEcosystemSections onNavigate={handleNavigate} />
+
+        {/* Seer Protocol Footer */}
+        <SeerFooter onNavigate={handleNavigate} />
       </div>
     )
   }

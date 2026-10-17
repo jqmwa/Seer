@@ -808,9 +808,386 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
           </div>
         </section>
       </div>
+
+      {/* Centered Call-to-Action Banner with Two Crows on Each Side */}
+      <section className="relative osiris-card px-6 py-14 sm:px-12 sm:py-20 overflow-hidden">
+        {/* Ambient radial purple glow */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(65% 80% at 50% 50%, rgba(125, 51, 255, 0.22) 0%, rgba(143, 85, 247, 0.06) 55%, transparent 100%)',
+          }}
+        />
+
+        <div className="relative z-10 max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8">
+          {/* Left Pair of Seer Crows (Facing Center) */}
+          <div className="hidden sm:flex items-center justify-center shrink-0 w-48 lg:w-64 opacity-95">
+            <svg
+              viewBox="0 0 240 160"
+              className="w-full h-auto overflow-visible"
+              fill="none"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient id="crowWingLeft1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#B8A5FF" />
+                  <stop offset="45%" stopColor="#8F55F7" />
+                  <stop offset="100%" stopColor="#7D33FF" />
+                </linearGradient>
+                <linearGradient id="crowWingLeft2" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#9C6FF2" />
+                  <stop offset="100%" stopColor="#6222D9" />
+                </linearGradient>
+              </defs>
+
+              {/* Constellation Lines & Stars */}
+              <path
+                d="M14 38 L58 22 L98 40 L132 18"
+                stroke="#8F55F7"
+                strokeOpacity="0.32"
+                strokeWidth="1"
+                strokeDasharray="3 4"
+              />
+              <circle cx="14" cy="38" r="2" fill="#B8A5FF" />
+              <circle cx="58" cy="22" r="2.5" fill="#E9E9F5" />
+              <circle cx="132" cy="18" r="2" fill="#7D33FF" />
+              <path d="M58 16 L60 22 L66 24 L60 26 L58 32 L56 26 L50 24 L56 22 Z" fill="#E9E9F5" fillOpacity="0.8" />
+
+              {/* Crow #1 (Upper Companion Crow Gliding Inward) */}
+              <g transform="translate(8, 12) scale(0.78)">
+                {/* Spread Wing Feathers */}
+                <path
+                  d="M12 44 L48 12 L42 26 L64 16 L54 32 L74 24 L60 40 L76 38 L58 50 L44 52 Z"
+                  fill="url(#crowWingLeft2)"
+                />
+                {/* Body, Head & Beak Facing Right */}
+                <path
+                  d="M40 46 C52 38 68 38 80 42 L96 46 L82 52 C74 58 60 62 46 60 L24 72 L34 56 L18 62 L34 48 Z"
+                  fill="#19162B"
+                  stroke="#9C6FF2"
+                  strokeWidth="1.4"
+                />
+                {/* Glowing Oracle Eye */}
+                <circle cx="77" cy="44.5" r="1.8" fill="#E9E9F5" />
+              </g>
+
+              {/* Crow #2 (Foreground Primary Seer Crow Soaring Inward) */}
+              <g transform="translate(68, 42)">
+                {/* Outer Feather Fan */}
+                <path
+                  d="M6 26 L58 2 L46 20 L74 10 L58 30 L84 22 L66 40 L88 36 L68 50 L84 50 L62 60 L44 58 Z"
+                  fill="url(#crowWingLeft1)"
+                />
+                {/* Inner Feather Detail */}
+                <path
+                  d="M24 38 L62 24 L52 38 L72 34 L56 48 L70 48 L52 56 Z"
+                  fill="#D5D3F2"
+                  fillOpacity="0.35"
+                />
+                {/* Tail Feathers */}
+                <path
+                  d="M36 78 L8 96 L26 88 L12 104 L32 94 L22 110 L44 92 L50 82 Z"
+                  fill="url(#crowWingLeft1)"
+                />
+                {/* Dark Raven Body & Head Facing Right */}
+                <path
+                  d="M44 56 C58 48 76 48 92 53 L112 60 L94 64 C88 74 74 82 58 84 L42 82 C36 74 36 62 44 56 Z"
+                  fill="#141223"
+                  stroke="#9C6FF2"
+                  strokeWidth="1.6"
+                />
+                {/* Talons */}
+                <path
+                  d="M62 83 L68 95 L76 97 M68 95 L72 101 M74 81 L82 92 L90 94"
+                  stroke="#8F55F7"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+                {/* Glowing Eye */}
+                <circle cx="90" cy="57" r="2" fill="#E9E9F5" />
+              </g>
+            </svg>
+          </div>
+
+          {/* Center Banner Text & Start Now CTA */}
+          <div className="flex-1 text-center max-w-2xl mx-auto space-y-6">
+            <h2 className="text-2xl sm:text-4xl font-medium tracking-tight text-[var(--theme-text-primary)] leading-[1.2]">
+              Are you ready to take your predictions to the next level?
+            </h2>
+
+            <div className="pt-1 flex justify-center">
+              <button
+                type="button"
+                onClick={() => onNavigate('app')}
+                className="group px-8 py-4 rounded-xl text-sm sm:text-base font-medium text-[#FFFFFF] bg-[#7D33FF] hover:bg-[#8B47FF] active:bg-[#7228F5] shadow-[0_0_28px_rgba(125,51,255,0.45)] inline-flex items-center gap-2.5 transition-all duration-200"
+              >
+                <span>Start Now</span>
+                <ArrowRight className="w-4 h-4 text-[#FFFFFF] group-hover:translate-x-1 transition-transform duration-200" />
+              </button>
+            </div>
+          </div>
+
+          {/* Right Pair of Seer Crows (Mirrored, Facing Center) */}
+          <div className="hidden sm:flex items-center justify-center shrink-0 w-48 lg:w-64 opacity-95">
+            <svg
+              viewBox="0 0 240 160"
+              className="w-full h-auto overflow-visible"
+              fill="none"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient id="crowWingRight1" x1="1" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#B8A5FF" />
+                  <stop offset="45%" stopColor="#8F55F7" />
+                  <stop offset="100%" stopColor="#7D33FF" />
+                </linearGradient>
+                <linearGradient id="crowWingRight2" x1="1" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#9C6FF2" />
+                  <stop offset="100%" stopColor="#6222D9" />
+                </linearGradient>
+              </defs>
+
+              {/* Mirrored Group so Both Crows Face Left Toward the Center CTA */}
+              <g transform="translate(240, 0) scale(-1, 1)">
+                {/* Constellation Lines & Stars */}
+                <path
+                  d="M14 38 L58 22 L98 40 L132 18"
+                  stroke="#8F55F7"
+                  strokeOpacity="0.32"
+                  strokeWidth="1"
+                  strokeDasharray="3 4"
+                />
+                <circle cx="14" cy="38" r="2" fill="#B8A5FF" />
+                <circle cx="58" cy="22" r="2.5" fill="#E9E9F5" />
+                <circle cx="132" cy="18" r="2" fill="#7D33FF" />
+                <path d="M58 16 L60 22 L66 24 L60 26 L58 32 L56 26 L50 24 L56 22 Z" fill="#E9E9F5" fillOpacity="0.8" />
+
+                {/* Crow #1 (Upper Companion Crow) */}
+                <g transform="translate(8, 12) scale(0.78)">
+                  <path
+                    d="M12 44 L48 12 L42 26 L64 16 L54 32 L74 24 L60 40 L76 38 L58 50 L44 52 Z"
+                    fill="url(#crowWingRight2)"
+                  />
+                  <path
+                    d="M40 46 C52 38 68 38 80 42 L96 46 L82 52 C74 58 60 62 46 60 L24 72 L34 56 L18 62 L34 48 Z"
+                    fill="#19162B"
+                    stroke="#9C6FF2"
+                    strokeWidth="1.4"
+                  />
+                  <circle cx="77" cy="44.5" r="1.8" fill="#E9E9F5" />
+                </g>
+
+                {/* Crow #2 (Foreground Primary Seer Crow) */}
+                <g transform="translate(68, 42)">
+                  <path
+                    d="M6 26 L58 2 L46 20 L74 10 L58 30 L84 22 L66 40 L88 36 L68 50 L84 50 L62 60 L44 58 Z"
+                    fill="url(#crowWingRight1)"
+                  />
+                  <path
+                    d="M24 38 L62 24 L52 38 L72 34 L56 48 L70 48 L52 56 Z"
+                    fill="#D5D3F2"
+                    fillOpacity="0.35"
+                  />
+                  <path
+                    d="M36 78 L8 96 L26 88 L12 104 L32 94 L22 110 L44 92 L50 82 Z"
+                    fill="url(#crowWingRight1)"
+                  />
+                  <path
+                    d="M44 56 C58 48 76 48 92 53 L112 60 L94 64 C88 74 74 82 58 84 L42 82 C36 74 36 62 44 56 Z"
+                    fill="#141223"
+                    stroke="#9C6FF2"
+                    strokeWidth="1.6"
+                  />
+                  <path
+                    d="M62 83 L68 95 L76 97 M68 95 L72 101 M74 81 L82 92 L90 94"
+                    stroke="#8F55F7"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="90" cy="57" r="2" fill="#E9E9F5" />
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
+
+export const SeerFooter: React.FC<{
+  onNavigate: (section: NavSection) => void
+}> = ({ onNavigate }) => {
+  return (
+    <footer className="relative z-20 w-full border-t border-[var(--theme-card-border)] bg-[var(--theme-header-bg)] backdrop-blur-md">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 py-14 sm:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-[var(--theme-panel-divider)]">
+          {/* Brand Column */}
+          <div className="lg:col-span-4 space-y-4">
+            <button
+              type="button"
+              onClick={() => onNavigate('home')}
+              className="flex items-center gap-3 focus:outline-none"
+            >
+              <div className="relative w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center shadow-lg">
+                <img
+                  src="/branding/seer-backdrop.png"
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <img
+                  src="/branding/seer-logo.png"
+                  alt="Seer"
+                  className="relative z-10 w-5 h-5 object-contain"
+                />
+              </div>
+              <span className="text-xl font-medium tracking-tight text-[var(--theme-text-primary)]">
+                seer
+              </span>
+            </button>
+
+            <p className="text-xs sm:text-sm text-[var(--theme-text-muted)] leading-relaxed max-w-sm">
+              Prediction markets for distilled human judgement. Built on the Conditional Token
+              Framework with Reality.eth and Kleros resolution across Gnosis and Ethereum.
+            </p>
+
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--theme-well-bg)] border border-[var(--theme-card-border)] text-[11px] theme-font-mono text-[var(--theme-text-secondary)]">
+              <span className="w-2 h-2 rounded-full bg-[#10B981]" />
+              <span>ALL PROTOCOL MARKETS LIVE · GNOSIS &amp; ETHEREUM</span>
+            </div>
+          </div>
+
+          {/* Protocol Surfaces */}
+          <div className="lg:col-span-3 space-y-3">
+            <div className="text-xs theme-font-mono uppercase tracking-wider text-[var(--theme-text-accent)] font-semibold">
+              Protocol Surfaces
+            </div>
+            <ul className="space-y-2.5 text-sm text-[var(--theme-text-muted)]">
+              <li>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('app')}
+                  className="hover:text-[var(--theme-text-primary)] transition-colors"
+                >
+                  01 · Seer App
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('deep')}
+                  className="hover:text-[var(--theme-text-primary)] transition-colors"
+                >
+                  02 · Deep (AI Agent Markets)
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('futarchy')}
+                  className="hover:text-[var(--theme-text-primary)] transition-colors"
+                >
+                  03 · Futarchy Governance
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('markets')}
+                  className="hover:text-[#38BDF8] transition-colors"
+                >
+                  04 · Opportunity Markets
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('risk')}
+                  className="hover:text-[var(--theme-text-primary)] transition-colors"
+                >
+                  05 · Risk Pricing
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Core Infrastructure */}
+          <div className="lg:col-span-3 space-y-3">
+            <div className="text-xs theme-font-mono uppercase tracking-wider text-[var(--theme-text-accent)] font-semibold">
+              Infrastructure
+            </div>
+            <ul className="space-y-2.5 text-sm text-[var(--theme-text-muted)]">
+              <li className="hover:text-[var(--theme-text-primary)] transition-colors cursor-pointer">
+                Conditional Token Framework
+              </li>
+              <li className="hover:text-[var(--theme-text-primary)] transition-colors cursor-pointer">
+                Reality.eth Verification
+              </li>
+              <li className="hover:text-[var(--theme-text-primary)] transition-colors cursor-pointer">
+                Kleros Decentralized Court
+              </li>
+              <li className="hover:text-[var(--theme-text-primary)] transition-colors cursor-pointer">
+                Spark sDAI Yield Collateral
+              </li>
+              <li className="hover:text-[var(--theme-text-primary)] transition-colors cursor-pointer">
+                CoW Protocol Orderflow
+              </li>
+            </ul>
+          </div>
+
+          {/* Community & Docs */}
+          <div className="lg:col-span-2 space-y-3">
+            <div className="text-xs theme-font-mono uppercase tracking-wider text-[var(--theme-text-accent)] font-semibold">
+              Community
+            </div>
+            <ul className="space-y-2.5 text-sm text-[var(--theme-text-muted)]">
+              <li>
+                <a
+                  href="https://github.com/jqmwa/Seer"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-[var(--theme-text-primary)] transition-colors"
+                >
+                  GitHub
+                </a>
+              </li>
+              <li className="hover:text-[var(--theme-text-primary)] transition-colors cursor-pointer">
+                Documentation
+              </li>
+              <li className="hover:text-[var(--theme-text-primary)] transition-colors cursor-pointer">
+                Governance Forum
+              </li>
+              <li className="hover:text-[var(--theme-text-primary)] transition-colors cursor-pointer">
+                Discord
+              </li>
+              <li className="hover:text-[var(--theme-text-primary)] transition-colors cursor-pointer">
+                X (Twitter)
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Legal & Attribution Row */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs theme-font-mono text-[var(--theme-text-muted)]">
+          <div>© 2026 Seer Protocol. Distilled Human Judgement.</div>
+          <div className="flex items-center gap-6">
+            <span className="hover:text-[var(--theme-text-primary)] cursor-pointer transition-colors">
+              Terms of Service
+            </span>
+            <span className="hover:text-[var(--theme-text-primary)] cursor-pointer transition-colors">
+              Privacy Policy
+            </span>
+            <span className="hover:text-[var(--theme-text-primary)] cursor-pointer transition-colors">
+              Security Audits
+            </span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
 
 export const SpecializedSurfaceView: React.FC<{
   section: Exclude<NavSection, 'home' | 'app'>
