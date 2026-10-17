@@ -920,10 +920,9 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
               <button
                 type="button"
                 onClick={() => onNavigate('app')}
-                className="group px-8 py-4 rounded-xl text-sm sm:text-base font-medium text-[#FFFFFF] bg-[#7D33FF] hover:bg-[#8B47FF] active:bg-[#7228F5] shadow-[0_0_28px_rgba(125,51,255,0.45)] inline-flex items-center gap-2.5 transition-all duration-200"
+                className="px-8 py-4 rounded-xl text-sm sm:text-base font-medium text-[#FFFFFF] bg-[#7D33FF] hover:bg-[#8B47FF] active:bg-[#7228F5] shadow-[0_0_28px_rgba(125,51,255,0.45)] inline-flex items-center justify-center transition-all duration-200"
               >
                 <span>Start Now</span>
-                <ArrowRight className="w-4 h-4 text-[#FFFFFF] group-hover:translate-x-1 transition-transform duration-200" />
               </button>
             </div>
           </div>
