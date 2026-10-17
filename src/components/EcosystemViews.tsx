@@ -313,7 +313,7 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
                 title: 'Opportunity Markets',
                 subtitle: 'Submission & Selection Signals',
                 icon: Award,
-                accent: '#7D33FF',
+                accent: '#38BDF8',
               },
               {
                 id: 'risk' as NavSection,
@@ -395,7 +395,7 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
             </div>
           </div>
 
-          <div className="lg:col-span-6 osiris-well p-4 space-y-2.5">
+          <div className="lg:col-span-6 osiris-well p-4 space-y-2.5 overflow-hidden">
             <div className="flex items-center justify-between text-[11px] theme-font-mono text-[var(--theme-text-muted)] pb-2 border-b border-[var(--theme-panel-divider)]">
               <span>UNIVERSAL MARKET INDEX · ALL TYPES</span>
             </div>
@@ -405,27 +405,39 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
                 q: 'Israeli Knesset election 2026 most seats',
                 stat: 'Yashar 60.9%',
                 liq: '$27.74k',
+                badgeClass: 'bg-[#7D33FF]/20 text-[#B8A5FF] border border-[#7D33FF]/40',
+                statColor: '#B8A5FF',
+                liqColor: '#34D399',
               },
               {
                 type: 'BINARY',
                 q: "National Rally's candidate wins French presidency",
                 stat: 'No 67.9%',
                 liq: '$7.54k',
+                badgeClass: 'bg-[#F43F5E]/15 text-[#FB7185] border border-[#F43F5E]/35',
+                statColor: '#FB7185',
+                liqColor: '#38BDF8',
               },
               {
                 type: 'SCALAR',
                 q: 'Polymarket clarification notes >=25% move',
                 stat: '21.23 NOTE',
                 liq: '$1.11k',
+                badgeClass: 'bg-[#F59E0B]/15 text-[#FBBF24] border border-[#F59E0B]/35',
+                statColor: '#FBBF24',
+                liqColor: '#A78BFA',
               },
             ].map((row, i) => (
               <div
                 key={i}
                 onClick={() => onNavigate('app')}
-                className="osiris-subcard p-3 cursor-pointer flex items-center justify-between gap-3"
+                style={{ animationDelay: `${i * 220}ms` }}
+                className="osiris-subcard seer-stagger-item p-3 cursor-pointer flex items-center justify-between gap-3"
               >
-                <div className="min-w-0">
-                  <span className="text-[10px] theme-font-mono px-1.5 py-0.5 rounded bg-[#7D33FF]/15 text-[var(--theme-text-accent)] font-semibold mr-2">
+                <div className="min-w-0 flex items-center">
+                  <span
+                    className={`text-[10px] theme-font-mono px-1.5 py-0.5 rounded font-semibold mr-2.5 shrink-0 ${row.badgeClass}`}
+                  >
                     {row.type}
                   </span>
                   <span className="text-xs text-[var(--theme-text-primary)] font-medium truncate">
@@ -433,8 +445,12 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
                   </span>
                 </div>
                 <div className="flex items-center gap-3 shrink-0 theme-font-mono text-xs">
-                  <span className="text-[var(--theme-text-secondary)] font-semibold">{row.stat}</span>
-                  <span className="text-[var(--theme-text-muted)]">{row.liq}</span>
+                  <span className="font-semibold" style={{ color: row.statColor }}>
+                    {row.stat}
+                  </span>
+                  <span className="font-medium" style={{ color: row.liqColor }}>
+                    {row.liq}
+                  </span>
                 </div>
               </div>
             ))}
@@ -443,31 +459,66 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
 
         {/* 2. DEEP (Flipped: Visual Card on Left, Step Number & Title on Right) */}
         <section className="osiris-card p-6 sm:p-9 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-6 order-2 lg:order-1 osiris-well p-4 space-y-3">
+          <div className="lg:col-span-6 order-2 lg:order-1 osiris-well p-4 space-y-3 overflow-hidden">
             <div className="flex items-center justify-between text-[11px] theme-font-mono text-[var(--theme-text-muted)] pb-2 border-b border-[var(--theme-panel-divider)]">
               <span className="flex items-center gap-1.5">
                 <Bot className="w-3.5 h-3.5 text-[var(--theme-text-accent)]" />
                 AI AGENT GRANT FIELD EVALUATION (142 PROPOSALS)
               </span>
-              <span className="text-[var(--theme-text-accent)] font-semibold">28 AGENTS TRADING</span>
+              <span className="text-[#34D399] font-semibold">28 AGENTS TRADING</span>
             </div>
             {[
-              { id: 'PROP-041', name: 'ZK-TLS Oracle Bridge for Conditional Tokens', score: '91.4 / 100', signal: 'HIGH PRIORITY REVIEW' },
-              { id: 'PROP-108', name: 'Autonomous LMSR Market Maker Vaults', score: '87.2 / 100', signal: 'CLOSER REVIEW' },
-              { id: 'PROP-019', name: 'Cross-Chain sDAI Settlement Router', score: '83.9 / 100', signal: 'CLOSER REVIEW' },
-            ].map((p) => (
+              {
+                id: 'PROP-041',
+                name: 'ZK-TLS Oracle Bridge for Conditional Tokens',
+                score: '91.4 / 100',
+                signal: 'HIGH PRIORITY REVIEW',
+                badgeClass: 'bg-[#10B981]/15 text-[#34D399] border border-[#10B981]/35',
+                scoreColor: '#34D399',
+                signalColor: '#10B981',
+              },
+              {
+                id: 'PROP-108',
+                name: 'Autonomous LMSR Market Maker Vaults',
+                score: '87.2 / 100',
+                signal: 'CLOSER REVIEW',
+                badgeClass: 'bg-[#38BDF8]/15 text-[#7DD3FC] border border-[#38BDF8]/35',
+                scoreColor: '#60A5FA',
+                signalColor: '#38BDF8',
+              },
+              {
+                id: 'PROP-019',
+                name: 'Cross-Chain sDAI Settlement Router',
+                score: '83.9 / 100',
+                signal: 'CLOSER REVIEW',
+                badgeClass: 'bg-[#F59E0B]/15 text-[#FBBF24] border border-[#F59E0B]/35',
+                scoreColor: '#FBBF24',
+                signalColor: '#B8A5FF',
+              },
+            ].map((p, i) => (
               <div
                 key={p.id}
                 onClick={() => onNavigate('deep')}
-                className="osiris-subcard p-3 cursor-pointer flex items-center justify-between gap-3"
+                style={{ animationDelay: `${i * 220}ms` }}
+                className="osiris-subcard seer-stagger-item p-3 cursor-pointer flex items-center justify-between gap-3"
               >
                 <div className="min-w-0">
-                  <div className="text-[10px] theme-font-mono text-[var(--theme-text-accent)] font-semibold">{p.id}</div>
-                  <div className="text-xs text-[var(--theme-text-primary)] font-medium truncate">{p.name}</div>
+                  <span
+                    className={`inline-block text-[10px] theme-font-mono px-1.5 py-0.5 rounded font-semibold mb-1 ${p.badgeClass}`}
+                  >
+                    {p.id}
+                  </span>
+                  <div className="text-xs text-[var(--theme-text-primary)] font-medium truncate">
+                    {p.name}
+                  </div>
                 </div>
                 <div className="text-right shrink-0 theme-font-mono">
-                  <div className="text-xs font-bold text-[var(--theme-text-primary)]">{p.score}</div>
-                  <div className="text-[10px] text-[var(--theme-text-accent)]">{p.signal}</div>
+                  <div className="text-xs font-bold" style={{ color: p.scoreColor }}>
+                    {p.score}
+                  </div>
+                  <div className="text-[10px] font-medium" style={{ color: p.signalColor }}>
+                    {p.signal}
+                  </div>
                 </div>
               </div>
             ))}
@@ -535,32 +586,47 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
             </div>
           </div>
 
-          <div className="lg:col-span-6 osiris-well p-4 space-y-3">
+          <div className="lg:col-span-6 osiris-well p-4 space-y-3 overflow-hidden">
             <div className="flex items-center justify-between text-[11px] theme-font-mono text-[var(--theme-text-muted)] pb-2 border-b border-[var(--theme-panel-divider)]">
               <span>GIP-114: ALLOCATE 5,000 GNO TO SEER LIQUIDITY</span>
-              <span className="text-[var(--theme-text-accent)] font-semibold">ADVISORY SIGNAL</span>
+              <span className="text-[#34D399] font-semibold">ADVISORY SIGNAL</span>
             </div>
             <div className="grid grid-cols-2 gap-3">
-              <div className="p-3.5 rounded-xl bg-[#7D33FF]/12 border border-[#7D33FF]/45">
-                <div className="text-[10px] theme-font-mono text-[var(--theme-text-accent)] font-semibold uppercase">
+              {/* Green Color-Coded Pass Condition Card */}
+              <div
+                style={{ animationDelay: '0ms' }}
+                className="seer-stagger-item p-3.5 rounded-xl bg-[#10B981]/12 border border-[#10B981]/45"
+              >
+                <div className="text-[10px] theme-font-mono text-[#34D399] font-semibold uppercase">
                   IF PROPOSAL PASSES
                 </div>
-                <div className="text-xl font-bold theme-font-mono text-[var(--theme-text-primary)] mt-1">
+                <div className="text-xl font-bold theme-font-mono text-[#ECFDF5] mt-1">
                   $48.2M TVL
                 </div>
-                <div className="text-[11px] theme-font-mono text-[var(--theme-text-accent)] font-medium mt-0.5">
+                <div className="text-[11px] theme-font-mono text-[#10B981] font-medium mt-0.5">
                   +19.3% Projected 90d Impact
                 </div>
+                <div className="mt-2.5 w-full h-1.5 rounded-full bg-[#141223]/80 overflow-hidden">
+                  <div className="h-full rounded-full bg-gradient-to-r from-[#059669] to-[#34D399] w-[78%]" />
+                </div>
               </div>
-              <div className="osiris-subcard p-3.5 rounded-xl">
-                <div className="text-[10px] theme-font-mono text-[var(--theme-text-muted)] font-semibold uppercase">
+
+              {/* Red Color-Coded Fail Condition Card */}
+              <div
+                style={{ animationDelay: '220ms' }}
+                className="seer-stagger-item p-3.5 rounded-xl bg-[#F43F5E]/12 border border-[#F43F5E]/45"
+              >
+                <div className="text-[10px] theme-font-mono text-[#FB7185] font-semibold uppercase">
                   IF PROPOSAL FAILS
                 </div>
-                <div className="text-xl font-bold theme-font-mono text-[var(--theme-text-primary)] mt-1">
+                <div className="text-xl font-bold theme-font-mono text-[#FFE4E6] mt-1">
                   $40.4M TVL
                 </div>
-                <div className="text-[11px] theme-font-mono text-[var(--theme-text-muted)] mt-0.5">
-                  Baseline Trajectory
+                <div className="text-[11px] theme-font-mono text-[#F43F5E] font-medium mt-0.5">
+                  -16.2% vs. Pass Trajectory
+                </div>
+                <div className="mt-2.5 w-full h-1.5 rounded-full bg-[#141223]/80 overflow-hidden">
+                  <div className="h-full rounded-full bg-gradient-to-r from-[#E11D48] to-[#FB7185] w-[46%]" />
                 </div>
               </div>
             </div>
@@ -570,32 +636,53 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
           </div>
         </section>
 
-        {/* 4. OPPORTUNITY MARKETS (Flipped: Visual Card on Left, Step Number & Title on Right) */}
+        {/* 4. OPPORTUNITY MARKETS (Flipped: Visual Card on Left, Step Number & Title on Right, Distinct Bluish Forecasting Color) */}
         <section className="osiris-card p-6 sm:p-9 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-6 order-2 lg:order-1 osiris-well p-4 space-y-2.5">
+          <div className="lg:col-span-6 order-2 lg:order-1 osiris-well p-4 space-y-2.5 overflow-hidden">
             <div className="flex items-center justify-between text-[11px] theme-font-mono text-[var(--theme-text-muted)] pb-2 border-b border-[var(--theme-panel-divider)]">
-              <span>COHORT SUBMISSIONS · SELECTION PROBABILITY</span>
-              <span className="text-[var(--theme-text-secondary)]">FINAL DECISION: REVIEW COMMITTEE</span>
+              <span className="text-[#7DD3FC]">COHORT SUBMISSIONS · FORECASTING SIGNAL</span>
+              <span className="text-[#38BDF8] font-semibold">FINAL DECISION: REVIEW COMMITTEE</span>
             </div>
             {[
-              { title: 'Submission #14: Privacy-Preserving Orderflow Pool', prob: 78.4 },
-              { title: 'Submission #09: Conditional Treasury Hedging SDK', prob: 64.1 },
-              { title: 'Submission #27: Automated Reality.eth Evidence Bot', prob: 51.8 },
+              {
+                title: 'Submission #14: Privacy-Preserving Orderflow Pool',
+                prob: 78.4,
+                barGrad: 'from-[#0284C7] via-[#38BDF8] to-[#7DD3FC]',
+                textCol: '#38BDF8',
+              },
+              {
+                title: 'Submission #09: Conditional Treasury Hedging SDK',
+                prob: 64.1,
+                barGrad: 'from-[#1D4ED8] via-[#60A5FA] to-[#93C5FD]',
+                textCol: '#60A5FA',
+              },
+              {
+                title: 'Submission #27: Automated Reality.eth Evidence Bot',
+                prob: 51.8,
+                barGrad: 'from-[#0369A1] via-[#0EA5E9] to-[#38BDF8]',
+                textCol: '#7DD3FC',
+              },
             ].map((sub, i) => (
               <div
                 key={i}
                 onClick={() => onNavigate('markets')}
-                className="osiris-subcard p-3 cursor-pointer space-y-1.5"
+                style={{ animationDelay: `${i * 220}ms` }}
+                className="osiris-subcard seer-stagger-item p-3 cursor-pointer space-y-1.5 border-[#38BDF8]/25 hover:border-[#38BDF8]"
               >
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-[var(--theme-text-primary)] font-medium truncate">{sub.title}</span>
-                  <span className="theme-font-mono font-bold text-[var(--theme-text-accent)]">
+                  <span className="text-[var(--theme-text-primary)] font-medium truncate">
+                    {sub.title}
+                  </span>
+                  <span
+                    className="theme-font-mono font-bold"
+                    style={{ color: sub.textCol }}
+                  >
                     {sub.prob}%
                   </span>
                 </div>
                 <div className="w-full h-1.5 osiris-hp-bar overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-[#7D33FF] via-[#8F55F7] to-[#9C6FF2]"
+                    className={`h-full bg-gradient-to-r ${sub.barGrad}`}
                     style={{ width: `${sub.prob}%` }}
                   />
                 </div>
@@ -605,10 +692,10 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
 
           <div className="lg:col-span-6 order-1 lg:order-2 space-y-4 flex flex-col lg:items-end lg:text-right">
             <div className="flex items-center lg:justify-end gap-2.5">
-              <span className="text-xs theme-font-mono text-[var(--theme-text-muted)] order-2 lg:order-1">
-                SELECTION &amp; CURATION SIGNALS
+              <span className="text-xs theme-font-mono text-[#7DD3FC] order-2 lg:order-1">
+                SELECTION &amp; CURATION FORECASTING
               </span>
-              <span className="osiris-pill osiris-pill-brand order-1 lg:order-2">
+              <span className="osiris-pill bg-[#38BDF8]/20 border border-[#38BDF8]/60 text-[#BAE6FD] order-1 lg:order-2">
                 04 · OPPORTUNITY MARKETS
               </span>
             </div>
@@ -623,7 +710,7 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
               <button
                 type="button"
                 onClick={() => onNavigate('markets')}
-                className="osiris-btn-primary px-5 py-2.5 rounded-xl text-xs theme-font-mono uppercase tracking-wider font-semibold inline-flex items-center gap-2"
+                className="px-5 py-2.5 rounded-xl text-xs theme-font-mono uppercase tracking-wider font-semibold inline-flex items-center gap-2 bg-[#0284C7] hover:bg-[#0EA5E9] text-[#FFFFFF] transition-colors"
               >
                 <span>View Opportunity Markets</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -663,36 +750,59 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
             </div>
           </div>
 
-          <div className="lg:col-span-6 osiris-well p-4 space-y-2.5">
+          <div className="lg:col-span-6 osiris-well p-4 space-y-2.5 overflow-hidden">
             <div className="flex items-center justify-between text-[11px] theme-font-mono text-[var(--theme-text-muted)] pb-2 border-b border-[var(--theme-panel-divider)]">
               <span>ANNUALIZED PROTOCOL RISK MATRIX (2026)</span>
               <span className="text-[var(--theme-text-accent)] font-semibold">RELATIVE BENCHMARK</span>
             </div>
             {[
-              { protocol: 'Aave v3 (Core Pools)', exploitRisk: '1.2%', depegRisk: '0.8%', rating: 'LOW RELATIVE RISK' },
-              { protocol: 'Spark / sDAI Savings Layer', exploitRisk: '1.4%', depegRisk: '0.6%', rating: 'LOW RELATIVE RISK' },
-              { protocol: 'Cross-Chain Restaking Bridge X', exploitRisk: '8.7%', depegRisk: '4.9%', rating: 'ELEVATED EXPOSURE' },
+              {
+                protocol: 'Aave v3 (Core Pools)',
+                exploitRisk: '1.2%',
+                depegRisk: '0.8%',
+                rating: 'LOW RELATIVE RISK',
+                metricColor: '#34D399',
+                pillClass: 'bg-[#10B981]/15 text-[#34D399] border border-[#10B981]/40',
+              },
+              {
+                protocol: 'Spark / sDAI Savings Layer',
+                exploitRisk: '1.4%',
+                depegRisk: '0.6%',
+                rating: 'LOW RELATIVE RISK',
+                metricColor: '#34D399',
+                pillClass: 'bg-[#10B981]/15 text-[#34D399] border border-[#10B981]/40',
+              },
+              {
+                protocol: 'Cross-Chain Restaking Bridge X',
+                exploitRisk: '8.7%',
+                depegRisk: '4.9%',
+                rating: 'ELEVATED EXPOSURE',
+                metricColor: '#FB7185',
+                pillClass: 'bg-[#F43F5E]/15 text-[#FB7185] border border-[#F43F5E]/40',
+              },
             ].map((r, i) => (
               <div
                 key={i}
                 onClick={() => onNavigate('risk')}
-                className="osiris-subcard p-3 cursor-pointer flex items-center justify-between gap-3"
+                style={{ animationDelay: `${i * 220}ms` }}
+                className="osiris-subcard seer-stagger-item p-3 cursor-pointer flex items-center justify-between gap-3"
               >
                 <div>
-                  <div className="text-xs font-medium text-[var(--theme-text-primary)]">{r.protocol}</div>
+                  <div className="text-xs font-medium text-[var(--theme-text-primary)]">
+                    {r.protocol}
+                  </div>
                   <div className="text-[10px] theme-font-mono text-[var(--theme-text-muted)]">
-                    Smart Contract: {r.exploitRisk} · Collateral/Peg: {r.depegRisk}
+                    Smart Contract:{' '}
+                    <span className="font-semibold" style={{ color: r.metricColor }}>
+                      {r.exploitRisk}
+                    </span>{' '}
+                    · Collateral/Peg:{' '}
+                    <span className="font-semibold" style={{ color: r.metricColor }}>
+                      {r.depegRisk}
+                    </span>
                   </div>
                 </div>
-                <span
-                  className={`osiris-pill ${
-                    r.rating.includes('LOW')
-                      ? 'osiris-pill-brand'
-                      : 'bg-[#4A4660]/20 text-[var(--theme-text-secondary)] border border-[#4A4660]/50'
-                  }`}
-                >
-                  {r.rating}
-                </span>
+                <span className={`osiris-pill ${r.pillClass}`}>{r.rating}</span>
               </div>
             ))}
           </div>

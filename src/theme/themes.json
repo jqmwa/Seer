@@ -66,6 +66,8 @@
         "accent.red": "#f43f5e",
         "accent.orange": "#f59e0b",
         "accent.purple": "#9C6FF2",
+        "forecast.main": "#38BDF8",
+        "forecast.mid": "#60A5FA",
         "diff.add.text": "#2dd4bf",
         "diff.add.bg": "rgba(45, 212, 191, 0.12)",
         "diff.remove.text": "#f43f5e",

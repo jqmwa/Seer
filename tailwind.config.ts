@@ -21,6 +21,13 @@ export default {
             mid: '#242238',
             muted: '#4A4660',
           },
+          // Forecasting Signal Palette: Distinct bluish color for alternative forecasting signals (vs. direct prediction market trading)
+          forecast: {
+            main: '#38BDF8',
+            mid: '#60A5FA',
+            deep: '#0284C7',
+            soft: '#BAE6FD',
+          },
         },
         surface: {
           0: 'rgb(var(--theme-app-bg-rgb) / <alpha-value>)',
