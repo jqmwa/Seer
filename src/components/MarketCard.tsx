@@ -46,7 +46,7 @@ export function MarketThumbnail({ type }: { type: MarketItem['avatarType'] }) {
   switch (type) {
     case 'israel':
       return (
-        <svg viewBox="0 0 64 64" className="w-full h-full">
+        <svg viewBox="0 0 64 64" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
           <defs>
             <linearGradient id="bg-il" x1="0" y1="0" x2="1" y2="1">
               <stop offset="0%" stopColor="#242238" />
@@ -62,7 +62,7 @@ export function MarketThumbnail({ type }: { type: MarketItem['avatarType'] }) {
       )
     case 'france-rn':
       return (
-        <svg viewBox="0 0 64 64" className="w-full h-full">
+        <svg viewBox="0 0 64 64" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
           <rect width="64" height="64" fill="#141223" />
           <circle cx="32" cy="32" r="24" fill="#242238" stroke="#8F55F7" strokeWidth="1.5" />
           <path d="M23 44 C21 32 27 22 31 16 C33 24 29 32 29 44 Z" fill="#7D33FF" />
@@ -72,7 +72,7 @@ export function MarketThumbnail({ type }: { type: MarketItem['avatarType'] }) {
       )
     case 'le-pen':
       return (
-        <svg viewBox="0 0 64 64" className="w-full h-full">
+        <svg viewBox="0 0 64 64" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
           <rect width="64" height="64" fill="#242238" />
           <rect x="0" y="0" width="6" height="64" fill="#7D33FF" opacity="0.85" />
           <rect x="58" y="0" width="6" height="64" fill="#9C6FF2" opacity="0.85" />
@@ -83,7 +83,7 @@ export function MarketThumbnail({ type }: { type: MarketItem['avatarType'] }) {
       )
     case 'france-assembly':
       return (
-        <svg viewBox="0 0 64 64" className="w-full h-full">
+        <svg viewBox="0 0 64 64" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
           <rect width="64" height="64" fill="#141223" />
           <path d="M12 44 A20 20 0 0 1 52 44" fill="none" stroke="#7D33FF" strokeWidth="6" strokeDasharray="11 2" />
           <path d="M18 44 A14 14 0 0 1 46 44" fill="none" stroke="#9C6FF2" strokeWidth="5" />
@@ -92,7 +92,7 @@ export function MarketThumbnail({ type }: { type: MarketItem['avatarType'] }) {
       )
     case 'polymarket':
       return (
-        <svg viewBox="0 0 64 64" className="w-full h-full">
+        <svg viewBox="0 0 64 64" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
           <defs>
             <linearGradient id="bg-poly" x1="0" y1="0" x2="1" y2="1">
               <stop offset="0%" stopColor="#7D33FF" />
@@ -111,7 +111,7 @@ export function MarketThumbnail({ type }: { type: MarketItem['avatarType'] }) {
       )
     case 'denmark':
       return (
-        <svg viewBox="0 0 64 64" className="w-full h-full">
+        <svg viewBox="0 0 64 64" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
           <rect width="64" height="32" fill="#242238" />
           <rect y="32" width="64" height="32" fill="#4A4660" />
           <circle cx="26" cy="32" r="13" fill="#7D33FF" />
@@ -120,7 +120,7 @@ export function MarketThumbnail({ type }: { type: MarketItem['avatarType'] }) {
       )
     case 'nato':
       return (
-        <svg viewBox="0 0 64 64" className="w-full h-full">
+        <svg viewBox="0 0 64 64" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
           <rect width="64" height="64" fill="#242238" />
           <circle cx="32" cy="32" r="15" fill="none" stroke="#BFBFE6" strokeWidth="1.8" />
           <polygon points="32,9 35.5,28.5 55,32 35.5,35.5 32,55 28.5,35.5 9,32 28.5,28.5" fill="#9C6FF2" />
@@ -128,7 +128,7 @@ export function MarketThumbnail({ type }: { type: MarketItem['avatarType'] }) {
       )
     case 'court':
       return (
-        <svg viewBox="0 0 64 64" className="w-full h-full">
+        <svg viewBox="0 0 64 64" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
           <rect width="64" height="64" fill="#242238" />
           <path
             d="M17 16 L47 26 L17 32 L47 38 L17 48 Z"
@@ -141,7 +141,7 @@ export function MarketThumbnail({ type }: { type: MarketItem['avatarType'] }) {
       )
     case 'senate':
       return (
-        <svg viewBox="0 0 64 64" className="w-full h-full">
+        <svg viewBox="0 0 64 64" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
           <rect width="64" height="64" fill="#141223" />
           <path d="M12 48 H52 M16 42 H48 M20 28 V42 M28 28 V42 M36 28 V42 M44 28 V42" stroke="#E9E9F5" strokeWidth="3" />
           <path d="M18 28 C18 18 46 18 46 28 Z" fill="#8F55F7" />
@@ -150,7 +150,7 @@ export function MarketThumbnail({ type }: { type: MarketItem['avatarType'] }) {
       )
     default:
       return (
-        <svg viewBox="0 0 64 64" className="w-full h-full">
+        <svg viewBox="0 0 64 64" preserveAspectRatio="xMidYMid slice" className="w-full h-full">
           <rect width="64" height="64" fill="#242238" />
           <circle cx="32" cy="32" r="18" fill="none" stroke="#9C6FF2" strokeWidth="2.5" strokeDasharray="5 3" />
           <circle cx="32" cy="32" r="8" fill="#7D33FF" />
@@ -160,7 +160,7 @@ export function MarketThumbnail({ type }: { type: MarketItem['avatarType'] }) {
 }
 
 /**
- * Expressive Bloomberg-Style Left-to-Right Moving Hero of Square Active Market Cards
+ * Expressive Bloomberg-Style Left-to-Right Moving Hero of Wide Active Market Cards
  * Fully adaptive to both Seer Dark and Seer Light brand themes.
  */
 export const BloombergMarketHero: React.FC<{
@@ -175,7 +175,7 @@ export const BloombergMarketHero: React.FC<{
       {/* Row 1: Search Bar, Filters, and Create New Market Button right underneath the navbar */}
       {children && <div>{children}</div>}
 
-      {/* Row 2: Left-to-Right Moving Square Cards Viewport */}
+      {/* Row 2: Left-to-Right Moving Wide Cards Viewport */}
       <div className="relative w-full overflow-hidden py-1">
         {/* Left & Right Edge Fade Masks matching active theme background */}
         <div
@@ -210,7 +210,7 @@ export const BloombergMarketHero: React.FC<{
                   background: 'var(--theme-card-bg-scanline)',
                   boxShadow: 'var(--theme-shadow-card)',
                 }}
-                className="relative group cursor-pointer shrink-0 w-[238px] h-[248px] rounded-[20px] p-2.5 border border-[var(--theme-card-border)] hover:border-[#7D33FF] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1"
+                className="relative group cursor-pointer shrink-0 w-[330px] h-[248px] rounded-[20px] p-2.5 border border-[var(--theme-card-border)] hover:border-[#7D33FF] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1"
               >
                 {/* Card Top Header: "01" on Left + 3x2 Dotted Matrix ":::" on Right */}
                 <div className="flex items-center justify-between px-1.5 pb-2">
@@ -220,7 +220,7 @@ export const BloombergMarketHero: React.FC<{
                   <DottedSixMatrix active={market.starred} />
                 </div>
 
-                {/* Inner Rounded-Square Frame */}
+                {/* Inner Rounded-Rectangle Frame */}
                 <div className="relative flex-1 w-full rounded-[14px] overflow-hidden border border-[var(--theme-card-border)] bg-[var(--theme-well-bg)] flex flex-col justify-between">
                   {/* Background Visual Graphic */}
                   <div className="absolute inset-0 opacity-30 group-hover:scale-105 group-hover:opacity-45 transition-all duration-500">
@@ -234,8 +234,8 @@ export const BloombergMarketHero: React.FC<{
                     }}
                   />
 
-                  {/* Top Row Inside Square Viewport */}
-                  <div className="relative z-10 p-3 flex items-center justify-between">
+                  {/* Top Row Inside Viewport */}
+                  <div className="relative z-10 p-3.5 flex items-center justify-between">
                     <span className="px-2 py-0.5 rounded-md bg-[var(--theme-panel-bg)]/90 backdrop-blur-md border border-[var(--theme-card-border)] text-[10px] theme-font-mono font-semibold text-[var(--theme-text-secondary)]">
                       {formatLiquidity(market.liquidityUSD)}
                     </span>
@@ -250,26 +250,26 @@ export const BloombergMarketHero: React.FC<{
                     </span>
                   </div>
 
-                  {/* Bottom Content Inside Square Viewport */}
-                  <div className="relative z-10 p-3 pt-0 space-y-2">
+                  {/* Bottom Content Inside Viewport */}
+                  <div className="relative z-10 p-3.5 pt-0 space-y-2">
                     <div className="flex items-baseline justify-between gap-2">
-                      <span className="text-2xl font-bold theme-font-mono text-[#38BDF8] tracking-tight">
+                      <span className="text-2xl font-bold theme-font-mono text-[var(--theme-text-primary)] tracking-tight">
                         {probText}
                       </span>
                       <span
-                        className={`text-[11px] theme-font-mono font-semibold truncate max-w-[110px] ${
+                        className={`text-[11px] theme-font-mono font-semibold truncate max-w-[180px] ${
                           topOutcome?.label.toLowerCase() === 'yes'
                             ? 'text-[#34D399]'
                             : topOutcome?.label.toLowerCase() === 'no'
                             ? 'text-[#FB7185]'
-                            : 'text-[#7DD3FC]'
+                            : 'text-[#9C6FF2]'
                         }`}
                       >
                         {market.type === 'scalar' ? market.scalarUnit : topOutcome?.label}
                       </span>
                     </div>
 
-                    <p className="text-[12.5px] font-medium leading-[1.3] text-[var(--theme-text-secondary)] line-clamp-2">
+                    <p className="text-[13px] font-medium leading-[1.35] text-[var(--theme-text-secondary)] line-clamp-2">
                       {market.question}
                     </p>
 
@@ -284,7 +284,7 @@ export const BloombergMarketHero: React.FC<{
                               ? 'linear-gradient(90deg, #059669, #34D399)'
                               : topOutcome?.label.toLowerCase() === 'no'
                               ? 'linear-gradient(90deg, #E11D48, #FB7185)'
-                              : 'linear-gradient(90deg, #0284C7, #38BDF8)',
+                              : 'linear-gradient(90deg, #7D33FF, #9C6FF2)',
                         }}
                       />
                     </div>
@@ -303,7 +303,7 @@ function getOutcomeAccentColor(label: string, idx: number): string {
   const lower = label.trim().toLowerCase()
   if (lower === 'yes' || lower.startsWith('yes ')) return '#10B981'
   if (lower === 'no' || lower.startsWith('no ')) return '#F43F5E'
-  const predictionPalette = ['#38BDF8', '#60A5FA', '#34D399', '#A78BFA']
+  const predictionPalette = ['#7D33FF', '#9C6FF2', '#8F55F7', '#BFBFE6']
   return predictionPalette[idx % predictionPalette.length]
 }
 
@@ -396,7 +396,7 @@ export const MarketCard: React.FC<MarketCardProps> = ({
   onToggleStar,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [dims, setDims] = useState({ w: 380, h: 152 })
+  const [dims, setDims] = useState({ w: 380, h: 158 })
 
   // Lowered square button geometry anchored to the bottom-right corner
   const BTN_SIZE = 54 // Square 54x54 detached action button
@@ -431,10 +431,10 @@ export const MarketCard: React.FC<MarketCardProps> = ({
     <div
       ref={containerRef}
       onClick={() => onSelectMarket(market)}
-      className="relative group cursor-pointer select-none transition-transform duration-200 hover:-translate-y-0.5"
-      style={{ minHeight: 148 }}
+      className="relative group cursor-pointer select-none transition-transform duration-200 hover:-translate-y-0.5 flex flex-col justify-between"
+      style={{ minHeight: 156 }}
     >
-      {/* Fluid Notched SVG Card Surface & Border (Theme-Adaptive) */}
+      {/* Fluid Notched SVG Card Surface & Border (Theme-Adaptive, Seer Purple Hover) */}
       <svg
         width={dims.w}
         height={dims.h}
@@ -463,93 +463,96 @@ export const MarketCard: React.FC<MarketCardProps> = ({
           fill="none"
           stroke="var(--theme-card-stroke)"
           strokeWidth="1"
-          className="transition-colors duration-300 group-hover:stroke-[#38BDF8]/45"
+          className="transition-colors duration-300 group-hover:stroke-[#8F55F7]/65"
         />
       </svg>
 
-      {/* Top-Right Lip — Signal Palette Dots (Green Yes, Blue Prediction, Red No) */}
-      <div className="absolute top-3 right-3.5 z-20 flex items-center gap-1.5">
-        <span className="w-2 h-2 rounded-full bg-[#10B981]" />
-        <span className="w-2 h-2 rounded-full bg-[#38BDF8]" />
-        <span className="w-2 h-2 rounded-full bg-[#F43F5E]" />
-      </div>
+      {/* Balanced Card Interior: Top Zone (Full Width) + Bottom Zone (Left of Action Button) */}
+      <div className="relative z-10 flex flex-col justify-between flex-1 p-3.5">
+        {/* Top Zone: Left Thumbnail + Full-Width Header Meta & Question Title */}
+        <div className="flex items-start gap-3.5">
+          {/* Top-Left Rounded-Square Thumbnail */}
+          <div className="relative w-[68px] h-[68px] rounded-[14px] overflow-hidden shrink-0 border border-[var(--theme-card-border)] shadow-md bg-[#141223]">
+            <MarketThumbnail type={market.avatarType} />
+            <div className="absolute bottom-1 right-1 bg-[var(--theme-panel-bg)]/90 backdrop-blur-sm rounded-full p-0.5 border border-[var(--theme-card-border)]">
+              <MiniDonut outcomes={market.outcomes} />
+            </div>
+          </div>
 
-      {/* Main Card Content Area — items-start keeps left thumbnail anchored top-left */}
-      <div
-        className="relative z-10 flex items-start gap-3.5 p-3.5"
-        style={{ paddingRight: POCKET_W + 8 }}
-      >
-        {/* Top-Left Aligned Rounded-Square Thumbnail */}
-        <div className="relative w-[72px] h-[72px] rounded-[15px] overflow-hidden shrink-0 border border-[var(--theme-card-border)] shadow-md bg-[#141223]">
-          <MarketThumbnail type={market.avatarType} />
-          <div className="absolute bottom-1 right-1 bg-[var(--theme-panel-bg)]/90 backdrop-blur-sm rounded-full p-0.5 border border-[var(--theme-card-border)]">
-            <MiniDonut outcomes={market.outcomes} />
+          {/* Right Column: Balanced Top Meta Row + Question Title */}
+          <div className="min-w-0 flex-1 flex flex-col justify-between min-h-[68px]">
+            {/* Top Meta Row: Date, Liquidity, Movement on Left; Badges & Star on Right */}
+            <div className="flex items-center justify-between gap-2 text-[11px] theme-font-mono text-[var(--theme-text-muted)]">
+              <div className="flex items-center flex-wrap gap-1.5 min-w-0">
+                <span>{formatDateSlash(market.endDate)}</span>
+                <span>·</span>
+                <span className="text-[var(--theme-text-secondary)] font-semibold">
+                  {formatLiquidity(market.liquidityUSD)}
+                </span>
+                <span
+                  className={`px-1.5 py-0.5 rounded text-[10px] font-semibold leading-none ${
+                    isUpMove
+                      ? 'bg-[#10B981]/15 text-[#34D399]'
+                      : 'bg-[#F43F5E]/15 text-[#FB7185]'
+                  }`}
+                >
+                  {isUpMove ? '▲' : '▼'} {moveDelta}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-1.5 shrink-0">
+                {market.hasIncentive && (
+                  <span className="inline-flex items-center text-[#9C6FF2]" title="Farming Rewards">
+                    <Gift className="w-3.5 h-3.5" />
+                  </span>
+                )}
+                {market.hasParentLink && (
+                  <span className="inline-flex items-center text-[#8F55F7]" title="Conditional Market">
+                    <Link2 className="w-3.5 h-3.5" />
+                  </span>
+                )}
+                {market.verified && (
+                  <span className="inline-flex items-center text-[#34D399]" title="Verified">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                  </span>
+                )}
+                <button
+                  type="button"
+                  onClick={(e) => onToggleStar(market.id, e)}
+                  className="inline-flex items-center text-[var(--theme-text-muted)] hover:text-[#9C6FF2] transition-colors focus:outline-none"
+                  title={market.starred ? 'Remove from watchlist' : 'Add to watchlist'}
+                >
+                  <Star
+                    className={`w-3.5 h-3.5 ${market.starred ? 'text-[#9C6FF2]' : ''}`}
+                    fill={market.starred ? '#9C6FF2' : 'none'}
+                  />
+                </button>
+              </div>
+            </div>
+
+            {/* Question Title */}
+            <h3 className="text-[14.5px] font-medium leading-[1.32] text-[var(--theme-text-primary)] group-hover:text-[#E9E9F5] line-clamp-2 tracking-[-0.01em] transition-colors mt-1">
+              {market.question}
+            </h3>
           </div>
         </div>
 
-        {/* Center Text, Date/Liquidity Meta, and Outcomes */}
-        <div className="min-w-0 flex-1 flex flex-col justify-between gap-1.5">
-          {/* Title — Flips between #FFFFFF in Dark Mode and #141223 in Light Mode */}
-          <h3 className="text-[14.5px] font-medium leading-[1.3] text-[var(--theme-text-primary)] group-hover:text-[#7DD3FC] line-clamp-2 tracking-[-0.01em] transition-colors">
-            {market.question}
-          </h3>
-
-          {/* Date + Liquidity + Red/Green Movement Indicator + Protocol Meta Row */}
-          <div className="flex items-center flex-wrap gap-2 text-[11.5px] theme-font-mono text-[var(--theme-text-muted)]">
-            <span>{formatDateSlash(market.endDate)}</span>
-            <span>·</span>
-            <span className="text-[var(--theme-text-secondary)] font-semibold">
-              {formatLiquidity(market.liquidityUSD)}
-            </span>
-            <span
-              className={`px-1.5 py-0.2 rounded text-[10px] font-semibold ${
-                isUpMove
-                  ? 'bg-[#10B981]/15 text-[#34D399]'
-                  : 'bg-[#F43F5E]/15 text-[#FB7185]'
-              }`}
-            >
-              {isUpMove ? '▲' : '▼'} {moveDelta}
-            </span>
-            {market.hasIncentive && (
-              <span className="inline-flex items-center text-[#38BDF8]" title="Farming Rewards">
-                <Gift className="w-3 h-3" />
-              </span>
-            )}
-            {market.hasParentLink && (
-              <span className="inline-flex items-center text-[#60A5FA]" title="Conditional Market">
-                <Link2 className="w-3 h-3" />
-              </span>
-            )}
-            {market.verified && (
-              <span className="inline-flex items-center text-[#34D399]" title="Verified">
-                <CheckCircle2 className="w-3 h-3" />
-              </span>
-            )}
-            <button
-              type="button"
-              onClick={(e) => onToggleStar(market.id, e)}
-              className="inline-flex items-center text-[var(--theme-text-muted)] hover:text-[#38BDF8] transition-colors focus:outline-none"
-              title={market.starred ? 'Remove from watchlist' : 'Add to watchlist'}
-            >
-              <Star
-                className={`w-3 h-3 ${market.starred ? 'text-[#38BDF8]' : ''}`}
-                fill={market.starred ? '#38BDF8' : 'none'}
-              />
-            </button>
-          </div>
-
-          {/* Interactive Outcome Pills Row: Green/Red for Yes/No, Blue for Predictions */}
+        {/* Bottom Zone: Outcome Pills Balanced Across Bottom Width Left of Cutout Pocket */}
+        <div
+          className="mt-3 pt-2.5 border-t border-[var(--theme-panel-divider)] flex items-center"
+          style={{ marginRight: POCKET_W + 2 }}
+        >
           {market.type === 'scalar' ? (
-            <div className="flex items-center gap-2 pt-0.5">
-              <span className="px-2 py-0.5 rounded-md bg-[#38BDF8]/12 border border-[#38BDF8]/30 text-[11px] theme-font-mono text-[#7DD3FC] font-semibold">
+            <div className="w-full flex items-center justify-between gap-2">
+              <span className="px-2.5 py-1 rounded-lg bg-[#7D33FF]/15 border border-[#8F55F7]/35 text-[11.5px] theme-font-mono text-[#E9E9F5] font-semibold">
                 {market.scalarValue?.toFixed(2)} {market.scalarUnit}
               </span>
-              <span className="text-[10.5px] theme-font-mono text-[var(--theme-text-muted)]">
+              <span className="text-[11px] theme-font-mono text-[var(--theme-text-muted)]">
                 Range: {market.scalarMin} – {market.scalarMax}
               </span>
             </div>
           ) : (
-            <div className="flex items-center flex-wrap gap-1.5 pt-0.5">
+            <div className="w-full grid grid-cols-2 sm:flex sm:items-center gap-1.5">
               {market.outcomes.slice(0, 3).map((outcome, idx) => {
                 const lower = outcome.label.trim().toLowerCase()
                 const isYes = lower === 'yes' || lower.startsWith('yes ')
@@ -559,10 +562,14 @@ export const MarketCard: React.FC<MarketCardProps> = ({
                   ? 'bg-[#10B981]/10 hover:bg-[#10B981]/20 border-[#10B981]/30 hover:border-[#10B981]/60'
                   : isNo
                   ? 'bg-[#F43F5E]/10 hover:bg-[#F43F5E]/20 border-[#F43F5E]/30 hover:border-[#F43F5E]/60'
-                  : 'bg-[#38BDF8]/10 hover:bg-[#38BDF8]/20 border-[#38BDF8]/25 hover:border-[#38BDF8]/55'
+                  : 'bg-[#7D33FF]/12 hover:bg-[#7D33FF]/22 border-[#8F55F7]/30 hover:border-[#9C6FF2]/60'
 
-                const dotColor = isYes ? '#10B981' : isNo ? '#F43F5E' : getOutcomeAccentColor(outcome.label, idx)
-                const probColor = isYes ? '#34D399' : isNo ? '#FB7185' : '#38BDF8'
+                const dotColor = isYes
+                  ? '#10B981'
+                  : isNo
+                  ? '#F43F5E'
+                  : getOutcomeAccentColor(outcome.label, idx)
+                const probColor = isYes ? '#34D399' : isNo ? '#FB7185' : '#E9E9F5'
 
                 return (
                   <button
@@ -572,14 +579,16 @@ export const MarketCard: React.FC<MarketCardProps> = ({
                       e.stopPropagation()
                       onSelectMarket(market, outcome)
                     }}
-                    className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md border text-[11px] transition-colors max-w-[165px] ${pillStyle}`}
+                    className={`flex-1 min-w-0 inline-flex items-center justify-between gap-1.5 px-2.5 py-1 rounded-lg border text-[11px] transition-colors ${pillStyle}`}
                   >
-                    <span
-                      className="w-1.5 h-1.5 rounded-full shrink-0"
-                      style={{ backgroundColor: dotColor }}
-                    />
-                    <span className="text-[var(--theme-text-secondary)] truncate">
-                      {outcome.label}
+                    <span className="inline-flex items-center gap-1.5 min-w-0">
+                      <span
+                        className="w-1.5 h-1.5 rounded-full shrink-0"
+                        style={{ backgroundColor: dotColor }}
+                      />
+                      <span className="text-[var(--theme-text-secondary)] truncate">
+                        {outcome.label}
+                      </span>
                     </span>
                     <span
                       className="theme-font-mono font-semibold shrink-0"
@@ -597,7 +606,7 @@ export const MarketCard: React.FC<MarketCardProps> = ({
         </div>
       </div>
 
-      {/* Detached Bottom-Right Square Action Button (↗) — Fixed 54x54 Square */}
+      {/* Detached Bottom-Right Square Action Button (↗) — Fixed 54x54 Square, Seer Purple Hover */}
       <button
         type="button"
         onClick={(e) => {
@@ -611,7 +620,7 @@ export const MarketCard: React.FC<MarketCardProps> = ({
           right: 0,
           boxShadow: 'var(--theme-shadow-panel)',
         }}
-        className="absolute z-10 rounded-[16px] bg-[var(--theme-panel-bg)] border border-[var(--theme-card-border)] group-hover:border-[#38BDF8]/50 group-hover:bg-[#0284C7] flex items-center justify-center text-[#38BDF8] group-hover:text-[#FFFFFF] transition-all duration-300"
+        className="absolute z-10 rounded-[16px] bg-[var(--theme-panel-bg)] border border-[var(--theme-card-border)] group-hover:border-[#9C6FF2]/60 group-hover:bg-[#7D33FF] flex items-center justify-center text-[#9C6FF2] group-hover:text-[#FFFFFF] transition-all duration-300"
         title="Open Market & Trade"
       >
         <ArrowUpRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
