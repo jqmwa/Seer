@@ -51,20 +51,20 @@
   --theme-panel-hover-bg: #4A4660;
   --theme-panel-divider: rgba(191, 191, 230, 0.14);
 
-  --theme-card-bg: linear-gradient(165deg, #242238 0%, #141223 100%);
-  --theme-card-bg-scanline: repeating-linear-gradient(180deg, transparent 0px, transparent 2px, rgba(20, 18, 35, 0.14) 2px, rgba(20, 18, 35, 0.14) 4px), linear-gradient(165deg, #242238 0%, #141223 100%);
-  --theme-card-grad-start: #242238;
-  --theme-card-grad-mid: #1D1B30;
-  --theme-card-grad-end: #141223;
-  --theme-card-border: rgba(191, 191, 230, 0.10);
-  --theme-card-stroke: rgba(191, 191, 230, 0.10);
-  --theme-card-selected-bg: linear-gradient(165deg, rgba(125, 51, 255, 0.32) 0%, #242238 55%, #141223 100%);
-  --theme-card-selected-bg-scanline: repeating-linear-gradient(180deg, transparent 0px, transparent 2px, rgba(20, 18, 35, 0.14) 2px, rgba(20, 18, 35, 0.14) 4px), linear-gradient(165deg, rgba(125, 51, 255, 0.35) 0%, #242238 55%, #141223 100%);
-  --theme-card-selected-border: rgba(156, 111, 242, 0.45);
+  --theme-card-bg: linear-gradient(165deg, #2B2846 0%, #211E37 55%, #18162B 100%);
+  --theme-card-bg-scanline: repeating-linear-gradient(180deg, transparent 0px, transparent 2px, rgba(20, 18, 35, 0.14) 2px, rgba(20, 18, 35, 0.14) 4px), linear-gradient(165deg, #2B2846 0%, #211E37 55%, #18162B 100%);
+  --theme-card-grad-start: #2B2846;
+  --theme-card-grad-mid: #211E37;
+  --theme-card-grad-end: #18162B;
+  --theme-card-border: rgba(156, 111, 242, 0.22);
+  --theme-card-stroke: rgba(156, 111, 242, 0.26);
+  --theme-card-selected-bg: linear-gradient(165deg, rgba(125, 51, 255, 0.36) 0%, #2B2846 55%, #18162B 100%);
+  --theme-card-selected-bg-scanline: repeating-linear-gradient(180deg, transparent 0px, transparent 2px, rgba(20, 18, 35, 0.14) 2px, rgba(20, 18, 35, 0.14) 4px), linear-gradient(165deg, rgba(125, 51, 255, 0.38) 0%, #2B2846 55%, #18162B 100%);
+  --theme-card-selected-border: rgba(156, 111, 242, 0.55);
 
-  --theme-well-bg: #141223;
-  --theme-subcard-bg: rgba(36, 34, 56, 0.82);
-  --theme-subcard-border: rgba(191, 191, 230, 0.10);
+  --theme-well-bg: #110F1E;
+  --theme-subcard-bg: rgba(43, 40, 70, 0.88);
+  --theme-subcard-border: rgba(156, 111, 242, 0.18);
   --theme-input-bg: #141223;
   --theme-input-border: rgba(143, 85, 247, 0.40);
 
@@ -86,12 +86,12 @@
   --theme-chart-grid: rgba(191, 191, 230, 0.16);
   --theme-chart-axis: #BFBFE6;
   --theme-donut-track: rgba(191, 191, 230, 0.18);
-  --theme-hero-vignette: linear-gradient(180deg, rgba(20, 18, 35, 0.32) 0%, rgba(20, 18, 35, 0.74) 48%, rgba(20, 18, 35, 0.96) 100%);
+  --theme-hero-vignette: linear-gradient(180deg, rgba(20, 18, 35, 0.25) 0%, rgba(20, 18, 35, 0.68) 46%, rgba(17, 15, 30, 0.96) 100%);
 
   --theme-shadow-strong: 0 20px 60px rgba(20, 18, 35, 0.85);
-  --theme-shadow-panel: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 4px 20px rgba(10, 9, 18, 0.55);
-  --theme-shadow-card: inset 0 1px 0 0 rgba(233, 233, 245, 0.11), inset 0 0 0 1px rgba(143, 85, 247, 0.07), inset 0 -1px 0 0 rgba(8, 7, 16, 0.75), 0 22px 48px -12px rgba(8, 7, 16, 0.88), 0 4px 14px -2px rgba(8, 7, 16, 0.65);
-  --theme-card-drop-shadow: drop-shadow(0 12px 28px rgba(10, 9, 18, 0.72));
+  --theme-shadow-panel: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 6px 22px rgba(6, 5, 14, 0.68);
+  --theme-shadow-card: inset 0 1px 0 0 rgba(255, 255, 255, 0.16), inset 0 0 0 1px rgba(156, 111, 242, 0.12), inset 0 -1px 0 0 rgba(8, 7, 16, 0.88), 0 24px 52px -12px rgba(6, 5, 14, 0.92), 0 6px 18px -2px rgba(6, 5, 14, 0.72);
+  --theme-card-drop-shadow: drop-shadow(0 16px 32px rgba(6, 5, 14, 0.85)) drop-shadow(0 2px 8px rgba(125, 51, 255, 0.10));
 
   --theme-radius-panel: 10px;
   --theme-radius-card: 14px;
@@ -205,9 +205,9 @@ body.theme-seer-light .seer-grid-backdrop {
   padding: 1px;
   background: linear-gradient(
     145deg,
-    rgba(233, 233, 245, 0.15) 0%,
-    rgba(143, 85, 247, 0.10) 28%,
-    rgba(74, 70, 96, 0.04) 62%,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(156, 111, 242, 0.18) 32%,
+    rgba(74, 70, 96, 0.08) 68%,
     transparent 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -217,13 +217,13 @@ body.theme-seer-light .seer-grid-backdrop {
 }
 
 .osiris-card:hover {
-  border-color: rgba(156, 111, 242, 0.22);
+  border-color: rgba(156, 111, 242, 0.42);
   box-shadow:
-    inset 0 1px 0 0 rgba(233, 233, 245, 0.15),
-    inset 0 0 0 1px rgba(143, 85, 247, 0.12),
-    inset 0 -1px 0 0 rgba(8, 7, 16, 0.8),
-    0 26px 54px -12px rgba(8, 7, 16, 0.92),
-    0 0 32px -10px rgba(125, 51, 255, 0.22);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.22),
+    inset 0 0 0 1px rgba(156, 111, 242, 0.18),
+    inset 0 -1px 0 0 rgba(8, 7, 16, 0.88),
+    0 28px 56px -12px rgba(6, 5, 14, 0.94),
+    0 0 36px -8px rgba(125, 51, 255, 0.28);
 }
 
 .osiris-card-selected {
@@ -231,19 +231,19 @@ body.theme-seer-light .seer-grid-backdrop {
   border: 1px solid var(--theme-card-selected-border);
   border-radius: var(--theme-radius-card);
   box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.16),
-    inset 0 0 0 1px rgba(125, 51, 255, 0.24),
-    0 18px 40px -8px rgba(10, 9, 18, 0.85);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.20),
+    inset 0 0 0 1px rgba(125, 51, 255, 0.30),
+    0 18px 40px -8px rgba(10, 9, 18, 0.88);
 }
 
 /* Osiris recessed inner well */
 .osiris-well {
   background: var(--theme-well-bg);
   box-shadow:
-    inset 0 2px 6px rgba(6, 5, 14, 0.72),
-    inset 0 0 0 1px rgba(191, 191, 230, 0.05),
-    0 1px 0 rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(191, 191, 230, 0.08);
+    inset 0 3px 8px rgba(4, 3, 10, 0.86),
+    inset 0 0 0 1px rgba(156, 111, 242, 0.09),
+    0 1px 0 rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(156, 111, 242, 0.15);
   border-radius: 10px;
 }
 
@@ -256,7 +256,7 @@ body.theme-seer-light .osiris-well {
 .osiris-subcard {
   background: var(--theme-subcard-bg);
   border: 1px solid var(--theme-subcard-border);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 10px rgba(8, 7, 16, 0.35);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10), 0 6px 14px rgba(6, 5, 14, 0.5);
   border-radius: 8px;
   transition: all 180ms ease;
 }

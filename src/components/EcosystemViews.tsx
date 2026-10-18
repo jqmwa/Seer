@@ -8,7 +8,11 @@ import {
   ShieldAlert,
   Layers,
   Bot,
+  Info,
+  ChevronRight,
+  Sparkles,
 } from 'lucide-react'
+import { ReactorsView } from './ReactorsView'
 
 export type NavSection = 'home' | 'app' | 'deep' | 'futarchy' | 'markets' | 'risk'
 
@@ -1188,6 +1192,419 @@ export const SeerFooter: React.FC<{
 }
 
 
+const HeroBadgeCluster: React.FC<{
+  label: string
+  leftSymbols: Array<{ s: string; bg: string; border: string }>
+  rightSymbols: Array<{ s: string; bg: string; border: string; darkText?: boolean }>
+}> = ({ label, leftSymbols, rightSymbols }) => (
+  <div className="space-y-1.5">
+    <div className="flex items-center gap-1 text-[11px] theme-font-mono text-[var(--theme-text-muted)]">
+      <span>{label}</span>
+      <Info className="w-3 h-3 text-[var(--theme-text-accent)] opacity-80" />
+    </div>
+    <div className="flex items-center gap-1.5">
+      <div className="flex items-center -space-x-2">
+        {leftSymbols.map((item, i) => (
+          <span
+            key={i}
+            style={{ backgroundColor: item.bg, borderColor: item.border }}
+            className="w-5 h-5 rounded-full border flex items-center justify-center text-[9px] theme-font-mono font-bold text-white shadow-sm"
+          >
+            {item.s}
+          </span>
+        ))}
+      </div>
+      <span className="text-[10px] theme-font-mono font-bold text-[var(--theme-text-accent)]">
+        =
+      </span>
+      <div className="flex items-center -space-x-2">
+        {rightSymbols.map((item, i) => (
+          <span
+            key={i}
+            style={{ backgroundColor: item.bg, borderColor: item.border }}
+            className={`w-5 h-5 rounded-full border flex items-center justify-center text-[9px] theme-font-mono font-bold shadow-sm ${
+              item.darkText ? 'text-[#141223]' : 'text-white'
+            }`}
+          >
+            {item.s}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+)
+
+/**
+ * 3D High-Cardinality Geodesic & Neural Branching Sphere Wireframe for Deep
+ */
+const DeepGeodesicWireframe: React.FC = () => {
+  const { rings, longitudes, nodes } = React.useMemo(() => {
+    const cx = 150
+    const cy = 78
+    const R = 60
+    const tilt = 0.32
+
+    const project = (lat: number, lon: number, radiusScale = 1) => {
+      const r = R * radiusScale
+      const x3d = r * Math.cos(lat) * Math.cos(lon)
+      const y3d = r * Math.sin(lat)
+      const z3d = r * Math.cos(lat) * Math.sin(lon)
+
+      const yRot = y3d * Math.cos(tilt) - z3d * Math.sin(tilt)
+      const zRot = y3d * Math.sin(tilt) + z3d * Math.cos(tilt)
+      const p = 1 + zRot / 380
+      return { x: cx + x3d * p, y: cy + yRot * p, z: zRot }
+    }
+
+    const rPaths: Array<{ d: string; opacity: number }> = []
+    const lPaths: Array<{ d: string; opacity: number }> = []
+    const nodePts: Array<{ x: number; y: number; highlight: boolean }> = []
+
+    // Latitude geodesic rings
+    const latSteps = 11
+    for (let i = 1; i < latSteps; i++) {
+      const lat = -Math.PI / 2 + (i / latSteps) * Math.PI
+      let d = ''
+      for (let j = 0; j <= 48; j++) {
+        const lon = (j / 48) * Math.PI * 2
+        const pt = project(lat, lon)
+        d += `${j === 0 ? 'M' : 'L'} ${pt.x.toFixed(1)} ${pt.y.toFixed(1)} `
+      }
+      rPaths.push({ d, opacity: 0.2 + 0.45 * Math.cos(lat) })
+    }
+
+    // Longitude meridian arcs + outer outcome orbital shell
+    const lonCount = 18
+    for (let i = 0; i < lonCount; i++) {
+      const lon = (i / lonCount) * Math.PI * 2
+      let d = ''
+      for (let j = 0; j <= 36; j++) {
+        const lat = -Math.PI / 2 + (j / 36) * Math.PI
+        const pt = project(lat, lon)
+        d += `${j === 0 ? 'M' : 'L'} ${pt.x.toFixed(1)} ${pt.y.toFixed(1)} `
+        if (j % 9 === 0 && i % 3 === 0) {
+          nodePts.push({
+            x: pt.x,
+            y: pt.y,
+            highlight: (i + j) % 2 === 0,
+          })
+        }
+      }
+      lPaths.push({ d, opacity: 0.22 + 0.48 * ((Math.sin(lon) + 1) / 2) })
+    }
+
+    return { rings: rPaths, longitudes: lPaths, nodes: nodePts }
+  }, [])
+
+  return (
+    <svg
+      viewBox="0 0 300 156"
+      className="w-full max-w-[300px] h-[148px] overflow-visible select-none"
+      aria-label="Seer Deep High-Cardinality Geodesic Wireframe"
+    >
+      <defs>
+        <radialGradient id="deepCoreGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#7D33FF" stopOpacity="0.36" />
+          <stop offset="55%" stopColor="#8F55F7" stopOpacity="0.14" />
+          <stop offset="100%" stopColor="#141223" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id="deepWireGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#E9E9F5" />
+          <stop offset="50%" stopColor="#9C6FF2" />
+          <stop offset="100%" stopColor="#7D33FF" />
+        </linearGradient>
+      </defs>
+
+      <ellipse cx="150" cy="78" rx="108" ry="66" fill="url(#deepCoreGlow)" />
+
+      {/* Outer Equatorial Orbital Ring */}
+      <ellipse
+        cx="150"
+        cy="78"
+        rx="96"
+        ry="28"
+        transform="rotate(-14 150 78)"
+        fill="none"
+        stroke="#9C6FF2"
+        strokeOpacity="0.38"
+        strokeWidth="0.9"
+        strokeDasharray="4 4"
+      />
+      <ellipse
+        cx="150"
+        cy="78"
+        rx="96"
+        ry="28"
+        transform="rotate(14 150 78)"
+        fill="none"
+        stroke="#7D33FF"
+        strokeOpacity="0.32"
+        strokeWidth="0.9"
+      />
+
+      {rings.map((r, idx) => (
+        <path
+          key={`dr-${idx}`}
+          d={r.d}
+          fill="none"
+          stroke="#8F55F7"
+          strokeOpacity={r.opacity}
+          strokeWidth="0.7"
+        />
+      ))}
+
+      {longitudes.map((l, idx) => (
+        <path
+          key={`dl-${idx}`}
+          d={l.d}
+          fill="none"
+          stroke="url(#deepWireGrad)"
+          strokeOpacity={l.opacity}
+          strokeWidth="0.8"
+        />
+      ))}
+
+      {nodes.map((n, idx) => (
+        <circle
+          key={`dn-${idx}`}
+          cx={n.x}
+          cy={n.y}
+          r={n.highlight ? 2 : 1.3}
+          fill={n.highlight ? '#2dd4bf' : '#E9E9F5'}
+          fillOpacity={n.highlight ? 0.9 : 0.65}
+        />
+      ))}
+    </svg>
+  )
+}
+
+/**
+ * 3D Bifurcating Conditional Manifold Wireframe for Futarchy (Pass vs Fail Cones)
+ */
+const FutarchyBifurcationWireframe: React.FC = () => {
+  const { passRings, failRings, streamlines } = React.useMemo(() => {
+    const pRings: Array<{ d: string; opacity: number }> = []
+    const fRings: Array<{ d: string; opacity: number }> = []
+    const sLines: Array<{ d: string; isPass: boolean; opacity: number }> = []
+
+    const numSlices = 22
+    const stepsTheta = 32
+
+    const evalPoint = (t: number, theta: number, branch: 1 | -1) => {
+      // t in [0, 1] from left origin (x=36) to right diverging lobes (x=258)
+      const x = 36 + t * 222
+      const divergeY = branch * Math.pow(t, 1.35) * 38
+      const tubeRadius = 10 + Math.sin(t * Math.PI) * 18 + t * 8
+
+      const y3d = divergeY + tubeRadius * Math.sin(theta)
+      const z3d = tubeRadius * Math.cos(theta)
+      const yProj = 78 + y3d - z3d * 0.22
+      const xProj = x + z3d * 0.28
+      return { x: xProj, y: yProj }
+    }
+
+    for (let i = 0; i <= numSlices; i++) {
+      const t = i / numSlices
+      let dPass = ''
+      let dFail = ''
+      for (let j = 0; j <= stepsTheta; j++) {
+        const theta = (j / stepsTheta) * Math.PI * 2
+        const ptP = evalPoint(t, theta, -1)
+        const ptF = evalPoint(t, theta, 1)
+        dPass += `${j === 0 ? 'M' : 'L'} ${ptP.x.toFixed(1)} ${ptP.y.toFixed(1)} `
+        dFail += `${j === 0 ? 'M' : 'L'} ${ptF.x.toFixed(1)} ${ptF.y.toFixed(1)} `
+      }
+      const op = 0.22 + 0.55 * t
+      pRings.push({ d: dPass, opacity: op })
+      fRings.push({ d: dFail, opacity: op * 0.78 })
+    }
+
+    const numStream = 12
+    for (let j = 0; j < numStream; j++) {
+      const theta = (j / numStream) * Math.PI * 2
+      let dP = ''
+      let dF = ''
+      for (let i = 0; i <= numSlices; i++) {
+        const t = i / numSlices
+        const ptP = evalPoint(t, theta, -1)
+        const ptF = evalPoint(t, theta, 1)
+        dP += `${i === 0 ? 'M' : 'L'} ${ptP.x.toFixed(1)} ${ptP.y.toFixed(1)} `
+        dF += `${i === 0 ? 'M' : 'L'} ${ptF.x.toFixed(1)} ${ptF.y.toFixed(1)} `
+      }
+      const op = 0.2 + 0.45 * ((Math.sin(theta) + 1) / 2)
+      sLines.push({ d: dP, isPass: true, opacity: op })
+      sLines.push({ d: dF, isPass: false, opacity: op * 0.75 })
+    }
+
+    return { passRings: pRings, failRings: fRings, streamlines: sLines }
+  }, [])
+
+  return (
+    <svg
+      viewBox="0 0 300 156"
+      className="w-full max-w-[300px] h-[148px] overflow-visible select-none"
+      aria-label="Seer Futarchy Conditional Bifurcation Wireframe"
+    >
+      <defs>
+        <radialGradient id="futarchyGlow" cx="55%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#7D33FF" stopOpacity="0.34" />
+          <stop offset="60%" stopColor="#9C6FF2" stopOpacity="0.12" />
+          <stop offset="100%" stopColor="#141223" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+
+      <ellipse cx="155" cy="78" rx="115" ry="66" fill="url(#futarchyGlow)" />
+
+      {/* Fail Manifold (Lower Lobe) */}
+      {failRings.map((r, idx) => (
+        <path
+          key={`fr-${idx}`}
+          d={r.d}
+          fill="none"
+          stroke="#BFBFE6"
+          strokeOpacity={r.opacity * 0.65}
+          strokeWidth="0.65"
+        />
+      ))}
+
+      {/* Pass Manifold (Upper Lobe) */}
+      {passRings.map((r, idx) => (
+        <path
+          key={`pr-${idx}`}
+          d={r.d}
+          fill="none"
+          stroke="#9C6FF2"
+          strokeOpacity={r.opacity}
+          strokeWidth="0.75"
+        />
+      ))}
+
+      {/* Longitudinal Streamlines */}
+      {streamlines.map((s, idx) => (
+        <path
+          key={`sl-${idx}`}
+          d={s.d}
+          fill="none"
+          stroke={s.isPass ? '#7D33FF' : '#8F55F7'}
+          strokeOpacity={s.opacity}
+          strokeWidth={s.isPass ? '0.85' : '0.65'}
+        />
+      ))}
+
+      {/* Decision Origin Nexus */}
+      <circle
+        cx="36"
+        cy="78"
+        r="5"
+        fill="#2dd4bf"
+        stroke="#FFFFFF"
+        strokeWidth="1.2"
+      />
+    </svg>
+  )
+}
+
+/**
+ * 3D Hyperboloid Curation Funnel & Converging Vortex Wireframe for Opportunity Markets
+ */
+const MarketsConvergenceWireframe: React.FC = () => {
+  const { rings,generators } = React.useMemo(() => {
+    const rList: Array<{ d: string; opacity: number; isNeck: boolean }> = []
+    const gList: Array<{ d: string; opacity: number; accent: boolean }> = []
+
+    const numSlices = 24
+    const stepsTheta = 36
+
+    // Hyperboloid of one sheet oriented horizontally along X
+    const evalPoint = (u: number, theta: number) => {
+      // u in [-1, 1]
+      const x = 150 + u * 104
+      // Narrow waist near u = 0.15, wider intake on left, curated flare on right
+      const waist = 16
+      const radius = waist * Math.sqrt(1 + Math.pow((u - 0.15) * 2.35, 2))
+      const y3d = radius * Math.sin(theta)
+      const z3d = radius * Math.cos(theta)
+
+      const xProj = x + z3d * 0.28
+      const yProj = 78 + y3d - z3d * 0.18
+      return { x: xProj, y: yProj }
+    }
+
+    for (let i = 0; i <= numSlices; i++) {
+      const u = -1 + (i / numSlices) * 2
+      let d = ''
+      for (let j = 0; j <= stepsTheta; j++) {
+        const theta = (j / stepsTheta) * Math.PI * 2
+        const pt = evalPoint(u, theta)
+        d += `${j === 0 ? 'M' : 'L'} ${pt.x.toFixed(1)} ${pt.y.toFixed(1)} `
+      }
+      const isNeck = Math.abs(u - 0.15) < 0.12
+      const op = isNeck ? 0.85 : 0.24 + 0.42 * (1 - Math.abs(u) * 0.5)
+      rList.push({ d, opacity: op, isNeck })
+    }
+
+    // Twisted ruling lines (hyperboloid generators)
+    const numGen = 18
+    for (let j = 0; j < numGen; j++) {
+      const baseTheta = (j / numGen) * Math.PI * 2
+      let d1 = ''
+      let d2 = ''
+      for (let i = 0; i <= numSlices; i++) {
+        const u = -1 + (i / numSlices) * 2
+        const pt1 = evalPoint(u, baseTheta + u * 1.15)
+        const pt2 = evalPoint(u, baseTheta - u * 1.15)
+        d1 += `${i === 0 ? 'M' : 'L'} ${pt1.x.toFixed(1)} ${pt1.y.toFixed(1)} `
+        d2 += `${i === 0 ? 'M' : 'L'} ${pt2.x.toFixed(1)} ${pt2.y.toFixed(1)} `
+      }
+      const op = 0.22 + 0.42 * ((Math.sin(baseTheta) + 1) / 2)
+      gList.push({ d: d1, opacity: op, accent: j % 3 === 0 })
+      gList.push({ d: d2, opacity: op * 0.75, accent: false })
+    }
+
+    return { rings: rList, generators: gList }
+  }, [])
+
+  return (
+    <svg
+      viewBox="0 0 300 156"
+      className="w-full max-w-[300px] h-[148px] overflow-visible select-none"
+      aria-label="Seer Opportunity Markets Curation Convergence Wireframe"
+    >
+      <defs>
+        <radialGradient id="marketsCurationGlow" cx="54%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#7D33FF" stopOpacity="0.36" />
+          <stop offset="50%" stopColor="#38BDF8" stopOpacity="0.16" />
+          <stop offset="100%" stopColor="#141223" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+
+      <ellipse cx="162" cy="78" rx="112" ry="64" fill="url(#marketsCurationGlow)" />
+
+      {generators.map((g, idx) => (
+        <path
+          key={`mg-${idx}`}
+          d={g.d}
+          fill="none"
+          stroke={g.accent ? '#38BDF8' : '#8F55F7'}
+          strokeOpacity={g.opacity}
+          strokeWidth={g.accent ? '0.85' : '0.65'}
+        />
+      ))}
+
+      {rings.map((r, idx) => (
+        <path
+          key={`mr-${idx}`}
+          d={r.d}
+          fill="none"
+          stroke={r.isNeck ? '#2dd4bf' : '#9C6FF2'}
+          strokeOpacity={r.opacity}
+          strokeWidth={r.isNeck ? '1.3' : '0.7'}
+        />
+      ))}
+    </svg>
+  )
+}
+
 export const SpecializedSurfaceView: React.FC<{
   section: Exclude<NavSection, 'home' | 'app'>
   onNavigate: (section: NavSection) => void
@@ -1254,34 +1671,143 @@ export const SpecializedSurfaceView: React.FC<{
     ]
 
     return (
-      <div className="space-y-6">
-        <div className="osiris-card p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="space-y-2 max-w-3xl">
-            <div className="flex items-center gap-2">
-              <span className="osiris-pill osiris-pill-brand">
-                DEEP · AI AGENT &amp; MULTI-OUTCOME MARKETS
+      <div className="space-y-7 select-none">
+        {/* Top Expressive Display Title */}
+        <div className="pt-2 pb-1 text-center space-y-2.5">
+          <div className="inline-flex items-center justify-center gap-2.5 flex-wrap">
+            <span className="text-[11px] sm:text-xs theme-font-mono uppercase tracking-[0.26em] text-[var(--theme-text-secondary)]">
+              HIGH-CARDINALITY AI AGENT &amp; MULTI-OUTCOME MARKETS
+            </span>
+            <span className="osiris-pill osiris-pill-brand inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full shadow-[0_0_14px_rgba(125,51,255,0.35)]">
+              <Sparkles className="w-2.5 h-2.5 text-[#9C6FF2]" />
+              <span className="text-[10px] tracking-wider normal-case font-semibold">
+                142 Outcomes
               </span>
-              <span className="text-xs theme-font-mono text-[var(--theme-text-accent)] font-semibold">
-                142 OUTCOMES IN FIELD
-              </span>
-            </div>
-            <h1 className="text-2xl sm:text-3xl font-medium text-[var(--theme-text-primary)]">
-              Deep — High-Cardinality Grant Proposal Evaluation
-            </h1>
-            <p className="text-sm text-[var(--theme-text-muted)] leading-relaxed">
-              Handles questions with many possible outcomes, including markets designed for AI
-              agents to trade. Here, autonomous agents forecast how human evaluators will
-              assess a large field of grant proposals—giving the funding team a clear signal
-              about which proposals deserve closer review.
-            </p>
+            </span>
           </div>
-          <button
-            type="button"
-            onClick={() => onNavigate('app')}
-            className="osiris-btn-primary px-4 py-2.5 rounded-xl text-xs theme-font-mono uppercase shrink-0"
-          >
-            View in All-Market Explorer
-          </button>
+
+          <h1 className="text-4xl sm:text-6xl font-bold theme-font-mono tracking-[0.12em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#7D33FF] via-[#9C6FF2] to-[#BFBFE6] drop-shadow-[0_0_28px_rgba(125,51,255,0.32)]">
+            ://DEEP
+          </h1>
+        </div>
+
+        {/* Expressive Hero Banner Card with Overlapping Seer Orbital Emblem & 3D Geodesic Wireframe */}
+        <div className="relative pt-7">
+          <div className="pointer-events-none absolute -top-2 left-7 sm:left-12 z-20 flex items-center justify-center w-20 h-20">
+            <div className="absolute inset-0 rounded-full border border-dashed border-[#9C6FF2]/45 animate-[spin_28s_linear_infinite]" />
+            <div className="absolute inset-1.5 rounded-full border border-[#7D33FF]/50 shadow-[0_0_20px_rgba(125,51,255,0.4)]" />
+            <div className="absolute top-1/2 -left-8 -right-8 h-[1px] bg-gradient-to-r from-transparent via-[#9C6FF2]/60 to-transparent" />
+            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#9C6FF2] shadow-lg flex items-center justify-center bg-[#141223]">
+              <img
+                src="/branding/seer-backdrop.png"
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <img
+                src="/branding/seer-logo.png"
+                alt="Seer Deep Core"
+                className="relative z-10 w-6 h-6 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]"
+              />
+            </div>
+          </div>
+
+          <div className="osiris-card p-2 sm:p-3 border border-[#7D33FF]/45 shadow-[0_0_36px_-10px_rgba(125,51,255,0.28)]">
+            <div className="osiris-well relative overflow-hidden px-6 sm:px-9 pt-10 pb-6 rounded-xl border border-[var(--theme-card-border)]">
+              <div
+                className="pointer-events-none absolute top-0 right-0 w-80 h-12 opacity-20"
+                style={{
+                  backgroundImage: 'url(/branding/seer-raven-pattern.svg)',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right center',
+                  backgroundSize: 'contain',
+                }}
+              />
+
+              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <div className="lg:col-span-6 space-y-4">
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <h2 className="text-xl sm:text-2xl font-medium theme-font-mono text-[var(--theme-text-primary)] tracking-tight">
+                        Deep — Grant Evaluation
+                      </h2>
+                      <span className="osiris-pill osiris-pill-brand">
+                        {proposals[selectedItem]?.id}
+                      </span>
+                    </div>
+                    <div className="text-[10px] theme-font-mono uppercase tracking-[0.18em] text-[var(--theme-text-accent)] font-semibold">
+                      AUTONOMOUS AGENT TRIAGE &amp; COMBINATORIAL LMSR
+                    </div>
+                    <p className="text-xs text-[var(--theme-text-muted)] pt-1 max-w-xl leading-relaxed">
+                      Handles questions with many possible outcomes, including markets designed
+                      for AI agents to trade. Autonomous agents forecast how human evaluators
+                      will assess a large field of grant proposals.
+                    </p>
+                  </div>
+
+                  <div className="pt-1 flex flex-wrap items-center gap-6 sm:gap-8">
+                    <HeroBadgeCluster
+                      label="Agents"
+                      leftSymbols={[
+                        { s: 'AI', bg: '#7D33FF', border: '#E9E9F5' },
+                        { s: '19', bg: '#242238', border: '#9C6FF2' },
+                      ]}
+                      rightSymbols={[
+                        { s: '◈', bg: '#2dd4bf', border: '#141223', darkText: true },
+                        { s: 'S', bg: '#8F55F7', border: '#E9E9F5' },
+                        { s: 'K', bg: '#1D1B30', border: '#BFBFE6' },
+                      ]}
+                    />
+                    <HeroBadgeCluster
+                      label="Outcomes"
+                      leftSymbols={[
+                        { s: 'N', bg: '#8F55F7', border: '#E9E9F5' },
+                        { s: '∑', bg: '#242238', border: '#9C6FF2' },
+                      ]}
+                      rightSymbols={[
+                        { s: '142', bg: '#7D33FF', border: '#E9E9F5' },
+                        { s: '✓', bg: '#2dd4bf', border: '#141223', darkText: true },
+                      ]}
+                    />
+                    <HeroBadgeCluster
+                      label="Collateral"
+                      leftSymbols={[
+                        { s: 'G', bg: '#242238', border: '#9C6FF2' },
+                        { s: 'Ξ', bg: '#7D33FF', border: '#E9E9F5' },
+                      ]}
+                      rightSymbols={[
+                        { s: 's$', bg: '#2dd4bf', border: '#141223', darkText: true },
+                        { s: '$', bg: '#8F55F7', border: '#E9E9F5' },
+                      ]}
+                    />
+                  </div>
+                </div>
+
+                <div className="lg:col-span-4 flex items-center justify-center">
+                  <DeepGeodesicWireframe />
+                </div>
+
+                <div className="lg:col-span-2 flex flex-row lg:flex-col items-center lg:items-end justify-between lg:justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setSelectedItem((prev) => (prev + 1) % proposals.length)
+                    }
+                    title="Cycle Active Proposal Signal"
+                    className="w-12 h-12 rounded-xl flex items-center justify-center text-[#7D33FF] hover:text-[#9C6FF2] hover:bg-[#7D33FF]/10 transition-all group"
+                  >
+                    <ChevronRight className="w-10 h-10 stroke-[2.2] transition-transform group-hover:translate-x-0.5 drop-shadow-[0_0_12px_rgba(125,51,255,0.5)]" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => onNavigate('app')}
+                    className="osiris-btn-primary px-3.5 py-2 rounded-xl text-[11px] theme-font-mono uppercase shrink-0"
+                  >
+                    All-Market Explorer
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
@@ -1401,33 +1927,141 @@ export const SpecializedSurfaceView: React.FC<{
     ]
 
     return (
-      <div className="space-y-6">
-        <div className="osiris-card p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="space-y-2 max-w-3xl">
-            <div className="flex items-center gap-2">
-              <span className="osiris-pill osiris-pill-brand">
-                FUTARCHY · CONDITIONAL GOVERNANCE MARKETS
+      <div className="space-y-7 select-none">
+        {/* Top Expressive Display Title */}
+        <div className="pt-2 pb-1 text-center space-y-2.5">
+          <div className="inline-flex items-center justify-center gap-2.5 flex-wrap">
+            <span className="text-[11px] sm:text-xs theme-font-mono uppercase tracking-[0.26em] text-[var(--theme-text-secondary)]">
+              CONDITIONAL GOVERNANCE IMPACT FORECASTS
+            </span>
+            <span className="osiris-pill osiris-pill-brand inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full shadow-[0_0_14px_rgba(125,51,255,0.35)]">
+              <Sparkles className="w-2.5 h-2.5 text-[#9C6FF2]" />
+              <span className="text-[10px] tracking-wider normal-case font-semibold">
+                DAO Decision Support
               </span>
-              <span className="text-xs theme-font-mono text-[var(--theme-text-accent)] font-semibold">
-                DAO DECISION SUPPORT
-              </span>
-            </div>
-            <h1 className="text-2xl sm:text-3xl font-medium text-[var(--theme-text-primary)]">
-              Futarchy — Conditional Impact Forecasts for DAOs
-            </h1>
-            <p className="text-sm text-[var(--theme-text-muted)] leading-relaxed">
-              Uses conditional markets to forecast what a chosen measure of success might look
-              like if a proposal passes versus if it does not. That gives a DAO information to
-              consider when making its decision, rather than making the decision for it.
-            </p>
+            </span>
           </div>
-          <button
-            type="button"
-            onClick={() => onNavigate('app')}
-            className="osiris-btn-primary px-4 py-2.5 rounded-xl text-xs theme-font-mono uppercase shrink-0"
-          >
-            View Underlying Conditional Markets
-          </button>
+
+          <h1 className="text-4xl sm:text-6xl font-bold theme-font-mono tracking-[0.12em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#7D33FF] via-[#9C6FF2] to-[#BFBFE6] drop-shadow-[0_0_28px_rgba(125,51,255,0.32)]">
+            ://FUTARCHY
+          </h1>
+        </div>
+
+        {/* Expressive Hero Banner Card with Overlapping Seer Orbital Emblem & 3D Bifurcation Wireframe */}
+        <div className="relative pt-7">
+          <div className="pointer-events-none absolute -top-2 left-7 sm:left-12 z-20 flex items-center justify-center w-20 h-20">
+            <div className="absolute inset-0 rounded-full border border-dashed border-[#9C6FF2]/45 animate-[spin_28s_linear_infinite]" />
+            <div className="absolute inset-1.5 rounded-full border border-[#7D33FF]/50 shadow-[0_0_20px_rgba(125,51,255,0.4)]" />
+            <div className="absolute top-1/2 -left-8 -right-8 h-[1px] bg-gradient-to-r from-transparent via-[#9C6FF2]/60 to-transparent" />
+            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#9C6FF2] shadow-lg flex items-center justify-center bg-[#141223]">
+              <img
+                src="/branding/seer-backdrop.png"
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <img
+                src="/branding/seer-logo.png"
+                alt="Seer Futarchy Core"
+                className="relative z-10 w-6 h-6 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]"
+              />
+            </div>
+          </div>
+
+          <div className="osiris-card p-2 sm:p-3 border border-[#7D33FF]/45 shadow-[0_0_36px_-10px_rgba(125,51,255,0.28)]">
+            <div className="osiris-well relative overflow-hidden px-6 sm:px-9 pt-10 pb-6 rounded-xl border border-[var(--theme-card-border)]">
+              <div
+                className="pointer-events-none absolute top-0 right-0 w-80 h-12 opacity-20"
+                style={{
+                  backgroundImage: 'url(/branding/seer-raven-pattern.svg)',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right center',
+                  backgroundSize: 'contain',
+                }}
+              />
+
+              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <div className="lg:col-span-6 space-y-4">
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <h2 className="text-xl sm:text-2xl font-medium theme-font-mono text-[var(--theme-text-primary)] tracking-tight">
+                        Futarchy — DAO Impact Signals
+                      </h2>
+                      <span className="osiris-pill osiris-pill-brand">
+                        IF PASSES / IF FAILS
+                      </span>
+                    </div>
+                    <div className="text-[10px] theme-font-mono uppercase tracking-[0.18em] text-[var(--theme-text-accent)] font-semibold">
+                      CONDITIONAL TOKEN FRAMEWORK · ADVISORY GOVERNANCE
+                    </div>
+                    <p className="text-xs text-[var(--theme-text-muted)] pt-1 max-w-xl leading-relaxed">
+                      Uses conditional markets to forecast what a chosen measure of success
+                      might look like if a proposal passes versus if it does not—giving a DAO
+                      information to consider rather than making the decision for it.
+                    </p>
+                  </div>
+
+                  <div className="pt-1 flex flex-wrap items-center gap-6 sm:gap-8">
+                    <HeroBadgeCluster
+                      label="DAOs"
+                      leftSymbols={[
+                        { s: 'G', bg: '#7D33FF', border: '#E9E9F5' },
+                        { s: 'S', bg: '#242238', border: '#9C6FF2' },
+                      ]}
+                      rightSymbols={[
+                        { s: 'K', bg: '#2dd4bf', border: '#141223', darkText: true },
+                        { s: '◈', bg: '#8F55F7', border: '#E9E9F5' },
+                        { s: 'Ξ', bg: '#1D1B30', border: '#BFBFE6' },
+                      ]}
+                    />
+                    <HeroBadgeCluster
+                      label="Branches"
+                      leftSymbols={[
+                        { s: 'P', bg: '#2dd4bf', border: '#141223' },
+                        { s: 'F', bg: '#4A4660', border: '#BFBFE6' },
+                      ]}
+                      rightSymbols={[
+                        { s: 'Δ', bg: '#7D33FF', border: '#E9E9F5' },
+                        { s: '%', bg: '#8F55F7', border: '#E9E9F5' },
+                      ]}
+                    />
+                    <HeroBadgeCluster
+                      label="Liquidity"
+                      leftSymbols={[
+                        { s: 's$', bg: '#7D33FF', border: '#E9E9F5' },
+                        { s: 'G', bg: '#242238', border: '#9C6FF2' },
+                      ]}
+                      rightSymbols={[
+                        { s: '$', bg: '#2dd4bf', border: '#141223', darkText: true },
+                        { s: 'M', bg: '#8F55F7', border: '#E9E9F5' },
+                      ]}
+                    />
+                  </div>
+                </div>
+
+                <div className="lg:col-span-4 flex items-center justify-center">
+                  <FutarchyBifurcationWireframe />
+                </div>
+
+                <div className="lg:col-span-2 flex flex-row lg:flex-col items-center lg:items-end justify-between lg:justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => onNavigate('app')}
+                    title="Explore Conditional Governance Markets"
+                    className="w-12 h-12 rounded-xl flex items-center justify-center text-[#7D33FF] hover:text-[#9C6FF2] hover:bg-[#7D33FF]/10 transition-all group"
+                  >
+                    <ChevronRight className="w-10 h-10 stroke-[2.2] transition-transform group-hover:translate-x-0.5 drop-shadow-[0_0_12px_rgba(125,51,255,0.5)]" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => onNavigate('app')}
+                    className="osiris-btn-primary px-3.5 py-2 rounded-xl text-[11px] theme-font-mono uppercase shrink-0"
+                  >
+                    Conditional Markets
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
@@ -1519,29 +2153,140 @@ export const SpecializedSurfaceView: React.FC<{
     ]
 
     return (
-      <div className="space-y-6">
-        <div className="osiris-card p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="space-y-2 max-w-3xl">
-            <div className="flex items-center gap-2">
-              <span className="osiris-pill osiris-pill-brand">
-                OPPORTUNITY MARKETS · SUBMISSION SELECTION SIGNALS
+      <div className="space-y-7 select-none">
+        {/* Top Expressive Display Title */}
+        <div className="pt-2 pb-1 text-center space-y-2.5">
+          <div className="inline-flex items-center justify-center gap-2.5 flex-wrap">
+            <span className="text-[11px] sm:text-xs theme-font-mono uppercase tracking-[0.26em] text-[var(--theme-text-secondary)]">
+              OPPORTUNITY MARKETS · SUBMISSION SELECTION SIGNALS
+            </span>
+            <span className="osiris-pill osiris-pill-brand inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full shadow-[0_0_14px_rgba(125,51,255,0.35)]">
+              <Sparkles className="w-2.5 h-2.5 text-[#38BDF8]" />
+              <span className="text-[10px] tracking-wider normal-case font-semibold">
+                Curation Layer
               </span>
-            </div>
-            <h1 className="text-2xl sm:text-3xl font-medium text-[var(--theme-text-primary)]">
-              Opportunity Markets — Forecasting Selection Likelihood
-            </h1>
-            <p className="text-sm text-[var(--theme-text-muted)] leading-relaxed">
-              Let traders forecast which submissions are likely to be selected, giving
-              reviewers another signal while leaving the final selection to them.
-            </p>
+            </span>
           </div>
-          <button
-            type="button"
-            onClick={() => onNavigate('app')}
-            className="osiris-btn-primary px-4 py-2.5 rounded-xl text-xs theme-font-mono uppercase shrink-0"
-          >
-            Browse All Markets
-          </button>
+
+          <h1 className="text-4xl sm:text-6xl font-bold theme-font-mono tracking-[0.12em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#7D33FF] via-[#9C6FF2] to-[#38BDF8] drop-shadow-[0_0_28px_rgba(125,51,255,0.32)]">
+            ://MARKETS
+          </h1>
+        </div>
+
+        {/* Expressive Hero Banner Card with Overlapping Seer Orbital Emblem & 3D Hyperboloid Convergence Wireframe */}
+        <div className="relative pt-7">
+          <div className="pointer-events-none absolute -top-2 left-7 sm:left-12 z-20 flex items-center justify-center w-20 h-20">
+            <div className="absolute inset-0 rounded-full border border-dashed border-[#9C6FF2]/45 animate-[spin_28s_linear_infinite]" />
+            <div className="absolute inset-1.5 rounded-full border border-[#7D33FF]/50 shadow-[0_0_20px_rgba(125,51,255,0.4)]" />
+            <div className="absolute top-1/2 -left-8 -right-8 h-[1px] bg-gradient-to-r from-transparent via-[#9C6FF2]/60 to-transparent" />
+            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#9C6FF2] shadow-lg flex items-center justify-center bg-[#141223]">
+              <img
+                src="/branding/seer-backdrop.png"
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <img
+                src="/branding/seer-logo.png"
+                alt="Seer Opportunity Markets Core"
+                className="relative z-10 w-6 h-6 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]"
+              />
+            </div>
+          </div>
+
+          <div className="osiris-card p-2 sm:p-3 border border-[#7D33FF]/45 shadow-[0_0_36px_-10px_rgba(125,51,255,0.28)]">
+            <div className="osiris-well relative overflow-hidden px-6 sm:px-9 pt-10 pb-6 rounded-xl border border-[var(--theme-card-border)]">
+              <div
+                className="pointer-events-none absolute top-0 right-0 w-80 h-12 opacity-20"
+                style={{
+                  backgroundImage: 'url(/branding/seer-raven-pattern.svg)',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right center',
+                  backgroundSize: 'contain',
+                }}
+              />
+
+              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <div className="lg:col-span-6 space-y-4">
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <h2 className="text-xl sm:text-2xl font-medium theme-font-mono text-[var(--theme-text-primary)] tracking-tight">
+                        Opportunity Markets
+                      </h2>
+                      <span className="osiris-pill osiris-pill-brand">
+                        SELECTION SIGNALS
+                      </span>
+                    </div>
+                    <div className="text-[10px] theme-font-mono uppercase tracking-[0.18em] text-[var(--theme-text-accent)] font-semibold">
+                      FORECASTING SUBMISSION SELECTION LIKELIHOOD
+                    </div>
+                    <p className="text-xs text-[var(--theme-text-muted)] pt-1 max-w-xl leading-relaxed">
+                      Let traders forecast which submissions are likely to be selected, giving
+                      reviewers another high-integrity signal while leaving the final selection
+                      decision to them.
+                    </p>
+                  </div>
+
+                  <div className="pt-1 flex flex-wrap items-center gap-6 sm:gap-8">
+                    <HeroBadgeCluster
+                      label="Tracks"
+                      leftSymbols={[
+                        { s: 'I', bg: '#7D33FF', border: '#E9E9F5' },
+                        { s: 'G', bg: '#242238', border: '#9C6FF2' },
+                      ]}
+                      rightSymbols={[
+                        { s: 'O', bg: '#38BDF8', border: '#141223', darkText: true },
+                        { s: 'U', bg: '#8F55F7', border: '#E9E9F5' },
+                      ]}
+                    />
+                    <HeroBadgeCluster
+                      label="Signals"
+                      leftSymbols={[
+                        { s: 'S', bg: '#8F55F7', border: '#E9E9F5' },
+                        { s: '◈', bg: '#242238', border: '#9C6FF2' },
+                      ]}
+                      rightSymbols={[
+                        { s: '%', bg: '#2dd4bf', border: '#141223', darkText: true },
+                        { s: '✓', bg: '#7D33FF', border: '#E9E9F5' },
+                      ]}
+                    />
+                    <HeroBadgeCluster
+                      label="Staked"
+                      leftSymbols={[
+                        { s: 's$', bg: '#7D33FF', border: '#E9E9F5' },
+                        { s: 'Ξ', bg: '#242238', border: '#9C6FF2' },
+                      ]}
+                      rightSymbols={[
+                        { s: '$', bg: '#2dd4bf', border: '#141223', darkText: true },
+                        { s: '53k', bg: '#8F55F7', border: '#E9E9F5' },
+                      ]}
+                    />
+                  </div>
+                </div>
+
+                <div className="lg:col-span-4 flex items-center justify-center">
+                  <MarketsConvergenceWireframe />
+                </div>
+
+                <div className="lg:col-span-2 flex flex-row lg:flex-col items-center lg:items-end justify-between lg:justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => onNavigate('app')}
+                    title="Browse All Markets"
+                    className="w-12 h-12 rounded-xl flex items-center justify-center text-[#7D33FF] hover:text-[#9C6FF2] hover:bg-[#7D33FF]/10 transition-all group"
+                  >
+                    <ChevronRight className="w-10 h-10 stroke-[2.2] transition-transform group-hover:translate-x-0.5 drop-shadow-[0_0_12px_rgba(125,51,255,0.5)]" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => onNavigate('app')}
+                    className="osiris-btn-primary px-3.5 py-2 rounded-xl text-[11px] theme-font-mono uppercase shrink-0"
+                  >
+                    Browse All Markets
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1584,123 +2329,5 @@ export const SpecializedSurfaceView: React.FC<{
   }
 
   // Risk Pricing View
-  const protocols = [
-    {
-      name: 'Aave v3 (Core Ethereum & Gnosis)',
-      category: 'Lending',
-      smartContractRisk: 1.2,
-      oracleGovernanceRisk: 0.8,
-      compositeRisk: 2.0,
-      liquidity: '$82.4k',
-    },
-    {
-      name: 'Spark / sDAI Savings Rate Layer',
-      category: 'Yield Collateral',
-      smartContractRisk: 1.4,
-      oracleGovernanceRisk: 0.6,
-      compositeRisk: 2.0,
-      liquidity: '$74.1k',
-    },
-    {
-      name: 'Uniswap v4 Singleton Hooks Pool',
-      category: 'DEX AMM',
-      smartContractRisk: 2.3,
-      oracleGovernanceRisk: 1.1,
-      compositeRisk: 3.4,
-      liquidity: '$51.9k',
-    },
-    {
-      name: 'Synthetic Leveraged Restaking Vault',
-      category: 'Restaking / Bridge',
-      smartContractRisk: 8.7,
-      oracleGovernanceRisk: 4.9,
-      compositeRisk: 13.6,
-      liquidity: '$38.6k',
-    },
-  ]
-
-  return (
-    <div className="space-y-6">
-      <div className="osiris-card p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-        <div className="space-y-2 max-w-3xl">
-          <div className="flex items-center gap-2">
-            <span className="osiris-pill osiris-pill-brand">
-              RISK PRICING · COMPARATIVE DEFI EXPOSURE
-            </span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-medium text-[var(--theme-text-primary)]">
-            Risk Pricing — Market Estimates of Protocol Exposure
-          </h1>
-          <p className="text-sm text-[var(--theme-text-muted)] leading-relaxed">
-            Shows market estimates of risk across protocols; someone assessing DeFi exposure
-            can compare those estimates instead of interpreting a single yes-or-no price in
-            isolation.
-          </p>
-        </div>
-        <button
-          type="button"
-          onClick={() => onNavigate('app')}
-          className="osiris-btn-primary px-4 py-2.5 rounded-xl text-xs theme-font-mono uppercase shrink-0"
-        >
-          Trade Underlying Risk Markets
-        </button>
-      </div>
-
-      <div className="osiris-card p-6 space-y-4">
-        <div className="flex items-center justify-between text-xs theme-font-mono text-[var(--theme-text-muted)] pb-3 border-b border-[var(--theme-panel-divider)]">
-          <span>SIDE-BY-SIDE PROTOCOL RISK COMPARISON (IMPLIED 12M INCIDENT PROBABILITY)</span>
-          <span className="text-[var(--theme-text-accent)] font-semibold">CALIBRATED IN sDAI</span>
-        </div>
-
-        <div className="space-y-3">
-          {protocols.map((p) => (
-            <div
-              key={p.name}
-              className="osiris-well p-4 grid grid-cols-1 md:grid-cols-12 gap-4 items-center"
-            >
-              <div className="md:col-span-4">
-                <div className="text-sm font-medium text-[var(--theme-text-primary)]">{p.name}</div>
-                <div className="text-xs theme-font-mono text-[var(--theme-text-muted)]">
-                  {p.category} · Pool {p.liquidity}
-                </div>
-              </div>
-
-              <div className="md:col-span-5 space-y-1.5">
-                <div className="flex justify-between text-xs theme-font-mono">
-                  <span className="text-[var(--theme-text-muted)]">
-                    Exploit: {p.smartContractRisk}% · Oracle/Peg: {p.oracleGovernanceRisk}%
-                  </span>
-                  <span className="text-[var(--theme-text-primary)] font-bold">
-                    {p.compositeRisk.toFixed(1)}% Total Implied Risk
-                  </span>
-                </div>
-                <div className="w-full h-2 osiris-hp-bar overflow-hidden">
-                  <div
-                    className={`h-full ${
-                      p.compositeRisk < 4
-                        ? 'bg-gradient-to-r from-[#7D33FF] to-[#9C6FF2]'
-                        : 'bg-gradient-to-r from-[#4A4660] to-[#7D33FF]'
-                    }`}
-                    style={{ width: `${Math.min(100, p.compositeRisk * 5)}%` }}
-                  />
-                </div>
-              </div>
-
-              <div className="md:col-span-3 flex md:justify-end">
-                <span
-                  className={`osiris-pill ${
-                    p.compositeRisk < 4
-                      ? 'osiris-pill-brand'
-                      : 'bg-[#4A4660]/20 border border-[#4A4660]/50 text-[var(--theme-text-secondary)]'
-                  }`}
-                >
-                  {p.compositeRisk < 4 ? 'TIER 1 · LOW RELATIVE RISK' : 'ELEVATED RISK EXPOSURE'}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  )
+  return <ReactorsView onNavigate={onNavigate} />
 }

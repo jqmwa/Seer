@@ -29,7 +29,7 @@ const NAV_ITEMS: Array<{ id: NavSection; label: string }> = [
   { id: 'deep', label: 'Deep' },
   { id: 'futarchy', label: 'Futarchy' },
   { id: 'markets', label: 'Markets' },
-  { id: 'risk', label: 'Risk' },
+  { id: 'risk', label: 'Reactors' },
 ]
 
 export function App() {
