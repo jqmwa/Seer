@@ -7,17 +7,17 @@
    * SEER OFFICIAL 9-COLOR BRAND KIT
    * Purples: #7D33FF (Main), #8F55F7 (Mid), #9C6FF2 (Light)
    * Whites:  #FFFFFF (Pure), #E9E9F5 (Soft), #BFBFE6 (Muted)
-   * Blacks:  #141223 (Deep), #242238 (Mid), #4A4660 (Muted)
+   * Blacks:  #101013 (Deep), #1A1A1E (Mid), #4A4660 (Muted)
    * ========================================================================== */
   --seer-purple-main: #7D33FF;
   --seer-purple-mid: #8F55F7;
   --seer-purple-light: #9C6FF2;
   --seer-white-pure: #FFFFFF;
   --seer-white-soft: #E9E9F5;
-  --seer-white-muted: #BFBFE6;
-  --seer-black-deep: #141223;
-  --seer-black-mid: #242238;
-  --seer-black-muted: #4A4660;
+  --seer-white-muted: #8A8A94;
+  --seer-black-deep: #101013;
+  --seer-black-mid: #1A1A1E;
+  --seer-black-muted: #8A8A94;
 
   /* ==========================================================================
    * SEER FORECASTING SIGNAL PALETTE (Alternative Signal Layer)
@@ -31,45 +31,45 @@
   --seer-forecast-deep: #0284C7;
   --seer-forecast-soft: #BAE6FD;
 
-  /* Typography */
-  --theme-font-display: 'PP Neue Montreal', 'Space Grotesk', system-ui, -apple-system, sans-serif;
-  --theme-font-body: 'PP Neue Montreal', 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  /* Typography — One unified sans for display and body */
+  --theme-font-display: 'PP Neue Montreal', system-ui, -apple-system, sans-serif;
+  --theme-font-body: 'PP Neue Montreal', system-ui, -apple-system, sans-serif;
   --theme-font-mono: 'Suisse INTL Mono', 'Suise INTL Mono', 'JetBrains Mono', 'Commit Mono', ui-monospace, SFMono-Regular, monospace;
 
   /* Default Dark Mode (seer-osiris) Tokens */
-  --theme-app-bg: #141223;
-  --theme-app-bg-rgb: 20 18 35;
+  --theme-app-bg: #101013;
+  --theme-app-bg-rgb: 16 16 19;
   --theme-app-text: #FFFFFF;
-  --theme-header-bg: linear-gradient(90deg, rgba(36, 34, 56, 0.94) 0%, rgba(20, 18, 35, 0.96) 50%, rgba(36, 34, 56, 0.94) 100%);
-  --theme-nav-pill-bg: rgba(20, 18, 35, 0.78);
+  --theme-header-bg: rgba(16, 16, 19, 0.94);
+  --theme-nav-pill-bg: #1A1A1E;
 
-  --theme-panel-bg: #242238;
-  --theme-panel-border: rgba(143, 85, 247, 0.38);
+  --theme-panel-bg: #1A1A1E;
+  --theme-panel-border: rgba(255, 255, 255, 0.07);
   --theme-panel-text: #E9E9F5;
-  --theme-panel-subtle-bg: rgba(233, 233, 245, 0.06);
-  --theme-panel-muted-bg: #141223;
-  --theme-panel-hover-bg: #4A4660;
-  --theme-panel-divider: rgba(191, 191, 230, 0.14);
+  --theme-panel-subtle-bg: rgba(233, 233, 245, 0.05);
+  --theme-panel-muted-bg: #101013;
+  --theme-panel-hover-bg: #23232A;
+  --theme-panel-divider: rgba(255, 255, 255, 0.08);
 
-  --theme-card-bg: linear-gradient(165deg, #2B2846 0%, #211E37 55%, #18162B 100%);
-  --theme-card-bg-scanline: repeating-linear-gradient(180deg, transparent 0px, transparent 2px, rgba(20, 18, 35, 0.14) 2px, rgba(20, 18, 35, 0.14) 4px), linear-gradient(165deg, #2B2846 0%, #211E37 55%, #18162B 100%);
-  --theme-card-grad-start: #2B2846;
-  --theme-card-grad-mid: #211E37;
-  --theme-card-grad-end: #18162B;
-  --theme-card-border: rgba(156, 111, 242, 0.22);
-  --theme-card-stroke: rgba(156, 111, 242, 0.26);
-  --theme-card-selected-bg: linear-gradient(165deg, rgba(125, 51, 255, 0.36) 0%, #2B2846 55%, #18162B 100%);
-  --theme-card-selected-bg-scanline: repeating-linear-gradient(180deg, transparent 0px, transparent 2px, rgba(20, 18, 35, 0.14) 2px, rgba(20, 18, 35, 0.14) 4px), linear-gradient(165deg, rgba(125, 51, 255, 0.38) 0%, #2B2846 55%, #18162B 100%);
+  --theme-card-bg: #1A1A1E;
+  --theme-card-bg-scanline: #1A1A1E;
+  --theme-card-grad-start: #1A1A1E;
+  --theme-card-grad-mid: #1A1A1E;
+  --theme-card-grad-end: #16161A;
+  --theme-card-border: rgba(255, 255, 255, 0.07);
+  --theme-card-stroke: rgba(255, 255, 255, 0.08);
+  --theme-card-selected-bg: linear-gradient(165deg, rgba(125, 51, 255, 0.24) 0%, #1A1A1E 55%, #141418 100%);
+  --theme-card-selected-bg-scanline: linear-gradient(165deg, rgba(125, 51, 255, 0.24) 0%, #1A1A1E 55%, #141418 100%);
   --theme-card-selected-border: rgba(156, 111, 242, 0.55);
 
-  --theme-well-bg: #110F1E;
-  --theme-subcard-bg: rgba(43, 40, 70, 0.88);
-  --theme-subcard-border: rgba(156, 111, 242, 0.18);
-  --theme-input-bg: #141223;
-  --theme-input-border: rgba(143, 85, 247, 0.40);
+  --theme-well-bg: #141418;
+  --theme-subcard-bg: #1F1F24;
+  --theme-subcard-border: rgba(255, 255, 255, 0.06);
+  --theme-input-bg: #1A1A1E;
+  --theme-input-border: rgba(255, 255, 255, 0.08);
 
-  --theme-chat-tool-bg: rgba(20, 18, 35, 0.78);
-  --theme-chat-input-bg: #141223;
+  --theme-chat-tool-bg: rgba(16, 16, 19, 0.85);
+  --theme-chat-input-bg: #101013;
 
   --theme-button-bg: linear-gradient(135deg, #7D33FF 0%, #8F55F7 100%);
   --theme-button-bg-hover: linear-gradient(135deg, #8F55F7 0%, #9C6FF2 100%);
@@ -77,16 +77,16 @@
   --theme-button-text: #FFFFFF;
 
   --theme-text-primary: #FFFFFF;
-  --theme-text-secondary: #E9E9F5;
-  --theme-text-muted: #BFBFE6;
-  --theme-text-faint: #4A4660;
+  --theme-text-secondary: #ECECF3;
+  --theme-text-muted: #8A8A94;
+  --theme-text-faint: #8A8A94;
   --theme-text-accent: #9C6FF2;
-  --theme-text-inverse: #141223;
+  --theme-text-inverse: #101013;
 
-  --theme-chart-grid: rgba(191, 191, 230, 0.16);
-  --theme-chart-axis: #BFBFE6;
-  --theme-donut-track: rgba(191, 191, 230, 0.18);
-  --theme-hero-vignette: linear-gradient(180deg, rgba(20, 18, 35, 0.25) 0%, rgba(20, 18, 35, 0.68) 46%, rgba(17, 15, 30, 0.96) 100%);
+  --theme-chart-grid: rgba(255, 255, 255, 0.08);
+  --theme-chart-axis: #8A8A94;
+  --theme-donut-track: rgba(255, 255, 255, 0.12);
+  --theme-hero-vignette: linear-gradient(180deg, rgba(16, 16, 19, 0.25) 0%, rgba(16, 16, 19, 0.68) 46%, rgba(16, 16, 19, 0.96) 100%);
 
   --theme-shadow-strong: 0 20px 60px rgba(20, 18, 35, 0.85);
   --theme-shadow-panel: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 6px 22px rgba(6, 5, 14, 0.68);
@@ -103,13 +103,13 @@
 body.theme-seer-light {
   --theme-app-bg: #E9E9F5;
   --theme-app-bg-rgb: 233 233 245;
-  --theme-app-text: #141223;
+  --theme-app-text: #101013;
   --theme-header-bg: linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(233, 233, 245, 0.96) 50%, rgba(255, 255, 255, 0.96) 100%);
   --theme-nav-pill-bg: #E9E9F5;
 
   --theme-panel-bg: #FFFFFF;
   --theme-panel-border: #BFBFE6;
-  --theme-panel-text: #141223;
+  --theme-panel-text: #101013;
   --theme-panel-subtle-bg: rgba(125, 51, 255, 0.08);
   --theme-panel-muted-bg: #E9E9F5;
   --theme-panel-hover-bg: #BFBFE6;
@@ -135,8 +135,8 @@ body.theme-seer-light {
   --theme-chat-tool-bg: #E9E9F5;
   --theme-chat-input-bg: #FFFFFF;
 
-  --theme-text-primary: #141223;
-  --theme-text-secondary: #242238;
+  --theme-text-primary: #101013;
+  --theme-text-secondary: #1A1A1E;
   --theme-text-muted: #4A4660;
   --theme-text-faint: #BFBFE6;
   --theme-text-accent: #7D33FF;
@@ -168,21 +168,15 @@ html, body {
   transition: background-color 200ms ease, color 200ms ease;
 }
 
-/* Subtle architectural grid + ambient effect from Seer Brand Kit */
+/* Solid dark background (#101013) from Seer Brand Kit across all pages */
 .seer-grid-backdrop {
-  background-image:
-    radial-gradient(circle at 1px 1px, rgba(156, 111, 242, 0.22) 1px, transparent 0),
-    linear-gradient(to right, rgba(125, 51, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(125, 51, 255, 0.05) 1px, transparent 1px);
-  background-size: 48px 48px, 48px 48px, 48px 48px;
+  background-color: #101013;
+  background-image: none;
 }
 
 body.theme-seer-light .seer-grid-backdrop {
-  background-image:
-    radial-gradient(circle at 1px 1px, rgba(125, 51, 255, 0.18) 1px, transparent 0),
-    linear-gradient(to right, rgba(74, 70, 96, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(74, 70, 96, 0.06) 1px, transparent 1px);
-  background-size: 48px 48px, 48px 48px, 48px 48px;
+  background-color: #101013;
+  background-image: none;
 }
 
 /* Osiris Card Kit classes — refined 1px bevel edge with layered ambient depth */
@@ -279,11 +273,11 @@ body.theme-seer-light .osiris-hp-bar {
   box-shadow: inset 0 1px 2px rgba(20, 18, 35, 0.06);
 }
 
-/* Osiris Pill Badges */
+/* Osiris Pill Badges — 11.5px floor so dense boards read on a phone */
 .osiris-pill {
   font-family: var(--theme-font-mono);
-  font-size: 10px;
-  letter-spacing: 0.06em;
+  font-size: 11.5px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 2px 7px;
   border-radius: 5px;
@@ -396,4 +390,399 @@ body.theme-seer-light .osiris-pill-brand {
   opacity: 1 !important;
   transform: translate3d(0, 0, 0) !important;
 }
+
+/* ==========================================================================
+ * ECOSYSTEM MAP & SEER PROTOCOL ARCHITECTURE LAYER
+ * Matches swiftbotlab.github.io/seer-six/home/ protocol interactive layer
+ * ========================================================================== */
+.hm-map {
+  display: flex;
+  flex-direction: column;
+}
+
+.hm-map__apps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 960px) {
+  .hm-map__apps {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 8px;
+  }
+}
+
+.hm-app {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #141418;
+  border-radius: 14px;
+  min-width: 0;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hm-app:hover {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+}
+
+.hm-app.is-on {
+  box-shadow: inset 0 0 0 1.5px #8F55F7;
+  background: rgba(143, 85, 247, 0.08);
+}
+
+.hm-app.is-uses {
+  box-shadow: inset 0 0 0 1.5px #8F55F7;
+}
+
+.hm-app.is-dim {
+  opacity: 0.45;
+}
+
+.hm-app__sel {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 16px 12px;
+  border-radius: 14px 14px 0 0;
+  flex: 1 1 auto;
+}
+
+.hm-app__sel:focus-visible {
+  outline: 2px solid #8F55F7;
+  outline-offset: -2px;
+}
+
+.hm-app__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.hm-app__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 7px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  background: #0B0B0E;
+  color: #B79BF7;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hm-app__n {
+  font-family: var(--theme-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: #8A8A94;
+  text-transform: uppercase;
+}
+
+.hm-app__txt {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hm-app__name {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  color: #FFFFFF;
+}
+
+.hm-app__blurb {
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #9E9EA9;
+}
+
+.hm-app__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 16px 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.hm-app__host {
+  font-family: var(--theme-font-mono);
+  font-size: 11.5px;
+  color: #8A8A94;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.hm-app__open {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #9C6FF2;
+  white-space: nowrap;
+  border-radius: 6px;
+  transition: color 0.15s ease;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hm-app__open:hover {
+  color: #FFFFFF;
+}
+
+.hm-app__open svg {
+  width: 13px;
+  height: 13px;
+  transition: transform 0.15s ease;
+}
+
+.hm-app__open:hover svg {
+  transform: translateX(2px);
+}
+
+.hm-map__bus {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  height: 40px;
+}
+
+@media (max-width: 960px) {
+  .hm-map__bus {
+    display: none;
+  }
+}
+
+.hm-map__bus i {
+  justify-self: center;
+  width: 1.5px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.10);
+  transition: background 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hm-map__bus i.is-on {
+  background: #8F55F7;
+  box-shadow: 0 0 8px rgba(143, 85, 247, 0.6);
+}
+
+.hm-layer {
+  padding: 24px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: #0E0E12;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hm-layer__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  flex-wrap: wrap;
+}
+
+.hm-layer__name {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #FFFFFF;
+}
+
+.hm-layer__groups {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1.05fr 0.9fr 0.95fr;
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+@media (max-width: 960px) {
+  .hm-layer__groups {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    background: transparent;
+  }
+}
+
+.hm-group {
+  background: #0B0B0E;
+  padding: 14px 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+@media (max-width: 960px) {
+  .hm-group {
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+}
+
+.hm-group h3 {
+  font-family: var(--theme-font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(224, 226, 245, 0.6);
+  margin-bottom: 6px;
+}
+
+.hm-prim {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 32px;
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.045);
+  color: #D7D7E6;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+  line-height: 1.25;
+  transition: background 0.18s ease, color 0.18s ease, opacity 0.18s ease, box-shadow 0.18s ease;
+  cursor: pointer;
+}
+
+.hm-prim i {
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  flex: none;
+  background: rgba(224, 226, 245, 0.32);
+  transform: rotate(45deg);
+  transition: background 0.18s ease;
+}
+
+.hm-prim:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: #FFFFFF;
+}
+
+.hm-prim.is-used {
+  background: rgba(143, 85, 247, 0.24);
+  color: #FFFFFF;
+}
+
+.hm-prim.is-used i {
+  background: #B79BF7;
+}
+
+.hm-prim.is-dim {
+  opacity: 0.4;
+}
+
+.hm-prim[aria-pressed="true"] {
+  box-shadow: inset 0 0 0 1.5px #B79BF7;
+  background: rgba(143, 85, 247, 0.3);
+  color: #FFFFFF;
+  opacity: 1;
+}
+
+.hm-prim[aria-pressed="true"] i {
+  background: #FFFFFF;
+}
+
+.hm-layer__read {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 16px 32px;
+  align-items: start;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  min-height: 84px;
+}
+
+@media (max-width: 768px) {
+  .hm-layer__read {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.hm-layer__read h3 {
+  font-size: 19px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.hm-layer__read p {
+  margin-top: 6px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  font-weight: 400;
+  color: rgba(224, 226, 245, 0.76);
+  max-width: 62ch;
+}
+
+.hm-layer__uses {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hm-layer__uses .s-spec {
+  color: rgba(224, 226, 245, 0.6);
+}
+
+.hm-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #E6E6F2;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.hm-pill svg {
+  width: 14px;
+  height: 14px;
+  color: #B79BF7;
+}
+
+.hm-pill:hover {
+  background: rgba(143, 85, 247, 0.3);
+  color: #FFFFFF;
+}
+
 

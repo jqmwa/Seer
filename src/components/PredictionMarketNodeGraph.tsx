@@ -90,8 +90,8 @@ const HERO_CARDS: FloatingHeroCard[] = [
   },
   {
     id: 'right-mid',
-    marketId: 'polymarket-token-distribution-2027',
-    shortTitle: 'Polymarket Token Drop',
+    marketId: 'polymarket-api-fees-positions',
+    shortTitle: 'Polymarket Position Fees',
     variant: 'yes-no',
     side: 'right',
     x: 84.5,
@@ -105,8 +105,8 @@ const HERO_CARDS: FloatingHeroCard[] = [
   },
   {
     id: 'right-bottom',
-    marketId: 'digital-asset-market-clarity-act-2026',
-    shortTitle: 'US Senate Clarity Act',
+    marketId: 'polymarket-clarification-notes-scalar',
+    shortTitle: 'ZK-TLS Evaluator Score',
     variant: 'node',
     side: 'right',
     x: 91.0,
@@ -253,7 +253,7 @@ export const PredictionMarketNodeGraph: React.FC<
               </div>
 
               {card.variant === 'winner' && (
-                <span className="px-1.5 py-0.5 rounded bg-[#7D33FF]/25 border border-[#9C6FF2]/40 text-[9px] theme-font-mono uppercase tracking-wider text-[#D5D3F2] shrink-0">
+                <span className="px-1.5 py-0.5 rounded bg-[#7D33FF]/25 border border-[#9C6FF2]/40 text-[11.5px] theme-font-mono uppercase tracking-wider text-[#D5D3F2] shrink-0">
                   Lead
                 </span>
               )}
@@ -265,10 +265,16 @@ export const PredictionMarketNodeGraph: React.FC<
                 onClick={() => onNavigate('app')}
                 className="mt-2.5 cursor-pointer"
               >
-                <div className="flex items-center justify-between text-[10px] theme-font-mono text-[#BFBFE6] mb-1">
-                  <span>{topOutcome?.label}</span>
+                <div className="flex items-center justify-between text-[11.5px] theme-font-mono text-[#8A8A94] mb-1">
+                  <span>
+                    {market.type === 'scalar' ? 'Evaluator Score' : topOutcome?.label}
+                  </span>
                   <span className="text-[#E9E9F5] font-medium">
-                    {(topOutcome?.probability ?? 50).toFixed(1)}%
+                    {market.type === 'scalar'
+                      ? `${market.scalarValue?.toFixed(2)}${market.scalarUnit ?? '/10'}`
+                      : `${(topOutcome?.probability ?? 50).toFixed(1)}% · ${Math.round(
+                          topOutcome?.probability ?? 50
+                        )}¢`}
                   </span>
                 </div>
                 <div className="w-full h-1.5 rounded-full bg-[#12101F] overflow-hidden">
@@ -291,6 +297,14 @@ export const PredictionMarketNodeGraph: React.FC<
               <div className="mt-2.5 grid grid-cols-2 gap-1.5">
                 {[topOutcome, secondOutcome].map((outcome, idx) => {
                   const isActive = activeOutcomeIdx === idx
+                  const unitLine = market.baseShareCents
+                    ? `${Math.round(outcome.probability)}% · ${(
+                        (outcome.probability / 100) *
+                        market.baseShareCents
+                      ).toFixed(1)}¢ of ${market.baseShareCents}¢`
+                    : `${outcome.probability.toFixed(1)}% · ${Math.round(
+                        outcome.probability
+                      )}¢`
                   return (
                     <button
                       key={outcome.id}
@@ -305,19 +319,16 @@ export const PredictionMarketNodeGraph: React.FC<
                       className={`px-2 py-1.5 rounded-lg text-left transition-colors border ${
                         isActive
                           ? 'bg-[#7D33FF] border-[#9C6FF2]/50 text-[#FFFFFF]'
-                          : 'bg-[#242238]/90 border-[#BFBFE6]/10 text-[#D5D3F2] hover:bg-[#2E2B47]'
+                          : 'bg-[#1A1A1E]/90 border-[#BFBFE6]/10 text-[#D5D3F2] hover:bg-[#2E2B47]'
                       }`}
                     >
                       <div className="flex items-center justify-between gap-1">
-                        <span className="text-[11px] font-medium truncate">
+                        <span className="text-[11.5px] font-medium truncate">
                           {outcome.label}
                         </span>
-                        <span className="text-[10px] theme-font-mono opacity-90">
-                          ${outcome.price.toFixed(2)}
-                        </span>
                       </div>
-                      <div className="text-[10px] theme-font-mono opacity-85 mt-0.5">
-                        {outcome.probability.toFixed(1)}%
+                      <div className="text-[11.5px] theme-font-mono mt-0.5 truncate">
+                        {unitLine}
                       </div>
                     </button>
                   )
@@ -331,9 +342,9 @@ export const PredictionMarketNodeGraph: React.FC<
                 onClick={() => onNavigate('app')}
                 className="mt-2.5 space-y-1.5 cursor-pointer"
               >
-                <div className="p-2 rounded-lg bg-[#141223]/90 border border-[#8F55F7]/25 flex items-center justify-between gap-2">
+                <div className="p-2 rounded-lg bg-[#101013]/90 border border-[#8F55F7]/25 flex items-center justify-between gap-2">
                   <div className="min-w-0">
-                    <div className="text-[9.5px] theme-font-mono uppercase tracking-wider text-[#9C6FF2]">
+                    <div className="text-[11.5px] theme-font-mono uppercase tracking-wider text-[#9C6FF2]">
                       {card.winnerSublabel ?? 'Projected Winner'}
                     </div>
                     <div className="text-xs font-medium text-[#FFFFFF] truncate">
@@ -344,17 +355,20 @@ export const PredictionMarketNodeGraph: React.FC<
                     <div className="text-xs theme-font-mono font-semibold text-[#E9E9F5]">
                       {topOutcome?.probability.toFixed(1)}%
                     </div>
-                    <div className="text-[10px] theme-font-mono text-[#9C6FF2]">
-                      ${topOutcome?.price.toFixed(2)}
+                    <div className="text-[11.5px] theme-font-mono text-[#9C6FF2]">
+                      {Math.round(topOutcome?.probability ?? 50)}¢
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between px-1 text-[10px] theme-font-mono text-[#BFBFE6]/80">
+                <div className="flex items-center justify-between px-1 text-[11.5px] theme-font-mono text-[#8A8A94]">
                   <span className="truncate">
                     2nd: {secondOutcome?.label.split('(')[0].trim()}
                   </span>
-                  <span>{secondOutcome?.probability.toFixed(1)}%</span>
+                  <span>
+                    {secondOutcome?.probability.toFixed(1)}% ·{' '}
+                    {Math.round(secondOutcome?.probability ?? 30)}¢
+                  </span>
                 </div>
               </div>
             )}

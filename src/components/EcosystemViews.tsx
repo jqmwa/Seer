@@ -11,6 +11,7 @@ import {
   Info,
   ChevronRight,
   Sparkles,
+  Search,
 } from 'lucide-react'
 import { ReactorsView } from './ReactorsView'
 
@@ -18,6 +19,7 @@ export type NavSection = 'home' | 'app' | 'deep' | 'futarchy' | 'markets' | 'ris
 
 interface EcosystemSectionsProps {
   onNavigate: (section: NavSection) => void
+  onCreateMarket?: () => void
 }
 
 const ProcessMotionVector: React.FC<{ id: NavSection; accent: string }> = ({
@@ -26,255 +28,813 @@ const ProcessMotionVector: React.FC<{ id: NavSection; accent: string }> = ({
 }) => {
   switch (id) {
     case 'app':
-      // 01 · Explorer: Multi-stream universal market scanner vector line
+      // 01 · Explorer Motif: Shares (Outcome share split & conditional unit price)
       return (
-        <div className="my-4 w-full h-12 flex items-center">
-          <svg viewBox="0 0 180 48" className="w-full h-full overflow-visible">
-            <path
-              d="M 4 36 L 176 36"
-              fill="none"
-              stroke="currentColor"
-              className="text-[#BFBFE6]/15"
-              strokeWidth="1"
+        <div className="my-3 w-full space-y-1.5">
+          <div className="flex items-center justify-between text-[11.5px] theme-font-mono">
+            <span className="text-[#E9E9F5] font-semibold">YES 68¢</span>
+            <span className="text-[#8A8A94]">SHARES</span>
+            <span className="text-[#9C6FF2] font-semibold">NO 32¢</span>
+          </div>
+          <div className="w-full h-2 rounded-full bg-[#101013] overflow-hidden flex gap-0.5 p-0.5 border border-[#9C6FF2]/25">
+            <div
+              className="h-full rounded-l-full"
+              style={{ width: '68%', backgroundColor: accent }}
             />
-            <path
-              d="M 4 14 Q 36 14, 54 24 T 110 18 T 176 22"
-              fill="none"
-              stroke={accent}
-              strokeOpacity="0.28"
-              strokeWidth="1.5"
+            <div
+              className="h-full rounded-r-full bg-[#9C6FF2]/45"
+              style={{ width: '32%' }}
             />
-            <path
-              d="M 4 30 C 32 30, 44 10, 74 16 C 104 22, 118 34, 146 14 C 158 6, 168 12, 176 10"
-              fill="none"
-              stroke={accent}
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeDasharray="18 10"
-            >
-              <animate
-                attributeName="stroke-dashoffset"
-                from="56"
-                to="0"
-                dur="2.8s"
-                repeatCount="indefinite"
-              />
-            </path>
-          </svg>
+          </div>
+          <div className="text-[11.5px] theme-font-mono text-[#8A8A94] truncate">
+            50% · 6.3¢ of 12.5¢
+          </div>
         </div>
       )
 
     case 'deep':
-      // 02 · High-Cardinality: Root vector branching into multiple outcome paths
+      // 02 · High-Cardinality Motif: Forecasts (Evaluator score distribution 8.14/10)
       return (
-        <div className="my-4 w-full h-12 flex items-center">
-          <svg viewBox="0 0 180 48" className="w-full h-full overflow-visible">
+        <div className="my-3 w-full space-y-1">
+          <div className="flex items-center justify-between text-[11.5px] theme-font-mono">
+            <span className="text-[#8A8A94]">FORECAST</span>
+            <span className="text-[#E9E9F5] font-bold">8.14/10</span>
+          </div>
+          <svg viewBox="0 0 180 34" className="w-full h-8 overflow-visible">
             <path
-              d="M 6 24 L 46 24 C 72 24, 86 8, 174 8"
+              d="M 4 30 L 176 30"
               fill="none"
-              stroke={accent}
+              stroke="#8A8A94"
               strokeOpacity="0.3"
-              strokeWidth="1.4"
+              strokeWidth="1"
             />
             <path
-              d="M 6 24 L 46 24 C 72 24, 86 40, 174 40"
-              fill="none"
-              stroke={accent}
-              strokeOpacity="0.3"
-              strokeWidth="1.4"
-            />
-            <path
-              d="M 6 24 L 46 24 C 76 24, 92 18, 174 18"
+              d="M 6 29 C 38 29, 64 26, 92 16 C 114 8, 132 6, 146 12 C 158 18, 168 26, 176 29"
               fill="none"
               stroke={accent}
               strokeWidth="2"
               strokeLinecap="round"
-              strokeDasharray="16 8"
-            >
-              <animate
-                attributeName="stroke-dashoffset"
-                from="48"
-                to="0"
-                dur="2.4s"
-                repeatCount="indefinite"
-              />
-            </path>
-            <path
-              d="M 6 24 L 46 24 C 76 24, 92 31, 174 31"
-              fill="none"
-              stroke={accent}
-              strokeOpacity="0.65"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              strokeDasharray="12 10"
-            >
-              <animate
-                attributeName="stroke-dashoffset"
-                from="44"
-                to="0"
-                dur="2.4s"
-                repeatCount="indefinite"
-              />
-            </path>
+            />
+            <line
+              x1="138"
+              y1="6"
+              x2="138"
+              y2="30"
+              stroke="#34D399"
+              strokeWidth="1.5"
+              strokeDasharray="2 2"
+            />
+            <circle cx="138" cy="8" r="3.2" fill="#34D399" />
           </svg>
         </div>
       )
 
     case 'futarchy':
-      // 03 · Governance: Conditional Pass vs. Fail diverging trajectory curves
+      // 03 · Governance Motif: A Decision Fork (Conditional Pass vs. Fail trajectories)
       return (
-        <div className="my-4 w-full h-12 flex items-center">
-          <svg viewBox="0 0 180 48" className="w-full h-full overflow-visible">
-            {/* Baseline Fail Trajectory */}
+        <div className="my-3 w-full space-y-1">
+          <div className="flex items-center justify-between text-[11.5px] theme-font-mono">
+            <span className="text-[#34D399] font-semibold">PASS +19.3%</span>
+            <span className="text-[#FB7185] font-semibold">FAIL -16.2%</span>
+          </div>
+          <svg viewBox="0 0 180 36" className="w-full h-8 overflow-visible">
+            {/* Decision Fork Stem */}
             <path
-              d="M 6 28 L 54 28 Q 98 28, 132 35 T 174 38"
+              d="M 6 18 L 52 18"
               fill="none"
-              stroke="currentColor"
-              className="text-[#BFBFE6]/30"
-              strokeWidth="1.5"
-              strokeDasharray="4 4"
+              stroke="#E9E9F5"
+              strokeWidth="1.8"
             />
-            {/* Conditional Pass Trajectory */}
+            {/* Pass Branch (Upward) */}
             <path
-              d="M 6 28 L 54 28 Q 92 28, 120 14 T 174 8"
+              d="M 52 18 C 82 18, 104 7, 172 7"
               fill="none"
-              stroke={accent}
-              strokeOpacity="0.28"
+              stroke="#34D399"
               strokeWidth="2"
-            />
-            <path
-              d="M 6 28 L 54 28 Q 92 28, 120 14 T 174 8"
-              fill="none"
-              stroke={accent}
-              strokeWidth="2.2"
               strokeLinecap="round"
-              strokeDasharray="20 12"
-            >
-              <animate
-                attributeName="stroke-dashoffset"
-                from="64"
-                to="0"
-                dur="2.6s"
-                repeatCount="indefinite"
-              />
-            </path>
+            />
+            {/* Fail Branch (Downward) */}
+            <path
+              d="M 52 18 C 82 18, 104 29, 172 29"
+              fill="none"
+              stroke="#FB7185"
+              strokeWidth="1.6"
+              strokeDasharray="4 3"
+              strokeLinecap="round"
+            />
+            {/* Fork Node */}
+            <circle cx="52" cy="18" r="3.5" fill={accent} stroke="#FFFFFF" strokeWidth="1.2" />
+            <circle cx="172" cy="7" r="2.8" fill="#34D399" />
+            <circle cx="172" cy="29" r="2.5" fill="#FB7185" />
           </svg>
         </div>
       )
 
     case 'markets':
-      // 04 · Curation: Multiple submission streams converging into a selected signal
+      // 04 · Curation Motif: Conditional Share Forecast (50% · 6.3¢ of 12.5¢)
       return (
-        <div className="my-4 w-full h-12 flex items-center">
-          <svg viewBox="0 0 180 48" className="w-full h-full overflow-visible">
-            <path
-              d="M 6 10 C 48 10, 72 24, 108 24 L 174 24"
-              fill="none"
-              stroke={accent}
-              strokeOpacity="0.3"
-              strokeWidth="1.5"
+        <div className="my-3 w-full space-y-1.5">
+          <div className="flex items-center justify-between text-[11.5px] theme-font-mono">
+            <span className="text-[#38BDF8] font-bold">50%</span>
+            <span className="text-[#E9E9F5] font-semibold">6.3¢ of 12.5¢</span>
+          </div>
+          <div className="w-full h-2 rounded-full bg-[#101013] overflow-hidden border border-[#38BDF8]/30 p-0.5">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-[#0284C7] to-[#38BDF8]"
+              style={{ width: '50%' }}
             />
-            <path
-              d="M 6 38 C 48 38, 72 24, 108 24 L 174 24"
-              fill="none"
-              stroke={accent}
-              strokeOpacity="0.3"
-              strokeWidth="1.5"
-            />
-            <path
-              d="M 6 24 L 174 24"
-              fill="none"
-              stroke={accent}
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeDasharray="18 10"
-            >
-              <animate
-                attributeName="stroke-dashoffset"
-                from="56"
-                to="0"
-                dur="2.2s"
-                repeatCount="indefinite"
-              />
-            </path>
-          </svg>
+          </div>
+          <div className="text-[11.5px] theme-font-mono text-[#8A8A94] truncate">
+            1/8 Cohort Base · 12.5¢
+          </div>
         </div>
       )
 
     case 'risk':
     default:
-      // 05 · Exposure: Comparative protocol risk wave vs benchmark corridor
+      // 05 · Exposure Motif: Comparative Protocol Risk Readout
       return (
-        <div className="my-4 w-full h-12 flex items-center">
-          <svg viewBox="0 0 180 48" className="w-full h-full overflow-visible">
+        <div className="my-3 w-full space-y-1.5">
+          <div className="flex items-center justify-between text-[11.5px] theme-font-mono">
+            <span className="text-[#34D399] font-semibold">AAVE 1.2%</span>
+            <span className="text-[#FB7185] font-semibold">BRIDGE 8.7%</span>
+          </div>
+          <svg viewBox="0 0 180 32" className="w-full h-7 overflow-visible">
             <path
-              d="M 4 16 Q 28 6, 52 18 T 100 14 T 148 20 T 176 12"
+              d="M 4 24 Q 44 22, 88 24 T 176 23"
               fill="none"
-              stroke="currentColor"
-              className="text-[#BFBFE6]/25"
-              strokeWidth="1.4"
-            />
-            <path
-              d="M 4 34 Q 44 30, 88 34 T 176 32"
-              fill="none"
-              stroke={accent}
-              strokeOpacity="0.28"
+              stroke="#34D399"
               strokeWidth="2"
+              strokeLinecap="round"
             />
             <path
-              d="M 4 34 Q 44 30, 88 34 T 176 32"
+              d="M 4 12 Q 36 4, 72 13 T 140 8 T 176 10"
               fill="none"
-              stroke="#F43F5E"
-              strokeWidth="2.2"
+              stroke="#FB7185"
+              strokeWidth="1.8"
+              strokeDasharray="4 3"
               strokeLinecap="round"
-              strokeDasharray="22 42"
-            >
-              <animate
-                attributeName="stroke-dashoffset"
-                from="64"
-                to="0"
-                dur="2.7s"
-                repeatCount="indefinite"
-              />
-            </path>
-            <path
-              d="M 4 34 Q 44 30, 88 34 T 176 32"
-              fill="none"
-              stroke="#10B981"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeDasharray="22 42"
-            >
-              <animate
-                attributeName="stroke-dashoffset"
-                from="32"
-                to="-32"
-                dur="2.7s"
-                repeatCount="indefinite"
-              />
-            </path>
+            />
           </svg>
         </div>
       )
   }
 }
 
+/* ======================================================================
+ * SEER PROTOCOL ECOSYSTEM MAP & ARCHITECTURE LAYER
+ * Matches swiftbotlab.github.io/seer-six/home/ protocol interactive layer
+ * ====================================================================== */
+const ORIGINAL_CARDS = [
+  {
+    id: 'app' as NavSection,
+    tag: '01 · EXPLORER',
+    title: 'Seer App',
+    subtitle: 'The Etherscan of Seer Markets',
+    icon: Compass,
+    accent: '#7D33FF',
+  },
+  {
+    id: 'deep' as NavSection,
+    tag: '02 · HIGH-CARDINALITY',
+    title: 'Deep',
+    subtitle: 'Multi-Outcome & AI Agent Markets',
+    icon: Cpu,
+    accent: '#8F55F7',
+  },
+  {
+    id: 'futarchy' as NavSection,
+    tag: '03 · GOVERNANCE',
+    title: 'Futarchy',
+    subtitle: 'Conditional DAO Decision Signals',
+    icon: GitBranch,
+    accent: '#9C6FF2',
+  },
+  {
+    id: 'markets' as NavSection,
+    tag: '04 · CURATION',
+    title: 'Opportunity Markets',
+    subtitle: 'Submission & Selection Signals',
+    icon: Award,
+    accent: '#38BDF8',
+  },
+  {
+    id: 'risk' as NavSection,
+    tag: '05 · EXPOSURE',
+    title: 'Risk Pricing',
+    subtitle: 'Comparative DeFi Risk Estimates',
+    icon: ShieldAlert,
+    accent: '#8F55F7',
+  },
+]
+
+const ECOSYSTEM_GROUPS = [
+  { id: 'markets', label: 'MARKET TYPES' },
+  { id: 'tokens', label: 'OUTCOME TOKENS' },
+  { id: 'truth', label: 'ANSWERS' },
+  { id: 'collateral', label: 'COLLATERAL' },
+  { id: 'chains', label: 'CHAINS' },
+]
+
+interface PrimitiveItem {
+  groupId: string
+  id: string
+  name: string
+  desc: string
+}
+
+const ECOSYSTEM_PRIMS: PrimitiveItem[] = [
+  {
+    groupId: 'markets',
+    id: 'categorical',
+    name: 'Categorical',
+    desc: 'One outcome wins. Each outcome has a token, and the prices add up to 1.',
+  },
+  {
+    groupId: 'markets',
+    id: 'multi-categorical',
+    name: 'Multi-categorical',
+    desc: 'Several outcomes can be true at once. The payout is split between them.',
+  },
+  {
+    groupId: 'markets',
+    id: 'scalar',
+    name: 'Scalar',
+    desc: 'A number inside a range, traded as a pair of DOWN and UP tokens. Deep runs one per proposal: a score for every entry.',
+  },
+  {
+    groupId: 'markets',
+    id: 'multi-scalar',
+    name: 'Multi-scalar',
+    desc: "One token per item, and each redeems its number's share of the total: a share per chain, a weight per dependency.",
+  },
+  {
+    groupId: 'markets',
+    id: 'conditional',
+    name: 'Conditional markets',
+    desc: "A market collateralised by another market's outcome token, so it only pays out if that outcome happens. Futarchy is built from these.",
+  },
+  {
+    groupId: 'tokens',
+    id: 'ctf',
+    name: 'Conditional Tokens',
+    desc: 'Gnosis Conditional Tokens: every outcome is an ERC-1155 position, backed one to one by collateral.',
+  },
+  {
+    groupId: 'tokens',
+    id: 'erc20',
+    name: 'ERC-20 wrapping',
+    desc: 'Each position is wrapped as an ERC-20, so it trades on ordinary pools and shows up in any wallet.',
+  },
+  {
+    groupId: 'truth',
+    id: 'reality',
+    name: 'Reality.eth',
+    desc: "Anyone can answer a market's question by posting a bond. A different answer has to double it.",
+  },
+  {
+    groupId: 'truth',
+    id: 'kleros',
+    name: 'Kleros arbitration',
+    desc: 'If an answer is contested, Kleros jurors rule on it and the ruling settles the question.',
+  },
+  {
+    groupId: 'truth',
+    id: 'curate',
+    name: 'Kleros Curate',
+    desc: 'Markets are listed for verification, and anyone can challenge a market that is badly posed.',
+  },
+  {
+    groupId: 'collateral',
+    id: 'sDAI',
+    name: 'sDAI',
+    desc: 'Savings DAI. Collateral keeps earning the DAI savings rate while it sits in a market.',
+  },
+  {
+    groupId: 'collateral',
+    id: 'xDAI',
+    name: 'xDAI',
+    desc: "Gnosis Chain's native token, wrapped to sDAI when it is used as collateral.",
+  },
+  {
+    groupId: 'collateral',
+    id: 'sUSDS',
+    name: 'sUSDS',
+    desc: 'Savings USDS. It earns the Sky savings rate, which is why Deep uses it on OP Mainnet.',
+  },
+  {
+    groupId: 'chains',
+    id: 'ethereum',
+    name: 'Ethereum',
+    desc: 'Ethereum mainnet. Seer markets and their outcome tokens live on four chains.',
+  },
+  {
+    groupId: 'chains',
+    id: 'optimism',
+    name: 'OP Mainnet',
+    desc: "OP Mainnet, where Deep's high-volume rounds run with low fees.",
+  },
+  {
+    groupId: 'chains',
+    id: 'gnosis',
+    name: 'Gnosis',
+    desc: 'Gnosis Chain, where Seer started. Most governance and grant markets live here.',
+  },
+  {
+    groupId: 'chains',
+    id: 'base',
+    name: 'Base',
+    desc: 'Base. The same contracts and the same market format as on the other three chains.',
+  },
+]
+
+const ALL_PRIM_IDS = ECOSYSTEM_PRIMS.map((p) => p.id)
+
+const APP_USES: Record<string, string[]> = {
+  app: ALL_PRIM_IDS,
+  deep: ['scalar', 'ctf', 'erc20', 'reality', 'kleros', 'sUSDS', 'optimism'],
+  futarchy: [
+    'categorical',
+    'scalar',
+    'conditional',
+    'ctf',
+    'erc20',
+    'reality',
+    'kleros',
+    'sDAI',
+    'gnosis',
+    'ethereum',
+  ],
+  markets: ['multi-categorical', 'ctf', 'erc20', 'reality', 'kleros', 'curate', 'sDAI', 'gnosis'],
+  opportunity: ['multi-categorical', 'ctf', 'erc20', 'reality', 'kleros', 'curate', 'sDAI', 'gnosis'],
+  risk: ['multi-categorical', 'ctf', 'erc20', 'reality', 'kleros', 'sDAI', 'ethereum'],
+}
+
+const APP_READOUT_DETAILS: Record<
+  string,
+  { headline: string; description: string; marketId: string; marketLabel: string }
+> = {
+  app: {
+    headline: 'The explorer for every market',
+    description:
+      'Every market on every chain, in every type and state, with its contracts, answer, events and holders. A block explorer for questions.',
+    marketId: '2832',
+    marketLabel: '#2832 · Categorical',
+  },
+  deep: {
+    headline: 'Many outcomes, priced at once',
+    description:
+      'Rounds of scalar markets on OP Mainnet in sUSDS: one UP/DOWN pair per entry prices a score for every entry in a large field, so forecasting agents can trade hundreds of outcomes in one batch.',
+    marketId: '2841',
+    marketLabel: '#2841 · Scalar',
+  },
+  futarchy: {
+    headline: 'What a decision would do',
+    description:
+      'A decision market plus two conditional price markets: the token price if a proposal passes, and if it does not. The gap informs the DAO; the vote still decides.',
+    marketId: '2843',
+    marketLabel: '#2843 · Conditional',
+  },
+  markets: {
+    headline: 'Which entries will be selected',
+    description:
+      "Multi-categorical markets on which submissions a panel will fund: traders predict the reviewers' choices, and the market surfaces the cohort to watch.",
+    marketId: '2842',
+    marketLabel: '#2842 · Multi-categorical',
+  },
+  opportunity: {
+    headline: 'Which entries will be selected',
+    description:
+      "Multi-categorical markets on which submissions a panel will fund: traders predict the reviewers' choices, and the market surfaces the cohort to watch.",
+    marketId: '2842',
+    marketLabel: '#2842 · Multi-categorical',
+  },
+  risk: {
+    headline: 'Default risk priced directly',
+    description:
+      'Markets where each collateral token carries an estimate of default risk, derived from prediction market spreads so treasuries can price smart-contract risk alongside financial risk.',
+    marketId: '2844',
+    marketLabel: '#2844 · Multi-categorical',
+  },
+}
+
+const renderSeerMark = (className = 'w-5 h-5') => (
+  <svg
+    className={className}
+    viewBox="357 357 285 285"
+    fill="currentColor"
+    role="img"
+    aria-label="Seer"
+  >
+    <path d="M570.6,428.8l-66.9,66.9c-1.5,1.5-.4,4.1,1.7,4.1h47.6c6.5,0,9.7,7.9,5.2,12.4l-56.5,56.5c-1.4,1.4-3.2,2.1-5.2,2.1h-68.1v56.5c0,8.1,6.5,14.6,14.6,14.6h50.5c3.9,0,7.6-1.5,10.3-4.3l133.6-133.6c2.7-2.7,4.3-6.4,4.3-10.3v-50.5c0-8.1-6.5-14.6-14.6-14.6h-56.5Z" />
+    <path d="M440.9,487.5l56.5-56.5c1.4-1.4,3.2-2.1,5.2-2.1h68.1v-56.5c0-8.1-6.5-14.6-14.6-14.6h-50.5c-3.9,0-7.6,1.5-10.3,4.3l-133.6,133.6c-2.7,2.7-4.3,6.4-4.3,10.3v50.5c0,8.1,6.5,14.6,14.6,14.6h56.5l66.9-66.9c1.5-1.5.4-4.1-1.7-4.1h-47.6c-6.5,0-9.7-7.9-5.2-12.4Z" />
+  </svg>
+)
+
+export const ProtocolEcosystemMap: React.FC<{ onNavigate: (section: NavSection) => void }> = ({
+  onNavigate,
+}) => {
+  const [selectedApp, setSelectedApp] = useState<string | null>(null)
+  const [selectedPrim, setSelectedPrim] = useState<string | null>('multi-categorical')
+  const [hoveredApp, setHoveredApp] = useState<string | null>(null)
+  const [hoveredPrim, setHoveredPrim] = useState<string | null>(null)
+
+  const activeApp = hoveredApp || (hoveredPrim ? null : selectedApp)
+  const activePrim = hoveredApp ? null : (hoveredPrim || selectedPrim)
+
+  const activePrimitiveData = activePrim
+    ? ECOSYSTEM_PRIMS.find((p) => p.id === activePrim)
+    : null
+  const activeGroupData = activePrimitiveData
+    ? ECOSYSTEM_GROUPS.find((g) => g.id === activePrimitiveData.groupId)
+    : null
+  const activeAppUsers = activePrim
+    ? ORIGINAL_CARDS.filter(
+        (a) =>
+          APP_USES[a.id]?.includes(activePrim) ||
+          (a.id === 'markets' && APP_USES['opportunity']?.includes(activePrim))
+      )
+    : []
+
+  const activeAppData = activeApp
+    ? ORIGINAL_CARDS.find((a) => a.id === activeApp)
+    : null
+  const activeAppDetails = activeApp
+    ? APP_READOUT_DETAILS[activeApp] ||
+      APP_READOUT_DETAILS[activeApp === 'markets' ? 'opportunity' : activeApp]
+    : null
+
+  return (
+    <div className="hm-map w-full space-y-0">
+      {/* 1. Original Five App Step Cards with color-graded ProcessMotionVector */}
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-3 w-full">
+        {ORIGINAL_CARDS.map((item) => {
+          const Icon = item.icon
+          const isOn = activeApp === item.id
+          const isUses =
+            !activeApp &&
+            !!activePrim &&
+            (APP_USES[item.id]?.includes(activePrim) ||
+              (item.id === 'markets' && APP_USES['opportunity']?.includes(activePrim)))
+          const isDim =
+            !activeApp &&
+            !!activePrim &&
+            !APP_USES[item.id]?.includes(activePrim) &&
+            !(item.id === 'markets' && APP_USES['opportunity']?.includes(activePrim))
+
+          return (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => {
+                setSelectedApp(item.id)
+                setSelectedPrim(null)
+              }}
+              onMouseEnter={() => setHoveredApp(item.id)}
+              onMouseLeave={() => setHoveredApp(null)}
+              className={`osiris-subcard p-4 text-left group transition-all flex flex-col justify-between min-h-[190px] relative ${
+                isOn
+                  ? 'border-[#8F55F7] ring-1 ring-[#8F55F7] bg-[#8F55F7]/[0.08]'
+                  : ''
+              } ${isUses ? 'border-[#8F55F7] ring-1 ring-[#8F55F7]/70' : ''} ${
+                isDim ? 'opacity-40' : ''
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] theme-font-mono text-[var(--theme-text-muted)]">
+                  {item.tag}
+                </span>
+                <Icon
+                  className="w-4 h-4 transition-transform group-hover:scale-110"
+                  style={{ color: item.accent }}
+                />
+              </div>
+
+              {/* Middle Motion Vector Line Visualizing Process (Original Color-Graded Design) */}
+              <ProcessMotionVector id={item.id} accent={item.accent} />
+
+              <div>
+                <div className="text-base font-medium text-[var(--theme-text-primary)] group-hover:text-[var(--theme-text-accent)] transition-colors flex items-center justify-between">
+                  <span>{item.title}</span>
+                  <span
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      onNavigate(item.id)
+                    }}
+                    className="cursor-pointer p-0.5 hover:text-[#9C6FF2]"
+                    title={`Open ${item.title}`}
+                  >
+                    <ArrowRight className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all" />
+                  </span>
+                </div>
+                <p className="text-xs text-[var(--theme-text-muted)] mt-1 leading-snug">
+                  {item.subtitle}
+                </p>
+              </div>
+            </button>
+          )
+        })}
+      </div>
+
+      {/* 2. Bus Connector Lines */}
+      <div className="hm-map__bus" aria-hidden="true">
+        {ORIGINAL_CARDS.map((app) => {
+          const isLineOn = activeApp
+            ? activeApp === app.id
+            : !!activePrim &&
+              (APP_USES[app.id]?.includes(activePrim) ||
+                (app.id === 'markets' && APP_USES['opportunity']?.includes(activePrim)))
+          return <i key={app.id} className={isLineOn ? 'is-on' : ''} />
+        })}
+      </div>
+
+      {/* 3. Seer Protocol Architecture Layer */}
+      <div className="hm-layer shadow-2xl">
+        <div className="hm-layer__head">
+          <span className="hm-layer__name">
+            {renderSeerMark('w-5 h-5 text-[#9C6FF2]')}
+            <span>Seer protocol</span>
+          </span>
+          <div className="flex items-center gap-3 text-xs theme-font-mono text-[#8A8A94] uppercase tracking-wider">
+            <span>SAME MARKET FORMAT</span>
+            <span>·</span>
+            <span>SAME OUTCOME TOKENS</span>
+            <span>·</span>
+            <span>SAME ORACLE</span>
+          </div>
+        </div>
+
+        {/* 5 Group Columns */}
+        <div className="hm-layer__groups">
+          {ECOSYSTEM_GROUPS.map((group) => {
+            const groupPrims = ECOSYSTEM_PRIMS.filter((p) => p.groupId === group.id)
+            return (
+              <div key={group.id} className="hm-group">
+                <h3>{group.label}</h3>
+                <div className="flex flex-col gap-1.5">
+                  {groupPrims.map((prim) => {
+                    const isPrimPressed = activePrim === prim.id
+                    const isPrimUsed =
+                      !!activeApp &&
+                      (APP_USES[activeApp]?.includes(prim.id) ||
+                        (activeApp === 'markets' && APP_USES['opportunity']?.includes(prim.id)))
+                    const isPrimDim =
+                      !!activeApp &&
+                      !APP_USES[activeApp]?.includes(prim.id) &&
+                      !(activeApp === 'markets' && APP_USES['opportunity']?.includes(prim.id))
+
+                    return (
+                      <button
+                        key={prim.id}
+                        type="button"
+                        className={`hm-prim ${isPrimUsed ? 'is-used' : ''} ${
+                          isPrimDim ? 'is-dim' : ''
+                        }`}
+                        aria-pressed={isPrimPressed}
+                        onClick={() => {
+                          setSelectedPrim(prim.id)
+                          setSelectedApp(null)
+                        }}
+                        onMouseEnter={() => setHoveredPrim(prim.id)}
+                        onMouseLeave={() => setHoveredPrim(null)}
+                      >
+                        <i />
+                        <span>{prim.name}</span>
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Bottom Readout Panel */}
+        <div className="hm-layer__read" aria-live="polite">
+          {activeAppData && activeAppDetails ? (
+            <>
+              <div>
+                <span className="text-xs theme-font-mono text-[rgba(224,226,245,0.6)] uppercase tracking-wider">
+                  {activeAppData.tag.split('·')[0].trim()} · USES{' '}
+                  {APP_USES[activeAppData.id]?.length || 7} OF {ALL_PRIM_IDS.length} BUILDING BLOCKS
+                </span>
+                <h3 className="mt-1">
+                  {activeAppData.title}: {activeAppDetails.headline}
+                </h3>
+                <p>{activeAppDetails.description}</p>
+              </div>
+
+              <div className="hm-layer__uses">
+                <span className="s-spec text-xs theme-font-mono text-[rgba(224,226,245,0.6)] uppercase tracking-wider">
+                  EXAMPLE MARKET
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => onNavigate('app')}
+                    className="hm-pill"
+                  >
+                    <Search className="w-3.5 h-3.5 text-[#B79BF7]" />
+                    <span>{activeAppDetails.marketLabel}</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => onNavigate(activeAppData.id)}
+                    className="hm-pill"
+                  >
+                    <span>Open {activeAppData.title}</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#B79BF7]" />
+                  </button>
+                </div>
+              </div>
+            </>
+          ) : activePrimitiveData ? (
+            <>
+              <div>
+                <span className="text-xs theme-font-mono text-[rgba(224,226,245,0.6)] uppercase tracking-wider">
+                  {activeGroupData?.label}
+                </span>
+                <h3 className="mt-1">{activePrimitiveData.name}</h3>
+                <p>{activePrimitiveData.desc}</p>
+              </div>
+
+              <div className="hm-layer__uses">
+                <span className="s-spec text-xs theme-font-mono text-[rgba(224,226,245,0.6)] uppercase tracking-wider">
+                  USED BY {activeAppUsers.length} OF 5 APPS
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {activeAppUsers.map((u) => {
+                    const Icon = u.icon
+                    return (
+                      <button
+                        key={u.id}
+                        type="button"
+                        onClick={() => {
+                          setSelectedApp(u.id)
+                          setSelectedPrim(null)
+                        }}
+                        className="hm-pill"
+                      >
+                        <Icon className="w-3.5 h-3.5" style={{ color: u.accent }} />
+                        <span>{u.title}</span>
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            </>
+          ) : null}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+
+
+
+
+/**
+ * Clean futuristic 3D wireframe geometry for the Blue CTA card (matching the Reactors hero torus aesthetic without info bubbles or tiny icons)
+ */
+const FutureHeroWireframe: React.FC = () => {
+  const { meridians, parallels } = React.useMemo(() => {
+    const mPaths: { d: string; opacity: number }[] = []
+    const pPaths: { d: string; opacity: number }[] = []
+    const cx = 150
+    const cy = 78
+    const R = 48
+    const r = 46
+    const tilt = 0.22 // slight vertical perspective tilt
+
+    const project = (u: number, v: number) => {
+      const x3d = (R + r * Math.cos(v)) * Math.cos(u)
+      const y3d = r * Math.sin(v)
+      const z3d = (R + r * Math.cos(v)) * Math.sin(u)
+
+      const yRot = y3d * Math.cos(tilt) - z3d * Math.sin(tilt)
+      const zRot = y3d * Math.sin(tilt) + z3d * Math.cos(tilt)
+
+      const perspective = 1 + zRot / 420
+      return {
+        x: cx + x3d * perspective,
+        y: cy + yRot * perspective,
+        z: zRot,
+      }
+    }
+
+    // Meridian rings around the torus
+    const numU = 32
+    const stepsV = 36
+    for (let i = 0; i < numU; i++) {
+      const u = (i / numU) * Math.PI * 2
+      let d = ''
+      for (let j = 0; j <= stepsV; j++) {
+        const v = (j / stepsV) * Math.PI * 2
+        const pt = project(u, v)
+        d += `${j === 0 ? 'M' : 'L'} ${pt.x.toFixed(1)} ${pt.y.toFixed(1)} `
+      }
+      const depthFactor = 0.25 + 0.55 * ((Math.sin(u) + 1) / 2)
+      mPaths.push({ d, opacity: depthFactor })
+    }
+
+    // Parallel latitude rings
+    const numV = 14
+    const stepsU = 50
+    for (let j = 0; j < numV; j++) {
+      const v = (j / numV) * Math.PI * 2
+      let d = ''
+      for (let i = 0; i <= stepsU; i++) {
+        const u = (i / stepsU) * Math.PI * 2
+        const pt = project(u, v)
+        d += `${i === 0 ? 'M' : 'L'} ${pt.x.toFixed(1)} ${pt.y.toFixed(1)} `
+      }
+      const opacity = 0.18 + 0.35 * Math.abs(Math.sin(v))
+      pPaths.push({ d, opacity })
+    }
+
+    return { meridians: mPaths, parallels: pPaths }
+  }, [])
+
+  return (
+    <svg
+      viewBox="0 0 300 156"
+      className="w-full h-full overflow-visible select-none"
+      aria-hidden="true"
+    >
+      <defs>
+        <radialGradient id="futureHeroTorusGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.45" />
+          <stop offset="60%" stopColor="#0284C7" stopOpacity="0.18" />
+          <stop offset="100%" stopColor="#0369A1" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id="futureHeroTorusStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#E0F2FE" />
+          <stop offset="50%" stopColor="#38BDF8" />
+          <stop offset="100%" stopColor="#0284C7" />
+        </linearGradient>
+      </defs>
+
+      {/* Ambient core glow */}
+      <ellipse cx="150" cy="78" rx="108" ry="66" fill="url(#futureHeroTorusGlow)" />
+
+      {/* Parallel rings */}
+      {parallels.map((p, idx) => (
+        <path
+          key={`fhp-${idx}`}
+          d={p.d}
+          fill="none"
+          stroke="#38BDF8"
+          strokeOpacity={p.opacity * 0.75}
+          strokeWidth="0.7"
+        />
+      ))}
+
+      {/* Meridian rings */}
+      {meridians.map((m, idx) => (
+        <path
+          key={`fhm-${idx}`}
+          d={m.d}
+          fill="none"
+          stroke="url(#futureHeroTorusStroke)"
+          strokeOpacity={m.opacity * 0.85}
+          strokeWidth="0.85"
+        />
+      ))}
+
+      {/* Center singularity focal ring */}
+      <ellipse
+        cx="150"
+        cy="78"
+        rx="7.5"
+        ry="42"
+        fill="none"
+        stroke="#E0F2FE"
+        strokeOpacity="0.55"
+        strokeWidth="1"
+        strokeDasharray="2 3"
+      />
+    </svg>
+  )
+}
+
 export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
   onNavigate,
+  onCreateMarket,
 }) => {
   return (
     <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 pb-28 space-y-24 select-none">
       {/* Section Header: Seer as the Underlying Protocol */}
       <section className="pt-12 border-t border-[var(--theme-panel-divider)]">
         <div className="max-w-3xl mx-auto text-center space-y-4 mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--theme-panel-bg)] border border-[var(--theme-card-border)] text-[11px] theme-font-mono text-[var(--theme-text-accent)] uppercase tracking-wider shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--theme-panel-bg)] border border-[var(--theme-card-border)] text-[11.5px] theme-font-mono text-[var(--theme-text-accent)] uppercase tracking-wider shadow-sm">
             <Layers className="w-3.5 h-3.5" />
             <span>The Seer Protocol Layer</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-medium tracking-[-0.02em] text-[var(--theme-text-primary)] leading-tight">
-            Our Underlying{' '}
-            <span className="text-[var(--theme-text-accent)]">
-              Five Step Protocol
+            Five Apps For{' '}
+            <span className="text-[#9C6FF2]">
+              Better Predictions
             </span>
           </h2>
           <p className="text-sm sm:text-base text-[var(--theme-text-muted)] leading-relaxed">
@@ -283,86 +843,8 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
           </p>
         </div>
 
-        {/* Visual Protocol Architecture Diagram (Osiris Style) */}
-        <div className="osiris-card p-6 sm:p-8">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
-            {[
-              {
-                id: 'app' as NavSection,
-                tag: '01 · EXPLORER',
-                title: 'Seer App',
-                subtitle: 'The Etherscan of Seer Markets',
-                icon: Compass,
-                accent: '#7D33FF',
-              },
-              {
-                id: 'deep' as NavSection,
-                tag: '02 · HIGH-CARDINALITY',
-                title: 'Deep',
-                subtitle: 'Multi-Outcome & AI Agent Markets',
-                icon: Cpu,
-                accent: '#8F55F7',
-              },
-              {
-                id: 'futarchy' as NavSection,
-                tag: '03 · GOVERNANCE',
-                title: 'Futarchy',
-                subtitle: 'Conditional DAO Decision Signals',
-                icon: GitBranch,
-                accent: '#9C6FF2',
-              },
-              {
-                id: 'markets' as NavSection,
-                tag: '04 · CURATION',
-                title: 'Opportunity Markets',
-                subtitle: 'Submission & Selection Signals',
-                icon: Award,
-                accent: '#38BDF8',
-              },
-              {
-                id: 'risk' as NavSection,
-                tag: '05 · EXPOSURE',
-                title: 'Risk Pricing',
-                subtitle: 'Comparative DeFi Risk Estimates',
-                icon: ShieldAlert,
-                accent: '#8F55F7',
-              },
-            ].map((item) => {
-              const Icon = item.icon
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => onNavigate(item.id)}
-                  className="osiris-subcard p-4 text-left group hover:border-[#7D33FF] transition-all flex flex-col justify-between min-h-[190px]"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] theme-font-mono text-[var(--theme-text-muted)]">
-                      {item.tag}
-                    </span>
-                    <Icon
-                      className="w-4 h-4 transition-transform group-hover:scale-110"
-                      style={{ color: item.accent }}
-                    />
-                  </div>
-
-                  {/* Middle Motion Vector Line Visualizing Process */}
-                  <ProcessMotionVector id={item.id} accent={item.accent} />
-
-                  <div>
-                    <div className="text-base font-medium text-[var(--theme-text-primary)] group-hover:text-[var(--theme-text-accent)] transition-colors flex items-center justify-between">
-                      <span>{item.title}</span>
-                      <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all" />
-                    </div>
-                    <p className="text-xs text-[var(--theme-text-muted)] mt-1 leading-snug">
-                      {item.subtitle}
-                    </p>
-                  </div>
-                </button>
-              )
-            })}
-          </div>
-        </div>
+        {/* Interactive Protocol Architecture Layer & 5 Step Cards */}
+        <ProtocolEcosystemMap onNavigate={onNavigate} />
       </section>
 
       {/* Detailed Application Sections */}
@@ -379,7 +861,7 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
               </span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-medium text-[var(--theme-text-primary)] tracking-tight">
-              Seer App — Seer’s Equivalent of Etherscan
+              Seer App: Universal Market Explorer
             </h3>
             <p className="text-sm sm:text-base text-[var(--theme-text-muted)] leading-relaxed">
               The general explorer for all Seer markets: a place to find and trade across
@@ -400,32 +882,32 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
           </div>
 
           <div className="lg:col-span-6 osiris-well p-4 space-y-2.5 overflow-hidden">
-            <div className="flex items-center justify-between text-[11px] theme-font-mono text-[var(--theme-text-muted)] pb-2 border-b border-[var(--theme-panel-divider)]">
-              <span>UNIVERSAL MARKET INDEX · ALL TYPES</span>
+            <div className="flex items-center justify-between text-[11.5px] theme-font-mono text-[var(--theme-text-muted)] pb-2 border-b border-[var(--theme-panel-divider)]">
+              <span>UNIVERSAL MARKET INDEX · PRICES IN THEIR UNIT</span>
             </div>
             {[
               {
                 type: 'CATEGORICAL',
                 q: 'Israeli Knesset election 2026 most seats',
-                stat: 'Yashar 60.9%',
+                stat: 'Yashar 60.9% · 60.9¢',
                 liq: '$27.74k',
                 badgeClass: 'bg-[#7D33FF]/20 text-[#B8A5FF] border border-[#7D33FF]/40',
                 statColor: '#B8A5FF',
                 liqColor: '#34D399',
               },
               {
-                type: 'BINARY',
-                q: "National Rally's candidate wins French presidency",
-                stat: 'No 67.9%',
+                type: 'CONDITIONAL',
+                q: 'Polymarket API per-position fee endpoint',
+                stat: '50% · 6.3¢ of 12.5¢',
                 liq: '$7.54k',
-                badgeClass: 'bg-[#F43F5E]/15 text-[#FB7185] border border-[#F43F5E]/35',
-                statColor: '#FB7185',
-                liqColor: '#38BDF8',
+                badgeClass: 'bg-[#38BDF8]/15 text-[#7DD3FC] border border-[#38BDF8]/35',
+                statColor: '#38BDF8',
+                liqColor: '#34D399',
               },
               {
                 type: 'SCALAR',
-                q: 'Polymarket clarification notes >=25% move',
-                stat: '21.23 NOTE',
+                q: 'ZK-TLS Oracle Adapter human evaluator score',
+                stat: '8.14/10',
                 liq: '$1.11k',
                 badgeClass: 'bg-[#F59E0B]/15 text-[#FBBF24] border border-[#F59E0B]/35',
                 statColor: '#FBBF24',
@@ -440,7 +922,7 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
               >
                 <div className="min-w-0 flex items-center">
                   <span
-                    className={`text-[10px] theme-font-mono px-1.5 py-0.5 rounded font-semibold mr-2.5 shrink-0 ${row.badgeClass}`}
+                    className={`text-[11.5px] theme-font-mono px-1.5 py-0.5 rounded font-semibold mr-2.5 shrink-0 ${row.badgeClass}`}
                   >
                     {row.type}
                   </span>
@@ -464,10 +946,10 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
         {/* 2. DEEP (Flipped: Visual Card on Left, Step Number & Title on Right) */}
         <section className="osiris-card p-6 sm:p-9 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-6 order-2 lg:order-1 osiris-well p-4 space-y-3 overflow-hidden">
-            <div className="flex items-center justify-between text-[11px] theme-font-mono text-[var(--theme-text-muted)] pb-2 border-b border-[var(--theme-panel-divider)]">
+            <div className="flex items-center justify-between text-[11.5px] theme-font-mono text-[var(--theme-text-muted)] pb-2 border-b border-[var(--theme-panel-divider)]">
               <span className="flex items-center gap-1.5">
                 <Bot className="w-3.5 h-3.5 text-[var(--theme-text-accent)]" />
-                AI AGENT GRANT FIELD EVALUATION (142 PROPOSALS)
+                AI AGENT PROPOSAL EVALUATION (142 PROPOSALS)
               </span>
               <span className="text-[#34D399] font-semibold">28 AGENTS TRADING</span>
             </div>
@@ -475,8 +957,8 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
               {
                 id: 'PROP-041',
                 name: 'ZK-TLS Oracle Bridge for Conditional Tokens',
-                score: '91.4 / 100',
-                signal: 'HIGH PRIORITY REVIEW',
+                score: '8.14/10',
+                signal: '50% · 6.3¢ of 12.5¢',
                 badgeClass: 'bg-[#10B981]/15 text-[#34D399] border border-[#10B981]/35',
                 scoreColor: '#34D399',
                 signalColor: '#10B981',
@@ -484,8 +966,8 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
               {
                 id: 'PROP-108',
                 name: 'Autonomous LMSR Market Maker Vaults',
-                score: '87.2 / 100',
-                signal: 'CLOSER REVIEW',
+                score: '7.85/10',
+                signal: '64% · 8.0¢ of 12.5¢',
                 badgeClass: 'bg-[#38BDF8]/15 text-[#7DD3FC] border border-[#38BDF8]/35',
                 scoreColor: '#60A5FA',
                 signalColor: '#38BDF8',
@@ -493,8 +975,8 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
               {
                 id: 'PROP-019',
                 name: 'Cross-Chain sDAI Settlement Router',
-                score: '83.9 / 100',
-                signal: 'CLOSER REVIEW',
+                score: '7.42/10',
+                signal: '44% · 5.5¢ of 12.5¢',
                 badgeClass: 'bg-[#F59E0B]/15 text-[#FBBF24] border border-[#F59E0B]/35',
                 scoreColor: '#FBBF24',
                 signalColor: '#B8A5FF',
@@ -508,7 +990,7 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
               >
                 <div className="min-w-0">
                   <span
-                    className={`inline-block text-[10px] theme-font-mono px-1.5 py-0.5 rounded font-semibold mb-1 ${p.badgeClass}`}
+                    className={`inline-block text-[11.5px] theme-font-mono px-1.5 py-0.5 rounded font-semibold mb-1 ${p.badgeClass}`}
                   >
                     {p.id}
                   </span>
@@ -520,7 +1002,7 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
                   <div className="text-xs font-bold" style={{ color: p.scoreColor }}>
                     {p.score}
                   </div>
-                  <div className="text-[10px] font-medium" style={{ color: p.signalColor }}>
+                  <div className="text-[11.5px] font-medium" style={{ color: p.signalColor }}>
                     {p.signal}
                   </div>
                 </div>
@@ -538,13 +1020,12 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
               </span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-medium text-[var(--theme-text-primary)] tracking-tight">
-              Deep — High-Cardinality Markets for AI Agents
+              Deep: Markets for AI Agents
             </h3>
             <p className="text-sm sm:text-base text-[var(--theme-text-muted)] leading-relaxed">
               Handles questions with many possible outcomes, including markets designed for AI
-              agents to trade. For example, agents could forecast how human evaluators would
-              assess a large field of grant proposals, giving a funding team a signal about
-              which proposals deserve closer review.
+              agents to trade. For example, agents could forecast how evaluators would
+              assess proposals, giving a team a signal about which options deserve closer review.
             </p>
             <div className="pt-2">
               <button
@@ -571,12 +1052,11 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
               </span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-medium text-[var(--theme-text-primary)] tracking-tight">
-              Futarchy — Decision-Relevant Signals for DAOs
+              Futarchy: Decision Signals for DAOs
             </h3>
             <p className="text-sm sm:text-base text-[var(--theme-text-muted)] leading-relaxed">
-              Uses conditional markets to forecast what a chosen measure of success might look
-              like if a proposal passes versus if it does not. That gives a DAO information to
-              consider when making its decision, rather than making the decision for it.
+              Forecasts success metrics conditionally: pass versus fail. Gives DAOs predictive
+              evidence to inform choices without taking governance away from voters.
             </p>
             <div className="pt-2">
               <button
@@ -591,7 +1071,7 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
           </div>
 
           <div className="lg:col-span-6 osiris-well p-4 space-y-3 overflow-hidden">
-            <div className="flex items-center justify-between text-[11px] theme-font-mono text-[var(--theme-text-muted)] pb-2 border-b border-[var(--theme-panel-divider)]">
+            <div className="flex items-center justify-between text-[11.5px] theme-font-mono text-[var(--theme-text-muted)] pb-2 border-b border-[var(--theme-panel-divider)]">
               <span>GIP-114: ALLOCATE 5,000 GNO TO SEER LIQUIDITY</span>
               <span className="text-[#34D399] font-semibold">ADVISORY SIGNAL</span>
             </div>
@@ -599,18 +1079,18 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
               {/* Green Color-Coded Pass Condition Card */}
               <div
                 style={{ animationDelay: '0ms' }}
-                className="seer-stagger-item p-3.5 rounded-xl bg-[#10B981]/10 border border-[#10B981]/22 shadow-[inset_0_1px_0_rgba(52,211,153,0.12)]"
+                className="seer-stagger-item p-3.5 rounded-xl bg-[#062016] border border-[#065F46] shadow-[inset_0_1px_0_rgba(16,185,129,0.15)]"
               >
-                <div className="text-[10px] theme-font-mono text-[#34D399] font-semibold uppercase">
+                <div className="text-[11.5px] theme-font-mono text-[#34D399] font-semibold uppercase">
                   IF PROPOSAL PASSES
                 </div>
                 <div className="text-xl font-bold theme-font-mono text-[#ECFDF5] mt-1">
                   $48.2M TVL
                 </div>
-                <div className="text-[11px] theme-font-mono text-[#10B981] font-medium mt-0.5">
+                <div className="text-[11.5px] theme-font-mono text-[#10B981] font-medium mt-0.5">
                   +19.3% Projected 90d Impact
                 </div>
-                <div className="mt-2.5 w-full h-1.5 rounded-full bg-[#141223]/80 overflow-hidden">
+                <div className="mt-2.5 w-full h-1.5 rounded-full bg-[#101013]/80 overflow-hidden">
                   <div className="h-full rounded-full bg-gradient-to-r from-[#059669] to-[#34D399] w-[78%]" />
                 </div>
               </div>
@@ -618,23 +1098,23 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
               {/* Red Color-Coded Fail Condition Card */}
               <div
                 style={{ animationDelay: '220ms' }}
-                className="seer-stagger-item p-3.5 rounded-xl bg-[#F43F5E]/10 border border-[#F43F5E]/22 shadow-[inset_0_1px_0_rgba(251,113,133,0.12)]"
+                className="seer-stagger-item p-3.5 rounded-xl bg-[#240D15] border border-[#881337] shadow-[inset_0_1px_0_rgba(244,63,94,0.15)]"
               >
-                <div className="text-[10px] theme-font-mono text-[#FB7185] font-semibold uppercase">
+                <div className="text-[11.5px] theme-font-mono text-[#FB7185] font-semibold uppercase">
                   IF PROPOSAL FAILS
                 </div>
                 <div className="text-xl font-bold theme-font-mono text-[#FFE4E6] mt-1">
                   $40.4M TVL
                 </div>
-                <div className="text-[11px] theme-font-mono text-[#F43F5E] font-medium mt-0.5">
+                <div className="text-[11.5px] theme-font-mono text-[#F43F5E] font-medium mt-0.5">
                   -16.2% vs. Pass Trajectory
                 </div>
-                <div className="mt-2.5 w-full h-1.5 rounded-full bg-[#141223]/80 overflow-hidden">
+                <div className="mt-2.5 w-full h-1.5 rounded-full bg-[#101013]/80 overflow-hidden">
                   <div className="h-full rounded-full bg-gradient-to-r from-[#E11D48] to-[#FB7185] w-[46%]" />
                 </div>
               </div>
             </div>
-            <div className="text-[11px] theme-font-mono text-[var(--theme-text-muted)] text-center">
+            <div className="text-[11.5px] theme-font-mono text-[var(--theme-text-muted)] text-center">
               DAO voters retain final authority · Market provides conditional expectation
             </div>
           </div>
@@ -643,55 +1123,78 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
         {/* 4. OPPORTUNITY MARKETS (Flipped: Visual Card on Left, Step Number & Title on Right, Distinct Bluish Forecasting Color) */}
         <section className="osiris-card p-6 sm:p-9 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-6 order-2 lg:order-1 osiris-well p-4 space-y-2.5 overflow-hidden">
-            <div className="flex items-center justify-between text-[11px] theme-font-mono text-[var(--theme-text-muted)] pb-2 border-b border-[var(--theme-panel-divider)]">
-              <span className="text-[#7DD3FC]">COHORT SUBMISSIONS · FORECASTING SIGNAL</span>
-              <span className="text-[#38BDF8] font-semibold">FINAL DECISION: REVIEW COMMITTEE</span>
-            </div>
-            {[
-              {
-                title: 'Submission #14: Privacy-Preserving Orderflow Pool',
-                prob: 78.4,
-                barGrad: 'from-[#0284C7] via-[#38BDF8] to-[#7DD3FC]',
-                textCol: '#38BDF8',
-              },
-              {
-                title: 'Submission #09: Conditional Treasury Hedging SDK',
-                prob: 64.1,
-                barGrad: 'from-[#1D4ED8] via-[#60A5FA] to-[#93C5FD]',
-                textCol: '#60A5FA',
-              },
-              {
-                title: 'Submission #27: Automated Reality.eth Evidence Bot',
-                prob: 51.8,
-                barGrad: 'from-[#0369A1] via-[#0EA5E9] to-[#38BDF8]',
-                textCol: '#7DD3FC',
-              },
-            ].map((sub, i) => (
-              <div
-                key={i}
-                onClick={() => onNavigate('markets')}
-                style={{ animationDelay: `${i * 220}ms` }}
-                className="osiris-subcard seer-stagger-item p-3 cursor-pointer space-y-1.5 border-[#38BDF8]/16 hover:border-[#38BDF8]/35"
-              >
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-[var(--theme-text-primary)] font-medium truncate">
-                    {sub.title}
-                  </span>
-                  <span
-                    className="theme-font-mono font-bold"
-                    style={{ color: sub.textCol }}
-                  >
-                    {sub.prob}%
-                  </span>
-                </div>
-                <div className="w-full h-1.5 osiris-hp-bar overflow-hidden">
+            <div className="s-orows flex flex-col gap-2">
+              {[
+                {
+                  title: 'Submission #09: Conditional Treasury Hedging SDK',
+                  prob: 78.4,
+                  unitLabel: '78.4% · 9.8¢ of 12.5¢',
+                  badge: 'Leading',
+                  selected: true,
+                },
+                {
+                  title: 'Submission #27: Automated Reality.eth Evidence Bot',
+                  prob: 64.0,
+                  unitLabel: '64.0% · 8.0¢ of 12.5¢',
+                },
+                {
+                  title: 'Submission #14: Privacy-Preserving Orderflow Pool',
+                  prob: 50.0,
+                  unitLabel: '50.0% · 6.3¢ of 12.5¢',
+                },
+                {
+                  title: 'Other 13 cohort submissions',
+                  prob: 18.0,
+                  unitLabel: '4–18% each',
+                },
+              ].map((sub, i) => (
+                <div
+                  key={i}
+                  onClick={() => onNavigate('markets')}
+                  style={
+                    {
+                      '--p': sub.prob / 100,
+                      animationDelay: `${i * 220}ms`,
+                    } as React.CSSProperties
+                  }
+                  className={`s-orow seer-stagger-item relative h-11 rounded-[10px] overflow-hidden flex items-center justify-between px-3.5 cursor-pointer transition-colors ${
+                    sub.selected
+                      ? 'is-selected border border-[#38BDF8]/85 bg-[#16202A] hover:border-[#7DD3FC]'
+                      : 'border border-white/[0.05] bg-[#1E1E24] hover:border-[#38BDF8]/40'
+                  }`}
+                >
                   <div
-                    className={`h-full bg-gradient-to-r ${sub.barGrad}`}
+                    className={`pointer-events-none absolute inset-y-0 left-0 ${
+                      sub.selected ? 'bg-[#0369A1]/55' : 'bg-[#0C4A6E]/55'
+                    }`}
                     style={{ width: `${sub.prob}%` }}
                   />
+                  <span className="s-orow__label relative z-10 flex items-center gap-2 min-w-0 pr-3">
+                    <span
+                      className={`u-clamp-1 text-[12.5px] font-medium truncate ${
+                        sub.selected ? 'text-[#FFFFFF]' : 'text-[#E9E9F5]'
+                      }`}
+                    >
+                      {sub.title}
+                    </span>
+                    {sub.badge && (
+                      <span className="s-tag s-tag--solid shrink-0 px-2 py-0.5 rounded-[6px] bg-[#0284C7] text-[10.5px] font-semibold text-[#FFFFFF]">
+                        {sub.badge}
+                      </span>
+                    )}
+                  </span>
+                  <span
+                    className={`s-orow__pct relative z-10 text-[12px] theme-font-mono shrink-0 ${
+                      sub.selected
+                        ? 'font-semibold text-[#7DD3FC]'
+                        : 'font-medium text-[#BAE6FD]/85'
+                    }`}
+                  >
+                    {sub.unitLabel}
+                  </span>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           <div className="lg:col-span-6 order-1 lg:order-2 space-y-4 flex flex-col lg:items-end lg:text-right">
@@ -704,7 +1207,7 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
               </span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-medium text-[var(--theme-text-primary)] tracking-tight">
-              Opportunity Markets — Forecasting Selection Likelihood
+              Opportunity Markets: Forecasting Selection Likelihood
             </h3>
             <p className="text-sm sm:text-base text-[var(--theme-text-muted)] leading-relaxed">
               Let traders forecast which submissions are likely to be selected, giving
@@ -723,19 +1226,19 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
           </div>
         </section>
 
-        {/* 5. RISK PRICING */}
+        {/* 5. RISK PRICING (REACTORS) */}
         <section className="osiris-card p-6 sm:p-9 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-6 space-y-4">
             <div className="flex items-center gap-2.5">
               <span className="osiris-pill osiris-pill-brand">
-                05 · RISK PRICING
+                05 · REACTORS
               </span>
               <span className="text-xs theme-font-mono text-[var(--theme-text-muted)]">
                 COMPARATIVE DEFI EXPOSURE
               </span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-medium text-[var(--theme-text-primary)] tracking-tight">
-              Risk Pricing — Compare Risk Across Protocols
+              Real-Time Risk Readjustments
             </h3>
             <p className="text-sm sm:text-base text-[var(--theme-text-muted)] leading-relaxed">
               Shows market estimates of risk across protocols; someone assessing DeFi exposure
@@ -755,7 +1258,7 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
           </div>
 
           <div className="lg:col-span-6 osiris-well p-4 space-y-2.5 overflow-hidden">
-            <div className="flex items-center justify-between text-[11px] theme-font-mono text-[var(--theme-text-muted)] pb-2 border-b border-[var(--theme-panel-divider)]">
+            <div className="flex items-center justify-between text-[11.5px] theme-font-mono text-[var(--theme-text-muted)] pb-2 border-b border-[var(--theme-panel-divider)]">
               <span>ANNUALIZED PROTOCOL RISK MATRIX (2026)</span>
               <span className="text-[var(--theme-text-accent)] font-semibold">RELATIVE BENCHMARK</span>
             </div>
@@ -795,7 +1298,7 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
                   <div className="text-xs font-medium text-[var(--theme-text-primary)]">
                     {r.protocol}
                   </div>
-                  <div className="text-[10px] theme-font-mono text-[var(--theme-text-muted)]">
+                  <div className="text-[11.5px] theme-font-mono text-[var(--theme-text-muted)]">
                     Smart Contract:{' '}
                     <span className="font-semibold" style={{ color: r.metricColor }}>
                       {r.exploitRisk}
@@ -813,205 +1316,173 @@ export const HomepageEcosystemSections: React.FC<EcosystemSectionsProps> = ({
         </section>
       </div>
 
-      {/* Centered Call-to-Action Banner with Two Crows on Each Side */}
-      <section className="relative osiris-card px-6 py-14 sm:px-12 sm:py-20 overflow-hidden">
-        {/* Ambient radial purple glow */}
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(65% 80% at 50% 50%, rgba(125, 51, 255, 0.22) 0%, rgba(143, 85, 247, 0.06) 55%, transparent 100%)',
-          }}
-        />
+      {/* Public Result · Opportunity Archive + Violet CTA Poster (Replaces Start Now CTA) */}
+      <section className="s-section--tight hm-proof" aria-labelledby="hm-proof-title">
+        <div className="s-container hm-proof__grid grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+          {/* Left Card: Public Result · Opportunity Archive */}
+          <div
+            className="s-card s-card--pad hm-rebrand lg:col-span-5 rounded-[22px] bg-[#17171B] border border-white/[0.06] p-6 sm:p-8 flex flex-col justify-between gap-6"
+            id="hm-rebrand"
+          >
+            <div className="s-col flex flex-col gap-3">
+              <h3 className="text-[22px] sm:text-[26px] font-semibold tracking-[-0.02em] text-[#FFFFFF] leading-[1.2]">
+                Your Opportunity. Your Outcome.
+              </h3>
+              <p className="text-[13.5px] sm:text-[14px] text-[#9E9EA9] leading-[1.55]">
+                Seer ran its own rebrand as an Opportunity Market. Traders priced which of 16
+                entries the team would choose. Electric Foundation finished at 80.1%, and it is
+                the identity these six interfaces are built on.
+              </p>
+            </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8">
-          {/* Left Pair of Seer Crows (Facing Center) */}
-          <div className="hidden sm:flex items-center justify-center shrink-0 w-48 lg:w-64 opacity-95">
-            <svg
-              viewBox="0 0 240 160"
-              className="w-full h-auto overflow-visible"
-              fill="none"
-              aria-hidden="true"
-            >
-              <defs>
-                <linearGradient id="crowWingLeft1" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#B8A5FF" />
-                  <stop offset="45%" stopColor="#8F55F7" />
-                  <stop offset="100%" stopColor="#7D33FF" />
-                </linearGradient>
-                <linearGradient id="crowWingLeft2" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#9C6FF2" />
-                  <stop offset="100%" stopColor="#6222D9" />
-                </linearGradient>
-              </defs>
-
-              {/* Constellation Lines & Stars */}
-              <path
-                d="M14 38 L58 22 L98 40 L132 18"
-                stroke="#8F55F7"
-                strokeOpacity="0.32"
-                strokeWidth="1"
-                strokeDasharray="3 4"
-              />
-              <circle cx="14" cy="38" r="2" fill="#B8A5FF" />
-              <circle cx="58" cy="22" r="2.5" fill="#E9E9F5" />
-              <circle cx="132" cy="18" r="2" fill="#7D33FF" />
-              <path d="M58 16 L60 22 L66 24 L60 26 L58 32 L56 26 L50 24 L56 22 Z" fill="#E9E9F5" fillOpacity="0.8" />
-
-              {/* Crow #1 (Upper Companion Crow Gliding Inward) */}
-              <g transform="translate(8, 12) scale(0.78)">
-                {/* Spread Wing Feathers */}
-                <path
-                  d="M12 44 L48 12 L42 26 L64 16 L54 32 L74 24 L60 40 L76 38 L58 50 L44 52 Z"
-                  fill="url(#crowWingLeft2)"
-                />
-                {/* Body, Head & Beak Facing Right */}
-                <path
-                  d="M40 46 C52 38 68 38 80 42 L96 46 L82 52 C74 58 60 62 46 60 L24 72 L34 56 L18 62 L34 48 Z"
-                  fill="#19162B"
-                  stroke="#9C6FF2"
-                  strokeWidth="1.4"
-                />
-                {/* Glowing Oracle Eye */}
-                <circle cx="77" cy="44.5" r="1.8" fill="#E9E9F5" />
-              </g>
-
-              {/* Crow #2 (Foreground Primary Seer Crow Soaring Inward) */}
-              <g transform="translate(68, 42)">
-                {/* Outer Feather Fan */}
-                <path
-                  d="M6 26 L58 2 L46 20 L74 10 L58 30 L84 22 L66 40 L88 36 L68 50 L84 50 L62 60 L44 58 Z"
-                  fill="url(#crowWingLeft1)"
-                />
-                {/* Inner Feather Detail */}
-                <path
-                  d="M24 38 L62 24 L52 38 L72 34 L56 48 L70 48 L52 56 Z"
-                  fill="#D5D3F2"
-                  fillOpacity="0.35"
-                />
-                {/* Tail Feathers */}
-                <path
-                  d="M36 78 L8 96 L26 88 L12 104 L32 94 L22 110 L44 92 L50 82 Z"
-                  fill="url(#crowWingLeft1)"
-                />
-                {/* Dark Raven Body & Head Facing Right */}
-                <path
-                  d="M44 56 C58 48 76 48 92 53 L112 60 L94 64 C88 74 74 82 58 84 L42 82 C36 74 36 62 44 56 Z"
-                  fill="#141223"
-                  stroke="#9C6FF2"
-                  strokeWidth="1.6"
-                />
-                {/* Talons */}
-                <path
-                  d="M62 83 L68 95 L76 97 M68 95 L72 101 M74 81 L82 92 L90 94"
-                  stroke="#8F55F7"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-                {/* Glowing Eye */}
-                <circle cx="90" cy="57" r="2" fill="#E9E9F5" />
-              </g>
-            </svg>
-          </div>
-
-          {/* Center Banner Text & Start Now CTA */}
-          <div className="flex-1 text-center max-w-2xl mx-auto space-y-6">
-            <h2 className="text-2xl sm:text-4xl font-medium tracking-tight text-[var(--theme-text-primary)] leading-[1.2]">
-              Are you ready to take your predictions to the next level?
-            </h2>
-
-            <div className="pt-1 flex justify-center">
-              <button
-                type="button"
-                onClick={() => onNavigate('app')}
-                className="px-8 py-4 rounded-xl text-sm sm:text-base font-medium text-[#FFFFFF] bg-[#7D33FF] hover:bg-[#8B47FF] active:bg-[#7228F5] shadow-[0_0_28px_rgba(125,51,255,0.45)] inline-flex items-center justify-center transition-all duration-200"
+            <div className="s-orows flex flex-col gap-2">
+              {/* Row 1: Electric Foundation (80.1%) */}
+              <div
+                className="s-orow is-selected relative h-11 rounded-[10px] border border-[#38BDF8]/85 bg-[#16202A] overflow-hidden flex items-center justify-between px-3.5"
+                style={{ '--p': 0.801 } as React.CSSProperties}
               >
-                <span>Start Now</span>
-              </button>
+                <div
+                  className="pointer-events-none absolute inset-y-0 left-0 bg-[#0369A1]/55"
+                  style={{ width: '80.1%' }}
+                />
+                <span className="s-orow__label relative z-10 flex items-center gap-2 min-w-0">
+                  <span className="u-clamp-1 text-[13px] font-medium text-[#FFFFFF] truncate">
+                    Electric Foundation
+                  </span>
+                  <span className="s-tag s-tag--solid px-2 py-0.5 rounded-[6px] bg-[#0284C7] text-[11px] font-semibold text-[#FFFFFF]">
+                    Chosen
+                  </span>
+                </span>
+                <span className="s-orow__pct relative z-10 text-[13px] theme-font-mono font-semibold text-[#7DD3FC]">
+                  80.1%
+                </span>
+              </div>
+
+              {/* Row 2: Signal Convergence (10.3%) */}
+              <div
+                className="s-orow relative h-11 rounded-[10px] border border-white/[0.05] bg-[#1E1E24] overflow-hidden flex items-center justify-between px-3.5"
+                style={{ '--p': 0.103 } as React.CSSProperties}
+              >
+                <div
+                  className="pointer-events-none absolute inset-y-0 left-0 bg-[#0C4A6E]/55"
+                  style={{ width: '10.3%' }}
+                />
+                <span className="s-orow__label relative z-10 flex items-center min-w-0">
+                  <span className="u-clamp-1 text-[13px] font-medium text-[#E9E9F5] truncate">
+                    Signal Convergence
+                  </span>
+                </span>
+                <span className="s-orow__pct relative z-10 text-[13px] theme-font-mono font-medium text-[#BAE6FD]/85">
+                  10.3%
+                </span>
+              </div>
+
+              {/* Row 3: Signal Dark (2.9%) */}
+              <div
+                className="s-orow relative h-11 rounded-[10px] border border-white/[0.05] bg-[#1E1E24] overflow-hidden flex items-center justify-between px-3.5"
+                style={{ '--p': 0.029 } as React.CSSProperties}
+              >
+                <div
+                  className="pointer-events-none absolute inset-y-0 left-0 bg-[#0C4A6E]/55"
+                  style={{ width: '2.9%' }}
+                />
+                <span className="s-orow__label relative z-10 flex items-center min-w-0">
+                  <span className="u-clamp-1 text-[13px] font-medium text-[#E9E9F5] truncate">
+                    Signal Dark
+                  </span>
+                </span>
+                <span className="s-orow__pct relative z-10 text-[13px] theme-font-mono font-medium text-[#BAE6FD]/85">
+                  2.9%
+                </span>
+              </div>
+
+              {/* Row 4: Other 13 entries (6.7%) */}
+              <div
+                className="s-orow relative h-11 rounded-[10px] border border-white/[0.05] bg-[#1E1E24] overflow-hidden flex items-center justify-between px-3.5"
+                style={{ '--p': 0.06699999999999995 } as React.CSSProperties}
+              >
+                <div
+                  className="pointer-events-none absolute inset-y-0 left-0 bg-[#0C4A6E]/55"
+                  style={{ width: '6.7%' }}
+                />
+                <span className="s-orow__label relative z-10 flex items-center min-w-0">
+                  <span className="u-clamp-1 text-[13px] font-medium text-[#E9E9F5] truncate">
+                    Other 13 entries
+                  </span>
+                </span>
+                <span className="s-orow__pct relative z-10 text-[13px] theme-font-mono font-medium text-[#BAE6FD]/85">
+                  0.5–1% each
+                </span>
+              </div>
             </div>
           </div>
 
-          {/* Right Pair of Seer Crows (Mirrored, Facing Center) */}
-          <div className="hidden sm:flex items-center justify-center shrink-0 w-48 lg:w-64 opacity-95">
-            <svg
-              viewBox="0 0 240 160"
-              className="w-full h-auto overflow-visible"
-              fill="none"
-              aria-hidden="true"
+          {/* Right Card: The Future As Defined By You. (Clean blue futuristic hero card) */}
+          <div className="lg:col-span-7 rounded-[22px] p-2 sm:p-2.5 bg-[#111823] border border-[#38BDF8]/35 shadow-[0_0_36px_-10px_rgba(56,189,248,0.25)] flex flex-col">
+            <div
+              className="relative rounded-[16px] overflow-hidden flex flex-col justify-between flex-1 p-7 sm:p-9 border border-[#7DD3FC]/25"
+              style={{
+                background:
+                  'radial-gradient(85% 90% at 82% 68%, rgba(56, 189, 248, 0.32) 0%, rgba(2, 132, 199, 0) 62%), linear-gradient(140deg, #0284C7 0%, #0369A1 42%, #071E34 100%)',
+                boxShadow:
+                  'inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(4, 15, 28, 0.6)',
+              }}
             >
-              <defs>
-                <linearGradient id="crowWingRight1" x1="1" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#B8A5FF" />
-                  <stop offset="45%" stopColor="#8F55F7" />
-                  <stop offset="100%" stopColor="#7D33FF" />
-                </linearGradient>
-                <linearGradient id="crowWingRight2" x1="1" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#9C6FF2" />
-                  <stop offset="100%" stopColor="#6222D9" />
-                </linearGradient>
-              </defs>
+              {/* Top Section: Eyebrow & Display Headline */}
+              <div className="relative z-10 max-w-xl">
+                <div className="flex items-center gap-2.5 text-[11px] theme-font-mono uppercase tracking-[0.18em] text-[#BAE6FD] mb-4">
+                  <span>Every opinion has a price</span>
+                  <span className="hidden sm:inline text-[#BAE6FD]/75">·&nbsp;&nbsp;Est. on Gnosis Chain</span>
+                </div>
 
-              {/* Mirrored Group so Both Crows Face Left Toward the Center CTA */}
-              <g transform="translate(240, 0) scale(-1, 1)">
-                {/* Constellation Lines & Stars */}
-                <path
-                  d="M14 38 L58 22 L98 40 L132 18"
-                  stroke="#8F55F7"
-                  strokeOpacity="0.32"
-                  strokeWidth="1"
-                  strokeDasharray="3 4"
-                />
-                <circle cx="14" cy="38" r="2" fill="#B8A5FF" />
-                <circle cx="58" cy="22" r="2.5" fill="#E9E9F5" />
-                <circle cx="132" cy="18" r="2" fill="#7D33FF" />
-                <path d="M58 16 L60 22 L66 24 L60 26 L58 32 L56 26 L50 24 L56 22 Z" fill="#E9E9F5" fillOpacity="0.8" />
+                <h2
+                  id="hm-proof-title"
+                  className="text-[36px] sm:text-[50px] font-semibold tracking-[-0.03em] leading-[1.06] text-[#FFFFFF]"
+                >
+                  The Future
+                  <span className="block text-[#BAE6FD]">
+                    As Defined By You.
+                  </span>
+                </h2>
 
-                {/* Crow #1 (Upper Companion Crow) */}
-                <g transform="translate(8, 12) scale(0.78)">
-                  <path
-                    d="M12 44 L48 12 L42 26 L64 16 L54 32 L74 24 L60 40 L76 38 L58 50 L44 52 Z"
-                    fill="url(#crowWingRight2)"
-                  />
-                  <path
-                    d="M40 46 C52 38 68 38 80 42 L96 46 L82 52 C74 58 60 62 46 60 L24 72 L34 56 L18 62 L34 48 Z"
-                    fill="#19162B"
-                    stroke="#9C6FF2"
-                    strokeWidth="1.4"
-                  />
-                  <circle cx="77" cy="44.5" r="1.8" fill="#E9E9F5" />
-                </g>
+                <p className="mt-4 text-[13.5px] sm:text-[14px] text-[#E0F2FE]/80 leading-[1.55] max-w-md">
+                  Permissionless conditional markets settled on-chain with yield-bearing sDAI
+                  collateral and verifiable resolution.
+                </p>
+              </div>
 
-                {/* Crow #2 (Foreground Primary Seer Crow) */}
-                <g transform="translate(68, 42)">
-                  <path
-                    d="M6 26 L58 2 L46 20 L74 10 L58 30 L84 22 L66 40 L88 36 L68 50 L84 50 L62 60 L44 58 Z"
-                    fill="url(#crowWingRight1)"
-                  />
-                  <path
-                    d="M24 38 L62 24 L52 38 L72 34 L56 48 L70 48 L52 56 Z"
-                    fill="#D5D3F2"
-                    fillOpacity="0.35"
-                  />
-                  <path
-                    d="M36 78 L8 96 L26 88 L12 104 L32 94 L22 110 L44 92 L50 82 Z"
-                    fill="url(#crowWingRight1)"
-                  />
-                  <path
-                    d="M44 56 C58 48 76 48 92 53 L112 60 L94 64 C88 74 74 82 58 84 L42 82 C36 74 36 62 44 56 Z"
-                    fill="#141223"
-                    stroke="#9C6FF2"
-                    strokeWidth="1.6"
-                  />
-                  <path
-                    d="M62 83 L68 95 L76 97 M68 95 L72 101 M74 81 L82 92 L90 94"
-                    stroke="#8F55F7"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                  <circle cx="90" cy="57" r="2" fill="#E9E9F5" />
-                </g>
-              </g>
-            </svg>
+              {/* Right / Bottom-Right: Clean 3D Torus Wireframe from Reactors Hero */}
+              <div className="pointer-events-none absolute -right-4 bottom-3 sm:right-5 sm:bottom-5 w-[260px] sm:w-[310px] h-[150px] sm:h-[175px]">
+                <FutureHeroWireframe />
+              </div>
+
+              {/* Bottom-Left: Action Buttons anchored cleanly at the bottom */}
+              <div className="relative z-10 pt-8 flex flex-wrap items-center gap-3">
+                <a
+                  className="px-6 py-3.5 rounded-[12px] bg-[#091524] hover:bg-[#0F2238] border border-[#38BDF8]/35 text-[#FFFFFF] text-[14.5px] font-medium inline-flex items-center justify-center transition-colors shadow-[0_6px_18px_rgba(4,12,24,0.4)]"
+                  href="../app/"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    onNavigate('app')
+                  }}
+                >
+                  Open the App
+                </a>
+                <button
+                  className="px-6 py-3.5 rounded-[12px] bg-[#38BDF8]/20 hover:bg-[#38BDF8]/30 border border-[#BAE6FD]/40 text-[#FFFFFF] text-[14.5px] font-medium inline-flex items-center justify-center transition-colors backdrop-blur-sm"
+                  type="button"
+                  onClick={() => {
+                    if (onCreateMarket) {
+                      onCreateMarket()
+                    } else {
+                      onNavigate('app')
+                    }
+                  }}
+                >
+                  Create a market
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1055,7 +1526,7 @@ export const SeerFooter: React.FC<{
               Framework with Reality.eth and Kleros resolution across Gnosis and Ethereum.
             </p>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--theme-well-bg)] border border-[var(--theme-card-border)] text-[11px] theme-font-mono text-[var(--theme-text-secondary)]">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--theme-well-bg)] border border-[var(--theme-card-border)] text-[11.5px] theme-font-mono text-[var(--theme-text-secondary)]">
               <span className="w-2 h-2 rounded-full bg-[#10B981]" />
               <span>ALL PROTOCOL MARKETS LIVE · GNOSIS &amp; ETHEREUM</span>
             </div>
@@ -1198,7 +1669,7 @@ const HeroBadgeCluster: React.FC<{
   rightSymbols: Array<{ s: string; bg: string; border: string; darkText?: boolean }>
 }> = ({ label, leftSymbols, rightSymbols }) => (
   <div className="space-y-1.5">
-    <div className="flex items-center gap-1 text-[11px] theme-font-mono text-[var(--theme-text-muted)]">
+    <div className="flex items-center gap-1 text-[11.5px] theme-font-mono text-[var(--theme-text-muted)]">
       <span>{label}</span>
       <Info className="w-3 h-3 text-[var(--theme-text-accent)] opacity-80" />
     </div>
@@ -1208,13 +1679,13 @@ const HeroBadgeCluster: React.FC<{
           <span
             key={i}
             style={{ backgroundColor: item.bg, borderColor: item.border }}
-            className="w-5 h-5 rounded-full border flex items-center justify-center text-[9px] theme-font-mono font-bold text-white shadow-sm"
+            className="w-6 h-6 rounded-full border flex items-center justify-center text-[11.5px] theme-font-mono font-bold text-white shadow-sm"
           >
             {item.s}
           </span>
         ))}
       </div>
-      <span className="text-[10px] theme-font-mono font-bold text-[var(--theme-text-accent)]">
+      <span className="text-[11.5px] theme-font-mono font-bold text-[var(--theme-text-accent)]">
         =
       </span>
       <div className="flex items-center -space-x-2">
@@ -1222,8 +1693,8 @@ const HeroBadgeCluster: React.FC<{
           <span
             key={i}
             style={{ backgroundColor: item.bg, borderColor: item.border }}
-            className={`w-5 h-5 rounded-full border flex items-center justify-center text-[9px] theme-font-mono font-bold shadow-sm ${
-              item.darkText ? 'text-[#141223]' : 'text-white'
+            className={`w-6 h-6 rounded-full border flex items-center justify-center text-[11.5px] theme-font-mono font-bold shadow-sm ${
+              item.darkText ? 'text-[#101013]' : 'text-white'
             }`}
           >
             {item.s}
@@ -1306,7 +1777,7 @@ const DeepGeodesicWireframe: React.FC = () => {
         <radialGradient id="deepCoreGlow" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#7D33FF" stopOpacity="0.36" />
           <stop offset="55%" stopColor="#8F55F7" stopOpacity="0.14" />
-          <stop offset="100%" stopColor="#141223" stopOpacity="0" />
+          <stop offset="100%" stopColor="#101013" stopOpacity="0" />
         </radialGradient>
         <linearGradient id="deepWireGrad" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#E9E9F5" />
@@ -1374,6 +1845,14 @@ const DeepGeodesicWireframe: React.FC = () => {
           fillOpacity={n.highlight ? 0.9 : 0.65}
         />
       ))}
+
+      {/* Forecast Score Data Callout */}
+      <g transform="translate(178, 12)">
+        <rect x="0" y="0" width="114" height="24" rx="6" fill="#101013" fillOpacity="0.92" stroke="#2dd4bf" strokeWidth="1" />
+        <text x="57" y="16" textAnchor="middle" fill="#2dd4bf" fontSize="11.5" fontFamily="JetBrains Mono, monospace" fontWeight="700">
+          SCORE 8.14/10
+        </text>
+      </g>
     </svg>
   )
 }
@@ -1449,7 +1928,7 @@ const FutarchyBifurcationWireframe: React.FC = () => {
         <radialGradient id="futarchyGlow" cx="55%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#7D33FF" stopOpacity="0.34" />
           <stop offset="60%" stopColor="#9C6FF2" stopOpacity="0.12" />
-          <stop offset="100%" stopColor="#141223" stopOpacity="0" />
+          <stop offset="100%" stopColor="#101013" stopOpacity="0" />
         </radialGradient>
       </defs>
 
@@ -1500,6 +1979,20 @@ const FutarchyBifurcationWireframe: React.FC = () => {
         stroke="#FFFFFF"
         strokeWidth="1.2"
       />
+
+      {/* Decision Fork Data Callouts */}
+      <g transform="translate(182, 10)">
+        <rect x="0" y="0" width="112" height="22" rx="6" fill="#101013" fillOpacity="0.92" stroke="#2dd4bf" strokeWidth="1" />
+        <text x="56" y="15" textAnchor="middle" fill="#2dd4bf" fontSize="11.5" fontFamily="JetBrains Mono, monospace" fontWeight="700">
+          PASS +19.3%
+        </text>
+      </g>
+      <g transform="translate(182, 124)">
+        <rect x="0" y="0" width="112" height="22" rx="6" fill="#101013" fillOpacity="0.92" stroke="#8A8A94" strokeWidth="1" />
+        <text x="56" y="15" textAnchor="middle" fill="#8A8A94" fontSize="11.5" fontFamily="JetBrains Mono, monospace" fontWeight="600">
+          FAIL -16.2%
+        </text>
+      </g>
     </svg>
   )
 }
@@ -1574,7 +2067,7 @@ const MarketsConvergenceWireframe: React.FC = () => {
         <radialGradient id="marketsCurationGlow" cx="54%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#7D33FF" stopOpacity="0.36" />
           <stop offset="50%" stopColor="#38BDF8" stopOpacity="0.16" />
-          <stop offset="100%" stopColor="#141223" stopOpacity="0" />
+          <stop offset="100%" stopColor="#101013" stopOpacity="0" />
         </radialGradient>
       </defs>
 
@@ -1601,6 +2094,14 @@ const MarketsConvergenceWireframe: React.FC = () => {
           strokeWidth={r.isNeck ? '1.3' : '0.7'}
         />
       ))}
+
+      {/* Share Unit Data Callout */}
+      <g transform="translate(132, 12)">
+        <rect x="0" y="0" width="160" height="24" rx="6" fill="#101013" fillOpacity="0.92" stroke="#38BDF8" strokeWidth="1" />
+        <text x="80" y="16" textAnchor="middle" fill="#E9E9F5" fontSize="11.5" fontFamily="JetBrains Mono, monospace" fontWeight="700">
+          50% · 6.3¢ of 12.5¢
+        </text>
+      </g>
     </svg>
   )
 }
@@ -1617,56 +2118,61 @@ export const SpecializedSurfaceView: React.FC<{
         id: 'GRANT-041',
         title: 'ZK-TLS Oracle Adapter for Subjective & Web2 API Attestations',
         applicant: 'zk-attest-labs.eth',
-        agentConsensus: 91.4,
+        agentScore: '8.14/10',
+        agentConsensus: 81.4,
         humanEvaluatorForecast: 'Top 5% · Strong Recommend',
         volume: '$18.4k',
         agentsActive: 19,
         rationale:
-          'AI evaluator agents forecast a 91.4% likelihood that human grant reviewers score this proposal >=4.5/5 on technical feasibility and ecosystem impact.',
+          'AI evaluator agents forecast an 8.14/10 human grant reviewer score on technical feasibility, specification clarity, and ecosystem impact.',
       },
       {
         id: 'GRANT-108',
         title: 'Combinatorial LMSR Automated Market Maker for 100+ Outcome Fields',
         applicant: 'poly-math-dao.eth',
+        agentScore: '8.72/10',
         agentConsensus: 87.2,
         humanEvaluatorForecast: 'Top 10% · Closer Review',
         volume: '$14.2k',
         agentsActive: 16,
         rationale:
-          'High agent agreement on mathematical novelty; moderate spread on gas optimization timeline.',
+          'High agent agreement on mathematical novelty (8.72/10); moderate spread on gas optimization timeline.',
       },
       {
         id: 'GRANT-019',
         title: 'Autonomous Agent SDK for Reality.eth Dispute Evidence Aggregation',
         applicant: 'epistemic-swarm.eth',
+        agentScore: '8.39/10',
         agentConsensus: 83.9,
         humanEvaluatorForecast: 'Top 15% · Closer Review',
         volume: '$11.9k',
         agentsActive: 14,
         rationale:
-          'Strong alignment with Kleros arbitration workflows; flagged for priority technical diligence.',
+          'Strong alignment with Kleros arbitration workflows (8.39/10); flagged for priority technical diligence.',
       },
       {
         id: 'GRANT-077',
         title: 'Multi-Chain sDAI Yield Router for Conditional Positions',
         applicant: 'gnosis-router.eth',
+        agentScore: '7.65/10',
         agentConsensus: 76.5,
         humanEvaluatorForecast: 'Top 25% · Standard Review',
         volume: '$9.1k',
         agentsActive: 11,
         rationale:
-          'Solid engineering team; overlaps partially with existing bridge infrastructure.',
+          'Solid engineering team (7.65/10); overlaps partially with existing bridge infrastructure.',
       },
       {
         id: 'GRANT-132',
         title: 'Social Sentiment Scraper Bot without On-Chain Verification',
         applicant: 'alpha-feed.eth',
+        agentScore: '2.28/10',
         agentConsensus: 22.8,
         humanEvaluatorForecast: 'Bottom Quartile · Low Signal',
         volume: '$6.4k',
         agentsActive: 15,
         rationale:
-          'Agents forecast human evaluators will deprioritize due to lack of sybil resistance.',
+          'Agents forecast human evaluators will score 2.28/10 and deprioritize due to lack of sybil resistance.',
       },
     ]
 
@@ -1675,12 +2181,12 @@ export const SpecializedSurfaceView: React.FC<{
         {/* Top Expressive Display Title */}
         <div className="pt-2 pb-1 text-center space-y-2.5">
           <div className="inline-flex items-center justify-center gap-2.5 flex-wrap">
-            <span className="text-[11px] sm:text-xs theme-font-mono uppercase tracking-[0.26em] text-[var(--theme-text-secondary)]">
+            <span className="text-[11.5px] sm:text-xs theme-font-mono uppercase tracking-[0.26em] text-[var(--theme-text-secondary)]">
               HIGH-CARDINALITY AI AGENT &amp; MULTI-OUTCOME MARKETS
             </span>
             <span className="osiris-pill osiris-pill-brand inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full shadow-[0_0_14px_rgba(125,51,255,0.35)]">
               <Sparkles className="w-2.5 h-2.5 text-[#9C6FF2]" />
-              <span className="text-[10px] tracking-wider normal-case font-semibold">
+              <span className="text-[11.5px] tracking-wider normal-case font-semibold">
                 142 Outcomes
               </span>
             </span>
@@ -1697,7 +2203,7 @@ export const SpecializedSurfaceView: React.FC<{
             <div className="absolute inset-0 rounded-full border border-dashed border-[#9C6FF2]/45 animate-[spin_28s_linear_infinite]" />
             <div className="absolute inset-1.5 rounded-full border border-[#7D33FF]/50 shadow-[0_0_20px_rgba(125,51,255,0.4)]" />
             <div className="absolute top-1/2 -left-8 -right-8 h-[1px] bg-gradient-to-r from-transparent via-[#9C6FF2]/60 to-transparent" />
-            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#9C6FF2] shadow-lg flex items-center justify-center bg-[#141223]">
+            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#9C6FF2] shadow-lg flex items-center justify-center bg-[#101013]">
               <img
                 src="/branding/seer-backdrop.png"
                 alt=""
@@ -1734,7 +2240,7 @@ export const SpecializedSurfaceView: React.FC<{
                         {proposals[selectedItem]?.id}
                       </span>
                     </div>
-                    <div className="text-[10px] theme-font-mono uppercase tracking-[0.18em] text-[var(--theme-text-accent)] font-semibold">
+                    <div className="text-[11.5px] theme-font-mono uppercase tracking-[0.18em] text-[var(--theme-text-accent)] font-semibold">
                       AUTONOMOUS AGENT TRIAGE &amp; COMBINATORIAL LMSR
                     </div>
                     <p className="text-xs text-[var(--theme-text-muted)] pt-1 max-w-xl leading-relaxed">
@@ -1749,10 +2255,10 @@ export const SpecializedSurfaceView: React.FC<{
                       label="Agents"
                       leftSymbols={[
                         { s: 'AI', bg: '#7D33FF', border: '#E9E9F5' },
-                        { s: '19', bg: '#242238', border: '#9C6FF2' },
+                        { s: '19', bg: '#1A1A1E', border: '#9C6FF2' },
                       ]}
                       rightSymbols={[
-                        { s: '◈', bg: '#2dd4bf', border: '#141223', darkText: true },
+                        { s: '◈', bg: '#2dd4bf', border: '#101013', darkText: true },
                         { s: 'S', bg: '#8F55F7', border: '#E9E9F5' },
                         { s: 'K', bg: '#1D1B30', border: '#BFBFE6' },
                       ]}
@@ -1761,21 +2267,21 @@ export const SpecializedSurfaceView: React.FC<{
                       label="Outcomes"
                       leftSymbols={[
                         { s: 'N', bg: '#8F55F7', border: '#E9E9F5' },
-                        { s: '∑', bg: '#242238', border: '#9C6FF2' },
+                        { s: '∑', bg: '#1A1A1E', border: '#9C6FF2' },
                       ]}
                       rightSymbols={[
                         { s: '142', bg: '#7D33FF', border: '#E9E9F5' },
-                        { s: '✓', bg: '#2dd4bf', border: '#141223', darkText: true },
+                        { s: '✓', bg: '#2dd4bf', border: '#101013', darkText: true },
                       ]}
                     />
                     <HeroBadgeCluster
                       label="Collateral"
                       leftSymbols={[
-                        { s: 'G', bg: '#242238', border: '#9C6FF2' },
+                        { s: 'G', bg: '#1A1A1E', border: '#9C6FF2' },
                         { s: 'Ξ', bg: '#7D33FF', border: '#E9E9F5' },
                       ]}
                       rightSymbols={[
-                        { s: 's$', bg: '#2dd4bf', border: '#141223', darkText: true },
+                        { s: 's$', bg: '#2dd4bf', border: '#101013', darkText: true },
                         { s: '$', bg: '#8F55F7', border: '#E9E9F5' },
                       ]}
                     />
@@ -1800,7 +2306,7 @@ export const SpecializedSurfaceView: React.FC<{
                   <button
                     type="button"
                     onClick={() => onNavigate('app')}
-                    className="osiris-btn-primary px-3.5 py-2 rounded-xl text-[11px] theme-font-mono uppercase shrink-0"
+                    className="osiris-btn-primary px-3.5 py-2 rounded-xl text-[11.5px] theme-font-mono uppercase shrink-0"
                   >
                     All-Market Explorer
                   </button>
@@ -1836,9 +2342,9 @@ export const SpecializedSurfaceView: React.FC<{
 
                   <div className="text-left sm:text-right shrink-0 theme-font-mono">
                     <div className="text-lg font-bold text-[var(--theme-text-primary)]">
-                      {p.agentConsensus}%
+                      {p.agentScore}
                     </div>
-                    <div className="text-[11px] text-[var(--theme-text-accent)] font-medium">
+                    <div className="text-[11.5px] text-[var(--theme-text-accent)] font-medium">
                       {p.humanEvaluatorForecast}
                     </div>
                   </div>
@@ -1865,7 +2371,7 @@ export const SpecializedSurfaceView: React.FC<{
               <div className="flex justify-between theme-font-mono">
                 <span className="text-[var(--theme-text-muted)]">Forecasted Human Score</span>
                 <span className="text-[var(--theme-text-primary)] font-bold">
-                  {proposals[selectedItem]?.agentConsensus} / 100
+                  {proposals[selectedItem]?.agentScore}
                 </span>
               </div>
               <div className="flex justify-between theme-font-mono">
@@ -1882,7 +2388,7 @@ export const SpecializedSurfaceView: React.FC<{
             <p className="text-xs text-[var(--theme-text-muted)] leading-relaxed">
               {proposals[selectedItem]?.rationale}
             </p>
-            <div className="p-3 rounded-lg bg-[#7D33FF]/10 border border-[#8F55F7]/40 text-[11px] theme-font-mono text-[var(--theme-text-secondary)]">
+            <div className="p-3 rounded-lg bg-[#7D33FF]/10 border border-[#8F55F7]/40 text-[11.5px] theme-font-mono text-[var(--theme-text-secondary)]">
               ✓ Funding team receives prioritized triage queue while human evaluators make all
               final grant awards.
             </div>
@@ -1931,12 +2437,12 @@ export const SpecializedSurfaceView: React.FC<{
         {/* Top Expressive Display Title */}
         <div className="pt-2 pb-1 text-center space-y-2.5">
           <div className="inline-flex items-center justify-center gap-2.5 flex-wrap">
-            <span className="text-[11px] sm:text-xs theme-font-mono uppercase tracking-[0.26em] text-[var(--theme-text-secondary)]">
+            <span className="text-[11.5px] sm:text-xs theme-font-mono uppercase tracking-[0.26em] text-[var(--theme-text-secondary)]">
               CONDITIONAL GOVERNANCE IMPACT FORECASTS
             </span>
             <span className="osiris-pill osiris-pill-brand inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full shadow-[0_0_14px_rgba(125,51,255,0.35)]">
               <Sparkles className="w-2.5 h-2.5 text-[#9C6FF2]" />
-              <span className="text-[10px] tracking-wider normal-case font-semibold">
+              <span className="text-[11.5px] tracking-wider normal-case font-semibold">
                 DAO Decision Support
               </span>
             </span>
@@ -1953,7 +2459,7 @@ export const SpecializedSurfaceView: React.FC<{
             <div className="absolute inset-0 rounded-full border border-dashed border-[#9C6FF2]/45 animate-[spin_28s_linear_infinite]" />
             <div className="absolute inset-1.5 rounded-full border border-[#7D33FF]/50 shadow-[0_0_20px_rgba(125,51,255,0.4)]" />
             <div className="absolute top-1/2 -left-8 -right-8 h-[1px] bg-gradient-to-r from-transparent via-[#9C6FF2]/60 to-transparent" />
-            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#9C6FF2] shadow-lg flex items-center justify-center bg-[#141223]">
+            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#9C6FF2] shadow-lg flex items-center justify-center bg-[#101013]">
               <img
                 src="/branding/seer-backdrop.png"
                 alt=""
@@ -1990,7 +2496,7 @@ export const SpecializedSurfaceView: React.FC<{
                         IF PASSES / IF FAILS
                       </span>
                     </div>
-                    <div className="text-[10px] theme-font-mono uppercase tracking-[0.18em] text-[var(--theme-text-accent)] font-semibold">
+                    <div className="text-[11.5px] theme-font-mono uppercase tracking-[0.18em] text-[var(--theme-text-accent)] font-semibold">
                       CONDITIONAL TOKEN FRAMEWORK · ADVISORY GOVERNANCE
                     </div>
                     <p className="text-xs text-[var(--theme-text-muted)] pt-1 max-w-xl leading-relaxed">
@@ -2005,10 +2511,10 @@ export const SpecializedSurfaceView: React.FC<{
                       label="DAOs"
                       leftSymbols={[
                         { s: 'G', bg: '#7D33FF', border: '#E9E9F5' },
-                        { s: 'S', bg: '#242238', border: '#9C6FF2' },
+                        { s: 'S', bg: '#1A1A1E', border: '#9C6FF2' },
                       ]}
                       rightSymbols={[
-                        { s: 'K', bg: '#2dd4bf', border: '#141223', darkText: true },
+                        { s: 'K', bg: '#2dd4bf', border: '#101013', darkText: true },
                         { s: '◈', bg: '#8F55F7', border: '#E9E9F5' },
                         { s: 'Ξ', bg: '#1D1B30', border: '#BFBFE6' },
                       ]}
@@ -2016,7 +2522,7 @@ export const SpecializedSurfaceView: React.FC<{
                     <HeroBadgeCluster
                       label="Branches"
                       leftSymbols={[
-                        { s: 'P', bg: '#2dd4bf', border: '#141223' },
+                        { s: 'P', bg: '#2dd4bf', border: '#101013' },
                         { s: 'F', bg: '#4A4660', border: '#BFBFE6' },
                       ]}
                       rightSymbols={[
@@ -2028,10 +2534,10 @@ export const SpecializedSurfaceView: React.FC<{
                       label="Liquidity"
                       leftSymbols={[
                         { s: 's$', bg: '#7D33FF', border: '#E9E9F5' },
-                        { s: 'G', bg: '#242238', border: '#9C6FF2' },
+                        { s: 'G', bg: '#1A1A1E', border: '#9C6FF2' },
                       ]}
                       rightSymbols={[
-                        { s: '$', bg: '#2dd4bf', border: '#141223', darkText: true },
+                        { s: '$', bg: '#2dd4bf', border: '#101013', darkText: true },
                         { s: 'M', bg: '#8F55F7', border: '#E9E9F5' },
                       ]}
                     />
@@ -2054,7 +2560,7 @@ export const SpecializedSurfaceView: React.FC<{
                   <button
                     type="button"
                     onClick={() => onNavigate('app')}
-                    className="osiris-btn-primary px-3.5 py-2 rounded-xl text-[11px] theme-font-mono uppercase shrink-0"
+                    className="osiris-btn-primary px-3.5 py-2 rounded-xl text-[11.5px] theme-font-mono uppercase shrink-0"
                   >
                     Conditional Markets
                   </button>
@@ -2105,7 +2611,7 @@ export const SpecializedSurfaceView: React.FC<{
                 </div>
               </div>
 
-              <div className="text-[11px] theme-font-mono text-[var(--theme-text-muted)] flex items-center justify-between pt-1 border-t border-[var(--theme-panel-divider)]">
+              <div className="text-[11.5px] theme-font-mono text-[var(--theme-text-muted)] flex items-center justify-between pt-1 border-t border-[var(--theme-panel-divider)]">
                 <span>Advisory Signal Only</span>
                 <span className="text-[var(--theme-text-secondary)] font-medium">DAO Retains Final Vote</span>
               </div>
@@ -2122,7 +2628,8 @@ export const SpecializedSurfaceView: React.FC<{
         id: 'SUB-14',
         title: 'Privacy-Preserving Orderflow Batch Auction on Gnosis',
         category: 'Protocol Infrastructure Track',
-        selectionProb: 78.4,
+        selectionProb: 50.0,
+        unitPrice: '50% · 6.3¢ of 12.5¢',
         staked: '$19.2k sDAI',
         status: 'High Selection Signal',
       },
@@ -2130,7 +2637,8 @@ export const SpecializedSurfaceView: React.FC<{
         id: 'SUB-09',
         title: 'Conditional Treasury Hedging SDK for DAO Working Groups',
         category: 'Governance Tooling Track',
-        selectionProb: 64.1,
+        selectionProb: 64.0,
+        unitPrice: '64% · 8.0¢ of 12.5¢',
         staked: '$14.8k sDAI',
         status: 'Strong Contender',
       },
@@ -2138,7 +2646,8 @@ export const SpecializedSurfaceView: React.FC<{
         id: 'SUB-27',
         title: 'Automated Reality.eth Verification & Citation Indexer',
         category: 'Oracle & Resolution Track',
-        selectionProb: 51.8,
+        selectionProb: 52.0,
+        unitPrice: '52% · 6.5¢ of 12.5¢',
         staked: '$11.4k sDAI',
         status: 'In Contention',
       },
@@ -2146,7 +2655,8 @@ export const SpecializedSurfaceView: React.FC<{
         id: 'SUB-03',
         title: 'Mobile Push Notifications for Scalar Market Thresholds',
         category: 'Consumer UX Track',
-        selectionProb: 34.2,
+        selectionProb: 34.4,
+        unitPrice: '34.4% · 4.3¢ of 12.5¢',
         staked: '$7.6k sDAI',
         status: 'Moderate Signal',
       },
@@ -2157,12 +2667,12 @@ export const SpecializedSurfaceView: React.FC<{
         {/* Top Expressive Display Title */}
         <div className="pt-2 pb-1 text-center space-y-2.5">
           <div className="inline-flex items-center justify-center gap-2.5 flex-wrap">
-            <span className="text-[11px] sm:text-xs theme-font-mono uppercase tracking-[0.26em] text-[var(--theme-text-secondary)]">
+            <span className="text-[11.5px] sm:text-xs theme-font-mono uppercase tracking-[0.26em] text-[var(--theme-text-secondary)]">
               OPPORTUNITY MARKETS · SUBMISSION SELECTION SIGNALS
             </span>
             <span className="osiris-pill osiris-pill-brand inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full shadow-[0_0_14px_rgba(125,51,255,0.35)]">
               <Sparkles className="w-2.5 h-2.5 text-[#38BDF8]" />
-              <span className="text-[10px] tracking-wider normal-case font-semibold">
+              <span className="text-[11.5px] tracking-wider normal-case font-semibold">
                 Curation Layer
               </span>
             </span>
@@ -2179,7 +2689,7 @@ export const SpecializedSurfaceView: React.FC<{
             <div className="absolute inset-0 rounded-full border border-dashed border-[#9C6FF2]/45 animate-[spin_28s_linear_infinite]" />
             <div className="absolute inset-1.5 rounded-full border border-[#7D33FF]/50 shadow-[0_0_20px_rgba(125,51,255,0.4)]" />
             <div className="absolute top-1/2 -left-8 -right-8 h-[1px] bg-gradient-to-r from-transparent via-[#9C6FF2]/60 to-transparent" />
-            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#9C6FF2] shadow-lg flex items-center justify-center bg-[#141223]">
+            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#9C6FF2] shadow-lg flex items-center justify-center bg-[#101013]">
               <img
                 src="/branding/seer-backdrop.png"
                 alt=""
@@ -2216,7 +2726,7 @@ export const SpecializedSurfaceView: React.FC<{
                         SELECTION SIGNALS
                       </span>
                     </div>
-                    <div className="text-[10px] theme-font-mono uppercase tracking-[0.18em] text-[var(--theme-text-accent)] font-semibold">
+                    <div className="text-[11.5px] theme-font-mono uppercase tracking-[0.18em] text-[var(--theme-text-accent)] font-semibold">
                       FORECASTING SUBMISSION SELECTION LIKELIHOOD
                     </div>
                     <p className="text-xs text-[var(--theme-text-muted)] pt-1 max-w-xl leading-relaxed">
@@ -2231,10 +2741,10 @@ export const SpecializedSurfaceView: React.FC<{
                       label="Tracks"
                       leftSymbols={[
                         { s: 'I', bg: '#7D33FF', border: '#E9E9F5' },
-                        { s: 'G', bg: '#242238', border: '#9C6FF2' },
+                        { s: 'G', bg: '#1A1A1E', border: '#9C6FF2' },
                       ]}
                       rightSymbols={[
-                        { s: 'O', bg: '#38BDF8', border: '#141223', darkText: true },
+                        { s: 'O', bg: '#38BDF8', border: '#101013', darkText: true },
                         { s: 'U', bg: '#8F55F7', border: '#E9E9F5' },
                       ]}
                     />
@@ -2242,10 +2752,10 @@ export const SpecializedSurfaceView: React.FC<{
                       label="Signals"
                       leftSymbols={[
                         { s: 'S', bg: '#8F55F7', border: '#E9E9F5' },
-                        { s: '◈', bg: '#242238', border: '#9C6FF2' },
+                        { s: '◈', bg: '#1A1A1E', border: '#9C6FF2' },
                       ]}
                       rightSymbols={[
-                        { s: '%', bg: '#2dd4bf', border: '#141223', darkText: true },
+                        { s: '%', bg: '#2dd4bf', border: '#101013', darkText: true },
                         { s: '✓', bg: '#7D33FF', border: '#E9E9F5' },
                       ]}
                     />
@@ -2253,10 +2763,10 @@ export const SpecializedSurfaceView: React.FC<{
                       label="Staked"
                       leftSymbols={[
                         { s: 's$', bg: '#7D33FF', border: '#E9E9F5' },
-                        { s: 'Ξ', bg: '#242238', border: '#9C6FF2' },
+                        { s: 'Ξ', bg: '#1A1A1E', border: '#9C6FF2' },
                       ]}
                       rightSymbols={[
-                        { s: '$', bg: '#2dd4bf', border: '#141223', darkText: true },
+                        { s: '$', bg: '#2dd4bf', border: '#101013', darkText: true },
                         { s: '53k', bg: '#8F55F7', border: '#E9E9F5' },
                       ]}
                     />
@@ -2279,7 +2789,7 @@ export const SpecializedSurfaceView: React.FC<{
                   <button
                     type="button"
                     onClick={() => onNavigate('app')}
-                    className="osiris-btn-primary px-3.5 py-2 rounded-xl text-[11px] theme-font-mono uppercase shrink-0"
+                    className="osiris-btn-primary px-3.5 py-2 rounded-xl text-[11.5px] theme-font-mono uppercase shrink-0"
                   >
                     Browse All Markets
                   </button>
@@ -2302,10 +2812,10 @@ export const SpecializedSurfaceView: React.FC<{
                   </h3>
                 </div>
                 <div className="text-right theme-font-mono shrink-0">
-                  <div className="text-xl font-bold text-[var(--theme-text-primary)]">
-                    {sub.selectionProb}%
+                  <div className="text-base sm:text-lg font-bold text-[var(--theme-text-primary)]">
+                    {sub.unitPrice}
                   </div>
-                  <div className="text-[10px] text-[var(--theme-text-muted)]">Selection Prob.</div>
+                  <div className="text-[11.5px] text-[var(--theme-text-muted)]">Implied · Share of Cohort</div>
                 </div>
               </div>
 

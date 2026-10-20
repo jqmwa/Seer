@@ -541,7 +541,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
             <ArrowLeft className="w-3.5 h-3.5" />
           </span>
           <span>All Markets</span>
-          <span className="text-[var(--theme-text-muted)]/50">/</span>
+          <span className="text-[var(--theme-text-muted)]">/</span>
           <span className="text-[var(--theme-text-accent)] font-semibold uppercase">{market.category}</span>
         </button>
 
@@ -566,7 +566,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
           {scrolledCompact && (
             <div className="sticky top-16 z-20 -mx-2 px-3 py-2.5 bg-[var(--theme-panel-bg)]/95 backdrop-blur-md border-b border-[var(--theme-card-border)] flex items-center justify-between gap-3 transition-all shadow-sm">
               <div className="flex items-center gap-3 min-w-0">
-                <div className="w-9 h-9 rounded-lg overflow-hidden shrink-0 border border-[var(--theme-card-border)] bg-[#141223]">
+                <div className="w-9 h-9 rounded-lg overflow-hidden shrink-0 border border-[var(--theme-card-border)] bg-[#101013]">
                   <MarketThumbnail type={market.avatarType} />
                 </div>
                 <span className="text-sm sm:text-base font-bold text-[var(--theme-text-primary)] truncate">
@@ -621,11 +621,11 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
           {/* 1. Market Header */}
           <div className="flex items-start justify-between gap-4">
             <div className="flex items-start gap-4 min-w-0">
-              <div className="w-16 h-16 sm:w-[68px] sm:h-[68px] rounded-2xl overflow-hidden shrink-0 border border-[var(--theme-card-border)] shadow-md bg-[#141223]">
+              <div className="w-16 h-16 sm:w-[68px] sm:h-[68px] rounded-2xl overflow-hidden shrink-0 border border-[var(--theme-card-border)] shadow-md bg-[#101013]">
                 <MarketThumbnail type={market.avatarType} />
               </div>
               <div className="min-w-0">
-                <div className="text-[11px] sm:text-xs theme-font-mono uppercase tracking-[0.12em] text-[var(--theme-text-accent)] font-semibold mb-1">
+                <div className="text-[11.5px] sm:text-xs theme-font-mono uppercase tracking-[0.12em] text-[var(--theme-text-accent)] font-semibold mb-1">
                   {market.category}
                 </div>
                 <h1 className="text-xl sm:text-2xl md:text-[26px] font-bold text-[var(--theme-text-primary)] leading-[1.2] tracking-[-0.015em]">
@@ -713,7 +713,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                 })}
               </div>
 
-              <span className="text-xl font-bold tracking-tight text-[var(--theme-text-muted)]/45 select-none">
+              <span className="text-xl font-bold tracking-tight text-[var(--theme-text-muted)] select-none">
                 Seer
               </span>
             </div>
@@ -756,7 +756,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                         y={y + 4}
                         textAnchor="end"
                         fill="var(--theme-chart-axis)"
-                        fontSize="11"
+                        fontSize="11.5"
                         fontFamily="var(--theme-font-mono)"
                       >
                         {tick}%
@@ -825,7 +825,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                       x={x}
                       y={chartH - 4}
                       fill="var(--theme-chart-axis)"
-                      fontSize="11"
+                      fontSize="11.5"
                       fontFamily="var(--theme-font-mono)"
                     >
                       {lbl}
@@ -906,10 +906,16 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                       </span>
                     </div>
 
-                    {/* Middle: Large Bold Chance % (Prediction Blue) + Red/Green Delta Badge */}
+                    {/* Middle: Large Bold Chance % (or Native Unit Price) + Red/Green Delta Badge */}
                     <div className="col-span-2 sm:col-span-3 flex items-baseline gap-2">
-                      <span className="text-lg sm:text-xl font-bold text-[#38BDF8] theme-font-mono">
-                        {row.probability}%
+                      <span className="text-base sm:text-lg font-bold text-[#38BDF8] theme-font-mono">
+                        {market.type === 'scalar' && market.scalarValue !== undefined
+                          ? market.scalarUnit === '/10'
+                            ? `${market.scalarValue}/10`
+                            : `${market.scalarValue} ${market.scalarUnit || ''}`
+                          : market.baseShareCents
+                          ? `${row.probability}% · ${((row.probability / 100) * market.baseShareCents).toFixed(1)}¢ of ${market.baseShareCents}¢`
+                          : `${row.probability}%`}
                       </span>
                       {row.delta !== 0 && (
                         <span
@@ -1001,9 +1007,9 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
               <div className="mt-2 divide-y divide-[var(--theme-panel-divider)] border-t border-[var(--theme-panel-divider)]">
                 {newsItems.map((item) => (
                   <div key={item.id} className="py-4 space-y-1.5">
-                    <div className="flex items-center gap-2 text-[11px] theme-font-mono text-[var(--theme-text-muted)]">
+                    <div className="flex items-center gap-2 text-[11.5px] theme-font-mono text-[var(--theme-text-muted)]">
                       <span
-                        className="w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold text-[#FFFFFF] shrink-0"
+                        className="w-6 h-6 rounded-full flex items-center justify-center text-[11.5px] font-bold text-[#FFFFFF] shrink-0"
                         style={{ backgroundColor: item.badgeBg }}
                       >
                         {item.badgeText}
@@ -1175,7 +1181,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                   <button
                     type="button"
                     onClick={() => setIntegrityOpen(true)}
-                    className="px-4 py-2 rounded-full bg-[#242238] hover:bg-[#7D33FF] text-[#FFFFFF] text-xs sm:text-sm font-semibold inline-flex items-center gap-2 transition-colors"
+                    className="px-4 py-2 rounded-full bg-[#1A1A1E] hover:bg-[#7D33FF] text-[#FFFFFF] text-xs sm:text-sm font-semibold inline-flex items-center gap-2 transition-colors"
                   >
                     <Flag className="w-3.5 h-3.5" />
                     <span>Report Insider Trading</span>
@@ -1274,7 +1280,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                     className="w-full flex items-center justify-between gap-4 p-2.5 -mx-2.5 rounded-xl hover:bg-[var(--theme-panel-bg)] transition-colors text-left group"
                   >
                     <div className="flex items-center gap-3.5 min-w-0">
-                      <div className="w-11 h-11 rounded-xl overflow-hidden shrink-0 border border-[var(--theme-card-border)] bg-[#141223]">
+                      <div className="w-11 h-11 rounded-xl overflow-hidden shrink-0 border border-[var(--theme-card-border)] bg-[#101013]">
                         <MarketThumbnail type={rel.avatarType} />
                       </div>
                       <span className="text-sm sm:text-[15px] font-medium text-[var(--theme-text-primary)] group-hover:text-[#7DD3FC] transition-colors line-clamp-1">
@@ -1346,7 +1352,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                   {market.question}
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-lg overflow-hidden shrink-0 border border-[var(--theme-card-border)] bg-[#141223]">
+                  <div className="w-7 h-7 rounded-lg overflow-hidden shrink-0 border border-[var(--theme-card-border)] bg-[#101013]">
                     <MarketThumbnail type={market.avatarType} />
                   </div>
                   <div className="text-lg font-bold text-[var(--theme-text-primary)] leading-tight truncate">
@@ -1407,7 +1413,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                       placeholder="0"
                       value={amountInput}
                       onChange={(e) => setAmountInput(e.target.value)}
-                      className="w-24 text-right text-lg font-bold text-[var(--theme-text-primary)] placeholder-[var(--theme-text-muted)]/50 bg-transparent outline-none theme-font-mono"
+                      className="w-24 text-right text-lg font-bold text-[var(--theme-text-primary)] placeholder-[var(--theme-text-muted)] bg-transparent outline-none theme-font-mono"
                     />
                   </div>
                 </div>
@@ -1419,7 +1425,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                       key={preset}
                       type="button"
                       onClick={() => setAmountInput(String(preset))}
-                      className="flex-1 py-1 rounded-lg bg-[var(--theme-well-bg)] hover:bg-[#38BDF8]/15 border border-[var(--theme-card-border)] hover:border-[#38BDF8]/50 text-[11px] theme-font-mono font-semibold text-[var(--theme-text-secondary)] transition-colors"
+                      className="flex-1 py-1 rounded-lg bg-[var(--theme-well-bg)] hover:bg-[#38BDF8]/15 border border-[var(--theme-card-border)] hover:border-[#38BDF8]/50 text-[11.5px] theme-font-mono font-semibold text-[var(--theme-text-secondary)] transition-colors"
                     >
                       +${preset}
                     </button>
@@ -1432,19 +1438,25 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-[var(--theme-text-muted)] flex items-center gap-1">
                     <span>Prediction Odds</span>
-                    <span className="w-3.5 h-3.5 rounded-full bg-[var(--theme-well-bg)] border border-[var(--theme-card-border)] text-[9px] flex items-center justify-center text-[#38BDF8]">
+                    <span className="w-4 h-4 rounded-full bg-[var(--theme-well-bg)] border border-[var(--theme-card-border)] text-[11.5px] flex items-center justify-center text-[#38BDF8]">
                       %
                     </span>
                   </span>
                   <span className="text-sm font-bold theme-font-mono text-[#38BDF8]">
-                    {displayedOdds}% chance
+                    {market.type === 'scalar' && market.scalarValue !== undefined
+                      ? market.scalarUnit === '/10'
+                        ? `${market.scalarValue}/10`
+                        : `${market.scalarValue} ${market.scalarUnit || ''}`
+                      : market.baseShareCents
+                      ? `${displayedOdds}% · ${((displayedOdds / 100) * market.baseShareCents).toFixed(1)}¢ of ${market.baseShareCents}¢`
+                      : `${displayedOdds}% chance`}
                   </span>
                 </div>
 
                 <div className="flex items-end justify-between">
                   <div>
                     <div className="text-xs text-[var(--theme-text-muted)]">Max payout</div>
-                    <div className="text-[11px] text-[var(--theme-text-muted)]/75">
+                    <div className="text-[11.5px] text-[var(--theme-text-muted)]">
                       {formatEndDateReadable(market.endDate)}
                     </div>
                   </div>
@@ -1519,7 +1531,7 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                         className="w-full py-2.5 px-1 flex items-center justify-between gap-3 text-left group transition-colors"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
-                          <div className="w-8 h-8 rounded-lg overflow-hidden shrink-0 border border-[var(--theme-card-border)] bg-[#141223]">
+                          <div className="w-8 h-8 rounded-lg overflow-hidden shrink-0 border border-[var(--theme-card-border)] bg-[#101013]">
                             <MarketThumbnail type={rel.avatarType} />
                           </div>
                           <span className="text-xs sm:text-[13px] text-[var(--theme-text-secondary)] group-hover:text-[#7DD3FC] transition-colors line-clamp-2 leading-snug">
@@ -1557,13 +1569,13 @@ export const MarketDetailPage: React.FC<MarketDetailPageProps> = ({
                           </span>
                           <span className="text-[var(--theme-text-muted)]">at {item.cents}¢</span>
                         </div>
-                        <div className="text-[11px] text-[var(--theme-text-muted)] truncate">
+                        <div className="text-[11.5px] text-[var(--theme-text-muted)] truncate">
                           {item.contract}
                         </div>
                       </div>
                       <div className="text-right shrink-0 theme-font-mono">
                         <div className="text-[var(--theme-text-primary)] font-semibold">{item.amount}</div>
-                        <div className="text-[10.5px] text-[var(--theme-text-muted)]">{item.time}</div>
+                        <div className="text-[11.5px] text-[var(--theme-text-muted)]">{item.time}</div>
                       </div>
                     </div>
                   ))}

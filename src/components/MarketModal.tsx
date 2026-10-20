@@ -53,7 +53,7 @@ export const MarketTradeModal: React.FC<TradeModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#141223]/65 backdrop-blur-md"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#101013]/65 backdrop-blur-md"
       onClick={onClose}
     >
       <div
@@ -71,7 +71,7 @@ export const MarketTradeModal: React.FC<TradeModalProps> = ({
                 {market.chain} · {market.collateral}
               </span>
               {market.verified && (
-                <span className="inline-flex items-center gap-1 text-[11px] theme-font-mono text-[var(--theme-text-accent)] font-semibold">
+                <span className="inline-flex items-center gap-1 text-[11.5px] theme-font-mono text-[var(--theme-text-accent)] font-semibold">
                   <CheckCircle2 className="w-3.5 h-3.5" /> Verified
                 </span>
               )}
@@ -93,12 +93,20 @@ export const MarketTradeModal: React.FC<TradeModalProps> = ({
           {/* Left Column: Outcomes & Resolution Info */}
           <div className="md:col-span-7 flex flex-col justify-between gap-4">
             <div>
-              <div className="text-[11px] theme-font-mono uppercase tracking-wider text-[var(--theme-text-muted)] mb-2.5">
+              <div className="text-[11.5px] theme-font-mono uppercase tracking-wider text-[var(--theme-text-muted)] mb-2.5">
                 Select Outcome Token
               </div>
               <div className="flex flex-col gap-2">
                 {market.outcomes.map((outcome) => {
                   const isSelected = outcome.id === selectedOutcome?.id
+                  const formattedOutcomePrice =
+                    market.type === 'scalar' && market.scalarValue !== undefined
+                      ? market.scalarUnit === '/10'
+                        ? `${market.scalarValue}/10`
+                        : `${market.scalarValue} ${market.scalarUnit || ''}`
+                      : market.baseShareCents
+                      ? `${outcome.probability.toFixed(0)}% · ${((outcome.probability / 100) * market.baseShareCents).toFixed(1)}¢ of ${market.baseShareCents}¢`
+                      : `${Math.round(outcome.probability)}¢`
                   return (
                     <button
                       key={outcome.id}
@@ -123,8 +131,8 @@ export const MarketTradeModal: React.FC<TradeModalProps> = ({
                         <span className="text-xs theme-font-mono text-[var(--theme-text-muted)]">
                           {(outcome.probability / 100).toFixed(2)} {market.collateral}
                         </span>
-                        <span className="text-sm font-bold theme-font-mono text-[var(--theme-text-primary)] bg-[var(--theme-panel-bg)] px-2 py-0.5 rounded border border-[var(--theme-card-border)]">
-                          {outcome.probability.toFixed(1)}%
+                        <span className="text-xs sm:text-sm font-bold theme-font-mono text-[var(--theme-text-primary)] bg-[var(--theme-panel-bg)] px-2 py-0.5 rounded border border-[var(--theme-card-border)]">
+                          {formattedOutcomePrice}
                         </span>
                       </div>
                     </button>
@@ -135,7 +143,7 @@ export const MarketTradeModal: React.FC<TradeModalProps> = ({
 
             {/* Market Rules & Oracle Box */}
             <div className="osiris-well p-3.5 text-xs text-[var(--theme-text-muted)] space-y-2">
-              <div className="flex items-center justify-between text-[11px] theme-font-mono text-[var(--theme-text-secondary)]">
+              <div className="flex items-center justify-between text-[11.5px] theme-font-mono text-[var(--theme-text-secondary)]">
                 <span className="flex items-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-[var(--theme-text-accent)]" />
                   Reality.eth + Kleros Oracle
@@ -145,7 +153,7 @@ export const MarketTradeModal: React.FC<TradeModalProps> = ({
               <p className="leading-relaxed text-[var(--theme-text-secondary)] text-[11.5px]">
                 {market.description}
               </p>
-              <div className="pt-1 flex items-center justify-between text-[11px] theme-font-mono text-[var(--theme-text-muted)] border-t border-[var(--theme-panel-divider)]">
+              <div className="pt-1 flex items-center justify-between text-[11.5px] theme-font-mono text-[var(--theme-text-muted)] border-t border-[var(--theme-panel-divider)]">
                 <span>Pool Liquidity: ${(market.liquidityUSD / 1000).toFixed(2)}k</span>
                 <span>24h Vol: ${(market.volumeUSD / 1000).toFixed(1)}k</span>
               </div>
@@ -178,7 +186,7 @@ export const MarketTradeModal: React.FC<TradeModalProps> = ({
 
               {/* Collateral Input */}
               <div className="mb-3">
-                <div className="flex items-center justify-between text-[11px] theme-font-mono text-[var(--theme-text-muted)] mb-1.5">
+                <div className="flex items-center justify-between text-[11.5px] theme-font-mono text-[var(--theme-text-muted)] mb-1.5">
                   <span>Amount ({market.collateral})</span>
                   <span>Bal: {walletBalance.toFixed(0)} sDAI</span>
                 </div>
@@ -197,7 +205,7 @@ export const MarketTradeModal: React.FC<TradeModalProps> = ({
                         key={preset}
                         type="button"
                         onClick={() => setAmount(String(preset))}
-                        className="px-1.5 py-0.5 text-[10px] theme-font-mono rounded bg-[var(--theme-well-bg)] hover:bg-[#7D33FF]/20 text-[var(--theme-text-secondary)] border border-[var(--theme-card-border)]"
+                        className="px-1.5 py-0.5 text-[11.5px] theme-font-mono rounded bg-[var(--theme-well-bg)] hover:bg-[#7D33FF]/20 text-[var(--theme-text-secondary)] border border-[var(--theme-card-border)]"
                       >
                         ${preset}
                       </button>
@@ -231,7 +239,7 @@ export const MarketTradeModal: React.FC<TradeModalProps> = ({
 
             <div className="space-y-2">
               {txSuccess && (
-                <div className="p-2 rounded-lg bg-[#7D33FF]/15 border border-[#7D33FF] text-[var(--theme-text-primary)] text-[11px] theme-font-mono text-center">
+                <div className="p-2 rounded-lg bg-[#7D33FF]/15 border border-[#7D33FF] text-[var(--theme-text-primary)] text-[11.5px] theme-font-mono text-center">
                   ✓ {txSuccess}
                 </div>
               )}
@@ -250,7 +258,7 @@ export const MarketTradeModal: React.FC<TradeModalProps> = ({
                 href="https://app.seer.pm/"
                 target="_blank"
                 rel="noreferrer"
-                className="w-full py-1.5 text-[11px] theme-font-mono text-[var(--theme-text-muted)] hover:text-[var(--theme-text-accent)] flex items-center justify-center gap-1 transition-colors"
+                className="w-full py-1.5 text-[11.5px] theme-font-mono text-[var(--theme-text-muted)] hover:text-[var(--theme-text-accent)] flex items-center justify-center gap-1 transition-colors"
               >
                 View on app.seer.pm <ArrowUpRight className="w-3 h-3" />
               </a>
@@ -327,7 +335,7 @@ export const CreateMarketModal: React.FC<CreateMarketModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#141223]/65 backdrop-blur-md"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#101013]/65 backdrop-blur-md"
       onClick={onClose}
     >
       <div
@@ -360,7 +368,7 @@ export const CreateMarketModal: React.FC<CreateMarketModalProps> = ({
               placeholder="e.g., Will Ethereum L1 gas fees average below 5 gwei in Q4 2026?"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
-              className="w-full bg-[var(--theme-input-bg)] border border-[var(--theme-input-border)] focus:border-[#7D33FF] rounded-lg px-3 py-2 text-sm text-[var(--theme-text-primary)] placeholder-[var(--theme-text-muted)]/60 outline-none"
+              className="w-full bg-[var(--theme-input-bg)] border border-[var(--theme-input-border)] focus:border-[#7D33FF] rounded-lg px-3 py-2 text-sm text-[var(--theme-text-primary)] placeholder-[var(--theme-text-muted)] outline-none"
             />
           </div>
 

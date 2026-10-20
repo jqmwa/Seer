@@ -13,12 +13,13 @@ export interface MarketItem {
   question: string
   category: 'Politics' | 'Crypto' | 'Geopolitics' | 'Regulation' | 'Macro'
   type: MarketType
-  avatarType: 'israel' | 'france-rn' | 'le-pen' | 'france-assembly' | 'polymarket' | 'geopolitics' | 'denmark' | 'nato' | 'court' | 'senate'
+  avatarType: 'eth' | 'israel' | 'france-rn' | 'le-pen' | 'france-assembly' | 'polymarket' | 'geopolitics' | 'denmark' | 'nato' | 'court' | 'senate'
   outcomes: MarketOutcome[]
   scalarValue?: number
   scalarUnit?: string
   scalarMin?: number
   scalarMax?: number
+  baseShareCents?: number
   liquidityUSD: number
   volumeUSD: number
   hasIncentive?: boolean
@@ -32,6 +33,26 @@ export interface MarketItem {
 }
 
 export const INITIAL_MARKETS: MarketItem[] = [
+  {
+    id: 'eth-close-5000-2026',
+    question: 'Will ETH close above $5,000 on 31 Dec 2026?',
+    category: 'Crypto',
+    type: 'categorical',
+    avatarType: 'eth',
+    outcomes: [
+      { id: 'yes', label: 'Yes', probability: 34, color: '#7D33FF', price: 0.34 },
+      { id: 'no', label: 'No', probability: 66, color: '#9C6FF2', price: 0.66 },
+    ],
+    liquidityUSD: 54200,
+    volumeUSD: 1300000,
+    hasIncentive: true,
+    verified: true,
+    chain: 'Ethereum',
+    collateral: 'sDAI',
+    endDate: '2026-12-31',
+    starred: true,
+    description: 'Resolves to Yes if the daily closing price of Ethereum (ETH/USD) on 31 December 2026 UTC exceeds $5,000.00 across major reference spot exchanges.',
+  },
   {
     id: 'knesset-2026',
     question: 'Which party or joint electoral list will win the most seats in Israeli Knesset election in 2026?',
@@ -116,9 +137,10 @@ export const INITIAL_MARKETS: MarketItem[] = [
     type: 'binary',
     avatarType: 'france-rn',
     outcomes: [
-      { id: 'no', label: 'No', probability: 74.0, color: '#9C6FF2', price: 0.74 },
-      { id: 'yes', label: 'Yes', probability: 26.0, color: '#7D33FF', price: 0.26 },
+      { id: 'yes', label: 'Yes', probability: 50.0, color: '#7D33FF', price: 0.063 },
+      { id: 'no', label: 'No', probability: 50.0, color: '#9C6FF2', price: 0.063 },
     ],
+    baseShareCents: 12.5,
     liquidityUSD: 1240,
     volumeUSD: 8420,
     hasParentLink: true,
@@ -126,7 +148,7 @@ export const INITIAL_MARKETS: MarketItem[] = [
     chain: 'Gnosis',
     collateral: 'sDAI',
     endDate: '2027-04-25',
-    description: 'Conditional market linked to parent candidate selection outcome for the French presidential election.',
+    description: 'Conditional market linked to parent candidate selection outcome (12.5¢ base share) for the French presidential election.',
   },
   {
     id: 'polymarket-neg-risk-fix',
@@ -153,9 +175,11 @@ export const INITIAL_MARKETS: MarketItem[] = [
     type: 'binary',
     avatarType: 'polymarket',
     outcomes: [
-      { id: 'yes', label: 'Yes', probability: 50.0, color: '#7D33FF', price: 0.50 },
-      { id: 'no', label: 'No', probability: 50.0, color: '#9C6FF2', price: 0.50 },
+      { id: 'yes', label: 'Yes', probability: 50.0, color: '#7D33FF', price: 0.063 },
+      { id: 'no', label: 'No', probability: 50.0, color: '#9C6FF2', price: 0.063 },
     ],
+    baseShareCents: 12.5,
+    hasParentLink: true,
     liquidityUSD: 1170,
     volumeUSD: 4930,
     verified: true,
@@ -220,25 +244,25 @@ export const INITIAL_MARKETS: MarketItem[] = [
   },
   {
     id: 'polymarket-clarification-notes-scalar',
-    question: 'How many Polymarket clarification notes published before January 1, 2027 will cause a market price move of at least 25 percentage points within 24 hours? [Note]',
+    question: 'How will human evaluators score the ZK-TLS Oracle Adapter grant proposal on technical & ecosystem impact? [Scalar /10]',
     category: 'Crypto',
     type: 'scalar',
     avatarType: 'polymarket',
     outcomes: [
-      { id: 'up', label: 'Long (Upper Bound 50)', probability: 28.1, color: '#8F55F7', price: 0.28 },
-      { id: 'down', label: 'Short (Lower Bound 10)', probability: 71.9, color: '#9C6FF2', price: 0.72 },
+      { id: 'up', label: 'Upper Bound (10/10)', probability: 81.4, color: '#8F55F7', price: 0.81 },
+      { id: 'down', label: 'Lower Bound (0/10)', probability: 18.6, color: '#9C6FF2', price: 0.19 },
     ],
-    scalarValue: 21.23,
-    scalarUnit: 'NOTE',
-    scalarMin: 10,
-    scalarMax: 50,
+    scalarValue: 8.14,
+    scalarUnit: '/10',
+    scalarMin: 0,
+    scalarMax: 10,
     liquidityUSD: 1110,
     volumeUSD: 5120,
     verified: true,
     chain: 'Gnosis',
     collateral: 'sDAI',
     endDate: '2026-12-31',
-    description: 'Scalar prediction market tracking the count of official Polymarket rules clarification notes that trigger >=25% implied probability swings within 24 hours of publication.',
+    description: 'Scalar evaluation market pricing the mean human reviewer rubric score (0 to 10 scale) for the ZK-TLS Oracle Adapter proposal.',
   },
   {
     id: 'greenland-sovereignty-treaty-2026',

@@ -285,7 +285,7 @@ const REACTOR_POOLS: ReactorPoolConfig[] = [
 
 const CHAIN_BADGES = [
   { symbol: 'Ξ', bg: '#7D33FF', border: '#9C6FF2', label: 'Ethereum' },
-  { symbol: 'G', bg: '#242238', border: '#8F55F7', label: 'Gnosis' },
+  { symbol: 'G', bg: '#1A1A1E', border: '#8F55F7', label: 'Gnosis' },
   { symbol: 'A', bg: '#1D1B30', border: '#38BDF8', label: 'Arbitrum' },
   { symbol: 'O', bg: '#4A4660', border: '#9C6FF2', label: 'Optimism' },
   { symbol: 'B', bg: '#7D33FF', border: '#BFBFE6', label: 'Base' },
@@ -296,7 +296,7 @@ const TOKEN_BADGES = [
   { symbol: 'st', bg: '#2dd4bf', border: '#E9E9F5', label: 'wstETH' },
   { symbol: 's$', bg: '#7D33FF', border: '#9C6FF2', label: 'sDAI' },
   { symbol: 'rE', bg: '#4A4660', border: '#BFBFE6', label: 'rETH' },
-  { symbol: '◈', bg: '#242238', border: '#9C6FF2', label: 'weETH' },
+  { symbol: '◈', bg: '#1A1A1E', border: '#9C6FF2', label: 'weETH' },
 ]
 
 /**
@@ -373,7 +373,7 @@ const SeerTorusWireframe: React.FC = () => {
         <radialGradient id="seerTorusGlow" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#7D33FF" stopOpacity="0.32" />
           <stop offset="60%" stopColor="#8F55F7" stopOpacity="0.12" />
-          <stop offset="100%" stopColor="#141223" stopOpacity="0" />
+          <stop offset="100%" stopColor="#101013" stopOpacity="0" />
         </radialGradient>
         <linearGradient id="seerTorusStroke" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#BFBFE6" />
@@ -421,6 +421,14 @@ const SeerTorusWireframe: React.FC = () => {
         strokeWidth="0.9"
         strokeDasharray="2 3"
       />
+
+      {/* Comparative Risk Data Callout */}
+      <g transform="translate(132, 12)">
+        <rect x="0" y="0" width="160" height="24" rx="6" fill="#101013" fillOpacity="0.92" stroke="#9C6FF2" strokeWidth="1" />
+        <text x="80" y="16" textAnchor="middle" fill="#E9E9F5" fontSize="11.5" fontFamily="JetBrains Mono, monospace" fontWeight="700">
+          AAVE 1.2% · BRIDGE 8.7%
+        </text>
+      </g>
     </svg>
   )
 }
@@ -442,32 +450,32 @@ const OsirisCornerTicks: React.FC = () => (
  */
 const MetricBadgeCluster: React.FC<{ label: string }> = ({ label }) => (
   <div className="space-y-1.5">
-    <div className="flex items-center gap-1 text-[11px] theme-font-mono text-[var(--theme-text-muted)]">
+    <div className="flex items-center gap-1 text-[11.5px] theme-font-mono text-[var(--theme-text-muted)]">
       <span>{label}</span>
       <Info className="w-3 h-3 text-[var(--theme-text-accent)] opacity-80" />
     </div>
     <div className="flex items-center gap-1.5">
       {/* Left overlapping pair */}
       <div className="flex items-center -space-x-2">
-        <span className="w-5 h-5 rounded-full bg-[#7D33FF] border border-[#E9E9F5]/80 flex items-center justify-center text-[9px] theme-font-mono font-bold text-white shadow-sm">
+        <span className="w-6 h-6 rounded-full bg-[#7D33FF] border border-[#E9E9F5]/80 flex items-center justify-center text-[11.5px] theme-font-mono font-bold text-white shadow-sm">
           Ξ
         </span>
-        <span className="w-5 h-5 rounded-full bg-[#242238] border border-[#9C6FF2] flex items-center justify-center text-[9px] theme-font-mono font-bold text-[#E9E9F5] shadow-sm">
+        <span className="w-6 h-6 rounded-full bg-[#1A1A1E] border border-[#9C6FF2] flex items-center justify-center text-[11.5px] theme-font-mono font-bold text-[#E9E9F5] shadow-sm">
           ◈
         </span>
       </div>
-      <span className="text-[10px] theme-font-mono font-bold text-[var(--theme-text-accent)]">
+      <span className="text-[11.5px] theme-font-mono font-bold text-[var(--theme-text-accent)]">
         =
       </span>
       {/* Right overlapping trio */}
       <div className="flex items-center -space-x-2">
-        <span className="w-5 h-5 rounded-full bg-[#2dd4bf] border border-[#141223] flex items-center justify-center text-[9px] theme-font-mono font-bold text-[#141223] shadow-sm">
+        <span className="w-6 h-6 rounded-full bg-[#2dd4bf] border border-[#101013] flex items-center justify-center text-[11.5px] theme-font-mono font-bold text-[#101013] shadow-sm">
           T
         </span>
-        <span className="w-5 h-5 rounded-full bg-[#8F55F7] border border-[#E9E9F5]/80 flex items-center justify-center text-[9px] theme-font-mono font-bold text-white shadow-sm">
+        <span className="w-6 h-6 rounded-full bg-[#8F55F7] border border-[#E9E9F5]/80 flex items-center justify-center text-[11.5px] theme-font-mono font-bold text-white shadow-sm">
           $
         </span>
-        <span className="w-5 h-5 rounded-full bg-[#1D1B30] border border-[#BFBFE6]/80 flex items-center justify-center text-[9px] theme-font-mono font-bold text-[#E9E9F5] shadow-sm">
+        <span className="w-6 h-6 rounded-full bg-[#1D1B30] border border-[#BFBFE6]/80 flex items-center justify-center text-[11.5px] theme-font-mono font-bold text-[#E9E9F5] shadow-sm">
           M
         </span>
       </div>
@@ -564,12 +572,12 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
       ===================================================================== */}
       <div className="pt-2 pb-4 text-center space-y-2.5">
         <div className="inline-flex items-center justify-center gap-2.5 flex-wrap">
-          <span className="text-[11px] sm:text-xs theme-font-mono uppercase tracking-[0.26em] text-[var(--theme-text-secondary)]">
+          <span className="text-[11.5px] sm:text-xs theme-font-mono uppercase tracking-[0.26em] text-[var(--theme-text-secondary)]">
             AUTOMATED AI RISK REPOSITIONING
           </span>
           <span className="osiris-pill osiris-pill-brand inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full shadow-[0_0_14px_rgba(125,51,255,0.35)]">
             <Sparkles className="w-2.5 h-2.5 text-[#9C6FF2]" />
-            <span className="text-[10px] tracking-wider normal-case font-semibold">
+            <span className="text-[11.5px] tracking-wider normal-case font-semibold">
               Beta 2.0
             </span>
           </span>
@@ -592,7 +600,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
           {/* Horizontal crosshair flare lines */}
           <div className="absolute top-1/2 -left-8 -right-8 h-[1px] bg-gradient-to-r from-transparent via-[#9C6FF2]/60 to-transparent" />
           {/* Inner circular avatar with Seer brand backdrop + logo */}
-          <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#9C6FF2] shadow-lg flex items-center justify-center bg-[#141223]">
+          <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[#9C6FF2] shadow-lg flex items-center justify-center bg-[#101013]">
             <img
               src="/branding/seer-backdrop.png"
               alt=""
@@ -632,7 +640,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
                       {activePool.codeName}
                     </span>
                   </div>
-                  <div className="text-[10px] theme-font-mono uppercase tracking-[0.18em] text-[var(--theme-text-accent)] font-semibold">
+                  <div className="text-[11.5px] theme-font-mono uppercase tracking-[0.18em] text-[var(--theme-text-accent)] font-semibold">
                     SEER AUTOPOOLS
                   </div>
                   <p className="text-xs text-[var(--theme-text-muted)] pt-1 max-w-md leading-relaxed">
@@ -736,7 +744,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
           {/* 5-Box KPI Strip */}
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
             <div className="osiris-card p-3.5 text-center space-y-1">
-              <div className="text-[10px] theme-font-mono uppercase tracking-wider text-[var(--theme-text-muted)]">
+              <div className="text-[11.5px] theme-font-mono uppercase tracking-wider text-[var(--theme-text-muted)]">
                 NAME
               </div>
               <div className="text-sm sm:text-base font-bold theme-font-mono text-[var(--theme-text-primary)]">
@@ -745,7 +753,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
             </div>
 
             <div className="osiris-card p-3.5 text-center space-y-1">
-              <div className="text-[10px] theme-font-mono uppercase tracking-wider text-[var(--theme-text-muted)]">
+              <div className="text-[11.5px] theme-font-mono uppercase tracking-wider text-[var(--theme-text-muted)]">
                 APY
               </div>
               <div className="text-sm sm:text-base font-bold theme-font-mono text-[#2dd4bf]">
@@ -754,7 +762,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
             </div>
 
             <div className="osiris-card p-3.5 text-center space-y-1">
-              <div className="text-[10px] theme-font-mono uppercase tracking-wider text-[var(--theme-text-muted)]">
+              <div className="text-[11.5px] theme-font-mono uppercase tracking-wider text-[var(--theme-text-muted)]">
                 TVL
               </div>
               <div className="text-sm sm:text-base font-bold theme-font-mono text-[var(--theme-text-primary)]">
@@ -763,7 +771,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
             </div>
 
             <div className="osiris-card p-3.5 text-center space-y-1.5 flex flex-col items-center justify-center">
-              <div className="text-[10px] theme-font-mono uppercase tracking-wider text-[var(--theme-text-muted)]">
+              <div className="text-[11.5px] theme-font-mono uppercase tracking-wider text-[var(--theme-text-muted)]">
                 CHAINS
               </div>
               <div className="flex items-center justify-center -space-x-1.5">
@@ -772,7 +780,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
                     key={i}
                     title={c.label}
                     style={{ backgroundColor: c.bg, borderColor: c.border }}
-                    className="w-5 h-5 rounded-full border flex items-center justify-center text-[9px] theme-font-mono font-bold text-white shadow-sm"
+                    className="w-6 h-6 rounded-full border flex items-center justify-center text-[11.5px] theme-font-mono font-bold text-white shadow-sm"
                   >
                     {c.symbol}
                   </span>
@@ -781,7 +789,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
             </div>
 
             <div className="osiris-card p-3.5 text-center space-y-1.5 flex flex-col items-center justify-center col-span-2 sm:col-span-1">
-              <div className="text-[10px] theme-font-mono uppercase tracking-wider text-[var(--theme-text-muted)]">
+              <div className="text-[11.5px] theme-font-mono uppercase tracking-wider text-[var(--theme-text-muted)]">
                 TOKENS
               </div>
               <div className="flex items-center justify-center -space-x-1.5">
@@ -790,7 +798,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
                     key={i}
                     title={t.label}
                     style={{ backgroundColor: t.bg, borderColor: t.border }}
-                    className="w-5 h-5 rounded-full border flex items-center justify-center text-[9px] theme-font-mono font-bold text-white shadow-sm"
+                    className="w-6 h-6 rounded-full border flex items-center justify-center text-[11.5px] theme-font-mono font-bold text-white shadow-sm"
                   >
                     {t.symbol}
                   </span>
@@ -914,7 +922,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
                         : activePool.tvl}
                     </div>
                     {hoveredRow !== null && (
-                      <div className="text-[10px] theme-font-mono text-[var(--theme-text-accent)] mt-0.5">
+                      <div className="text-[11.5px] theme-font-mono text-[var(--theme-text-accent)] mt-0.5">
                         {activePool.rows[hoveredRow].exchange} ·{' '}
                         {activePool.rows[hoveredRow].percentage}%
                       </div>
@@ -927,7 +935,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
               <div className="md:col-span-7 overflow-x-auto">
                 <table className="w-full text-left border-collapse theme-font-mono text-xs">
                   <thead>
-                    <tr className="text-[10px] uppercase tracking-wider text-[var(--theme-text-muted)] border-b border-[var(--theme-panel-divider)]">
+                    <tr className="text-[11.5px] uppercase tracking-wider text-[var(--theme-text-muted)] border-b border-[var(--theme-panel-divider)]">
                       <th className="pb-2.5 font-normal">
                         {compositionTab === 'EXCHANGE' ? 'EXCHANGE' : 'TOKEN'}
                       </th>
@@ -989,7 +997,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse theme-font-mono text-xs">
                 <thead>
-                  <tr className="text-[10px] uppercase tracking-wider text-[var(--theme-text-muted)] border-b border-[var(--theme-panel-divider)]">
+                  <tr className="text-[11.5px] uppercase tracking-wider text-[var(--theme-text-muted)] border-b border-[var(--theme-panel-divider)]">
                     <th className="pb-2.5 font-normal w-10">#</th>
                     <th className="pb-2.5 font-normal">WALLET</th>
                     <th className="pb-2.5 font-normal text-right">DEPOSITED</th>
@@ -1090,7 +1098,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
                     placeholder="0.00"
-                    className="w-full bg-transparent text-3xl sm:text-4xl theme-font-mono font-medium text-[var(--theme-text-primary)] placeholder:text-[var(--theme-text-muted)]/50 focus:outline-none"
+                    className="w-full bg-transparent text-3xl sm:text-4xl theme-font-mono font-medium text-[var(--theme-text-primary)] placeholder:text-[var(--theme-text-muted)] focus:outline-none"
                   />
                   {selectedToken && (
                     <span className="text-xs theme-font-mono text-[var(--theme-text-accent)] font-semibold shrink-0">
@@ -1140,7 +1148,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
                           </span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="text-[11px] text-[var(--theme-text-accent)]">
+                          <span className="text-[11.5px] text-[var(--theme-text-accent)]">
                             {tok.balance}
                           </span>
                           {selectedToken === tok.symbol && (
@@ -1152,7 +1160,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
                   </div>
                 )}
 
-                <div className="flex items-center justify-between text-[11px] theme-font-mono text-[var(--theme-text-muted)] pt-0.5">
+                <div className="flex items-center justify-between text-[11.5px] theme-font-mono text-[var(--theme-text-muted)] pt-0.5">
                   <span>
                     Current Balance: {currentTokenObj ? currentTokenObj.balance : 'N/A'}
                   </span>
@@ -1178,7 +1186,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
                 <div className="flex items-center justify-between">
                   <span className="inline-flex items-center gap-1.5 text-[var(--theme-text-muted)]">
                     <span>Auto-stake</span>
-                    <Info className="w-3.5 h-3.5 text-[var(--theme-text-muted)]/70" />
+                    <Info className="w-3.5 h-3.5 text-[var(--theme-text-muted)]" />
                   </span>
                   <button
                     type="button"
@@ -1205,7 +1213,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
                 <div className="flex items-center justify-between">
                   <span className="inline-flex items-center gap-1.5 text-[var(--theme-text-muted)]">
                     <span>Gas Fee</span>
-                    <Info className="w-3.5 h-3.5 text-[var(--theme-text-muted)]/70" />
+                    <Info className="w-3.5 h-3.5 text-[var(--theme-text-muted)]" />
                   </span>
                   <span className="text-[var(--theme-text-primary)] font-medium">
                     $0.36 ⛽
@@ -1216,7 +1224,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
                 <div className="flex items-center justify-between">
                   <span className="inline-flex items-center gap-1.5 text-[var(--theme-text-muted)]">
                     <span>Max Slippage</span>
-                    <Info className="w-3.5 h-3.5 text-[var(--theme-text-muted)]/70" />
+                    <Info className="w-3.5 h-3.5 text-[var(--theme-text-muted)]" />
                   </span>
                   <span className="text-[var(--theme-text-primary)] font-medium">
                     0.50%
@@ -1227,7 +1235,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
                 <div className="flex items-center justify-between">
                   <span className="inline-flex items-center gap-1.5 text-[var(--theme-text-muted)]">
                     <span>Receive at least</span>
-                    <Info className="w-3.5 h-3.5 text-[var(--theme-text-muted)]/70" />
+                    <Info className="w-3.5 h-3.5 text-[var(--theme-text-muted)]" />
                   </span>
                   <span className="text-[var(--theme-text-primary)] font-medium">
                     {estimatedReceive}
@@ -1249,7 +1257,7 @@ export const ReactorsView: React.FC<ReactorsViewProps> = ({ onNavigate }) => {
                   {tradeMode}
                 </button>
 
-                <div className="flex items-center justify-between text-[11px] theme-font-mono text-[var(--theme-text-muted)] pt-1">
+                <div className="flex items-center justify-between text-[11.5px] theme-font-mono text-[var(--theme-text-muted)] pt-1">
                   <span>Risk Oracle: Reality.eth + Kleros</span>
                   <button
                     type="button"

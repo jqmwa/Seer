@@ -148,7 +148,7 @@ export const HeroBackgroundVideo: React.FC<HeroBackgroundVideoProps> = ({
         style={{
           background: isLight
             ? 'radial-gradient(circle at 50% 50%, rgba(233, 233, 245, 0.22) 0%, rgba(233, 233, 245, 0.64) 72%, rgba(233, 233, 245, 0.9) 100%)'
-            : 'radial-gradient(circle at 50% 50%, rgba(20, 18, 35, 0.18) 0%, rgba(20, 18, 35, 0.58) 72%, rgba(20, 18, 35, 0.88) 100%)',
+            : 'radial-gradient(circle at 50% 50%, rgba(16, 16, 19, 0.18) 0%, rgba(16, 16, 19, 0.58) 72%, rgba(16, 16, 19, 0.92) 100%)',
         }}
       />
     </div>

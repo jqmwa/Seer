@@ -14,12 +14,12 @@ export default {
           white: {
             pure: '#FFFFFF',
             soft: '#E9E9F5',
-            muted: '#BFBFE6',
+            muted: '#8A8A94',
           },
           black: {
-            deep: '#141223',
-            mid: '#242238',
-            muted: '#4A4660',
+            deep: '#101013',
+            mid: '#1A1A1E',
+            muted: '#8A8A94',
           },
           // Forecasting Signal Palette: Distinct bluish color for alternative forecasting signals (vs. direct prediction market trading)
           forecast: {
@@ -63,7 +63,7 @@ export default {
         },
       },
       fontFamily: {
-        primary: ["'PP Neue Montreal'", "'Space Grotesk'", 'system-ui', '-apple-system', 'sans-serif'],
+        primary: ["'PP Neue Montreal'", 'system-ui', '-apple-system', 'sans-serif'],
         mono: ["'Suisse INTL Mono'", "'Suise INTL Mono'", "'JetBrains Mono'", "'Commit Mono'", 'ui-monospace', 'SFMono-Regular', 'monospace'],
         display: 'var(--theme-font-display)',
         body: 'var(--theme-font-body)',
